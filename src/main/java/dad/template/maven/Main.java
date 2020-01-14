@@ -1,6 +1,5 @@
 package dad.template.maven;
 
-import java.util.ResourceBundle;
 
 public class Main {
 
