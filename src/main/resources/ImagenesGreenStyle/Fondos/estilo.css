@@ -1,0 +1,8 @@
+.button{
+	-fx-background-image: url(Losa.png);
+	-fx-background-size: cover;
+}
+.escalera{
+	-fx-background-image: url(escaleras.png);
+	-fx-background-size: cover;	
+}
