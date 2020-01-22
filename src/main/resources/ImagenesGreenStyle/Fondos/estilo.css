@@ -6,3 +6,7 @@
 	-fx-background-image: url(escaleras.png);
 	-fx-background-size: cover;	
 }
+.pocion{
+	-fx-background-image: url(../Items/Posion.png);
+	-fx-background-size: cover;	
+}
