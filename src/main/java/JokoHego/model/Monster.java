@@ -12,6 +12,8 @@ public class Monster {
 	public Monster(MonsterType tipo) {
 		switch(tipo) {
 			case Cutulu:{
+				MonsterType[] cosa = MonsterType.values();
+				MonsterType a = cosa[2];
 				vida.set(50);
 				danyo.set(7);
 				break;
