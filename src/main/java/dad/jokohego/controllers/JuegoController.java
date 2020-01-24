@@ -5,6 +5,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import dad.jokohego.utils.BackType;
+import dad.jokohego.utils.JokoUtils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -19,8 +20,8 @@ public class JuegoController implements Initializable {
 
 	// model
 
-	private Button[][] backButton = new Button[6][6];
-	private BackType[][] backType = new BackType[6][6];
+	private Button[][] backButton;
+	private BackType[][] backType;
 	private int nivel = 1;
 
 	// view
@@ -181,7 +182,9 @@ public class JuegoController implements Initializable {
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		// TODO Auto-generated method stub
+		root.setCenter(JokoUtils.generarNivel(8));
+		backButton = JokoUtils.getButton();
+		backType = JokoUtils.getBackType();
 
 	}
 
