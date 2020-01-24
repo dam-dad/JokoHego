@@ -20,9 +20,9 @@ public class JuegoController implements Initializable {
 
 	// model
 
-	private Button[][] backButton;
-	private BackType[][] backType;
-	private int nivel = 1;
+	private static Button[][] backButton;
+	private static BackType[][] backType;
+	private static int nivel = 1;
 
 	// view
 	
@@ -182,15 +182,15 @@ public class JuegoController implements Initializable {
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		root.setCenter(JokoUtils.generarNivel(8));
+		root.setCenter(JokoUtils.generarNivel(4));
 		backButton = JokoUtils.getButton();
 		backType = JokoUtils.getBackType();
 
 	}
 
 	@FXML
-	void onGeneralAction(ActionEvent event) {
-
+	public static void onGeneralAction(ActionEvent event) {
+	
 	}
 
 	@FXML
@@ -225,5 +225,6 @@ public class JuegoController implements Initializable {
 		System.out.println(event.getSource().toString());
 		
 	}
+
 
 }

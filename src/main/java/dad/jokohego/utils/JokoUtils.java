@@ -2,6 +2,8 @@ package dad.jokohego.utils;
 
 import java.awt.Point;
 
+import dad.jokohego.controllers.JuegoController;
+import javafx.event.ActionEvent;
 import javafx.scene.control.Button;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
@@ -29,6 +31,7 @@ public class JokoUtils {
 			for(int j = 0; j < size;j++) {
 				button[i][j] = new Button();
 				button[i][j].setUserData(new Point(i,j));
+				button[i][j].setOnAction(e -> JuegoController.onGeneralAction(e));
 				buttons.add(button[i][j],i,j);
 				button[i][j].setMaxWidth(Integer.MAX_VALUE);
 				button[i][j].setMaxHeight(Integer.MAX_VALUE);
