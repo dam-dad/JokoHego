@@ -10,7 +10,6 @@ public class Personaje {
 	private IntegerProperty vida = new SimpleIntegerProperty();
 	private IntegerProperty danyo = new SimpleIntegerProperty();
 	private IntegerProperty armadura = new SimpleIntegerProperty();
-	private IntegerProperty cantidadPosiones = new SimpleIntegerProperty();
 	private IntegerProperty dinero = new SimpleIntegerProperty();
 	private BooleanProperty hombre = new SimpleBooleanProperty();
 
@@ -56,22 +55,6 @@ public class Personaje {
 	public final void setArmadura(final int armadura) {
 		this.armaduraProperty().set(armadura);
 	}
-	
-
-	public final IntegerProperty cantidadPosionesProperty() {
-		return this.cantidadPosiones;
-	}
-	
-
-	public final int getCantidadPosiones() {
-		return this.cantidadPosionesProperty().get();
-	}
-	
-
-	public final void setCantidadPosiones(final int cantidadPosiones) {
-		this.cantidadPosionesProperty().set(cantidadPosiones);
-	}
-	
 
 	public final IntegerProperty dineroProperty() {
 		return this.dinero;

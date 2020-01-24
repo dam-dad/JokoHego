@@ -63,6 +63,12 @@
             <Label fx:id="armorLabel" text="0" />
          </children>
       </HBox>
+      <HBox alignment="TOP_CENTER" prefHeight="28.0" prefWidth="200.0">
+         <children>
+            <Label text="Dinero:" />
+            <Label fx:id="moneyLabel" text="0" />
+         </children>
+      </HBox>
       <Label text="Equipamiento" />
       <GridPane>
          <columnConstraints>
