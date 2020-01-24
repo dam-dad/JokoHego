@@ -76,7 +76,7 @@
          <children>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                <children>
-                  <ImageView fx:id="personajeImage" fitHeight="80.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="personajeImage" fitHeight="91.0" fitWidth="89.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../ImagenesGreenStyle/Personajes/Hombre.png" />
                      </image>
