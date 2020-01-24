@@ -30,5 +30,7 @@ public class JuegoController implements Initializable {
 		// TODO Auto-generated method stub
 
 	}
+	
+	
 
 }
