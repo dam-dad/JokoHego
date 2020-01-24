@@ -1,6 +1,6 @@
-package JokoHego.App;
+package dad.jokohego.app;
 
-import JokoHego.Controllers.JuegoController;
+import dad.jokohego.controllers.JuegoController;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.stage.Stage;

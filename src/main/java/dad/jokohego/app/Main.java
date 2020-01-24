@@ -1,4 +1,4 @@
-package JokoHego.App;
+package dad.jokohego.app;
 
 public class Main {
 

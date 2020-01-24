@@ -1,6 +1,6 @@
-package JokoHego.model;
+package dad.jokohego.model;
 
-import JokoHego.Utils.MonsterType;
+import dad.jokohego.utils.MonsterType;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 

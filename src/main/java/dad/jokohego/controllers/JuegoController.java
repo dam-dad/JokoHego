@@ -1,10 +1,10 @@
-package JokoHego.Controllers;
+package dad.jokohego.controllers;
 
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import JokoHego.Utils.BackType;
+import dad.jokohego.utils.BackType;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;

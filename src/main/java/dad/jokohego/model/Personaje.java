@@ -1,4 +1,4 @@
-package JokoHego.model;
+package dad.jokohego.model;
 
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.IntegerProperty;
