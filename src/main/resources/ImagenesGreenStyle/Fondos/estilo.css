@@ -10,3 +10,7 @@
 	-fx-background-image: url(../Items/Posion.png);
 	-fx-background-size: cover;	
 }
+.pocionvacia{
+	-fx-background-image: url(../Items/PosionVacia.png);
+	-fx-background-size: cover;	
+}
