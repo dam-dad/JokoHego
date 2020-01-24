@@ -4,12 +4,8 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-<<<<<<< HEAD:src/main/java/dad/jokohego/controllers/JuegoController.java
 import dad.jokohego.utils.BackType;
-=======
-import JokoHego.Utils.BackType;
 import javafx.event.ActionEvent;
->>>>>>> d03649476aedc24b9c381b95f1d70fc488e68600:src/main/java/JokoHego/Controllers/JuegoController.java
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
