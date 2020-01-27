@@ -36,14 +36,17 @@ public class JokoUtils {
 				button[i][j].setMaxWidth(Integer.MAX_VALUE);
 				button[i][j].setMaxHeight(Integer.MAX_VALUE);
 
-				backType[i][j] = BackType.LosaOscura;
+				backType[i][j] = generarFondo();
 			}
 			buttons.getColumnConstraints().add(conCol);
 			buttons.getRowConstraints().add(conRow);
 		}
 		return buttons;
 	}
-
+	public static BackType generarFondo() {
+		BackType[] bt = BackType.values();
+		return bt[(int)(Math.random()*bt.length)];
+	}
 
 	public static Button[][] getButton() {
 		return button;

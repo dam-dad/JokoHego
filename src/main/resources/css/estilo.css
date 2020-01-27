@@ -1,0 +1,36 @@
+.button{
+	-fx-background-image: url(LosaOscura.png);
+	-fx-background-size: cover;
+}
+.escalera{
+	-fx-background-image: url(escaleras.png);
+	-fx-background-size: cover;	
+}
+.pocion{
+	-fx-background-image: url(../Items/Posion.png);
+	-fx-background-size: cover;	
+}
+.pocionvacia{
+	-fx-background-image: url(../Items/PosionVacia.png);
+	-fx-background-size: cover;	
+}
+.LosaOscura{
+	-fx-background-image: url(../Fondos/LosaOscura.png);
+	-fx-background-size: cover;	
+}
+.Losa{
+	-fx-background-image: url(../Fondos/Losa.png);
+	-fx-background-size: cover;	
+}
+.Escaleras{
+	-fx-background-image: url(../Items/escaleras.png);
+	-fx-background-size: cover;	
+}
+.Cofre{
+	-fx-background-image: url(../Items/cofreCerrado.png);
+	-fx-background-size: cover;	
+}
+.CofreCerrado{
+	-fx-background-image: url(../Items/cofreAbierto.png);
+	-fx-background-size: cover;	
+}
