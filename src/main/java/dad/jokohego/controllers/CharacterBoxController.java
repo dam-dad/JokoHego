@@ -100,7 +100,40 @@ public class CharacterBoxController extends VBox implements Initializable {
 
 	@FXML
 	void onPocionAction(ActionEvent event) {
-		character.setVida(100);
+		
+		if(event.getSource().equals(potionButton1)) {
+		if(potionButton1.getStyleClass().contains("pocionvacia")) {
+			potionButton1.getStyleClass().remove("pocionvacia");
+			potionButton1.getStyleClass().add("pocion");
+			character.setVida(0);
+		}else {
+			potionButton1.getStyleClass().remove("pocion");
+			potionButton1.getStyleClass().add("pocionvacia");
+			character.setVida(100);
+		}
+	}
+	if(event.getSource().equals(potionButton2)) {
+		if(potionButton2.getStyleClass().contains("pocionvacia")) {
+			potionButton2.getStyleClass().remove("pocionvacia");
+			potionButton2.getStyleClass().add("pocion");
+			character.setVida(0);
+		}else {
+			potionButton2.getStyleClass().remove("pocion");
+			potionButton2.getStyleClass().add("pocionvacia");
+			character.setVida(100);
+		}
+	}
+	if(event.getSource().equals(potionButton3)) {
+		if(potionButton3.getStyleClass().contains("pocionvacia")) {
+			potionButton3.getStyleClass().remove("pocionvacia");
+			potionButton3.getStyleClass().add("pocion");
+			character.setVida(0);
+		}else {
+			potionButton3.getStyleClass().remove("pocion");
+			potionButton3.getStyleClass().add("pocionvacia");
+			character.setVida(100);
+		}
+	}
 	}
 
 	public Button getPotionButton1() {

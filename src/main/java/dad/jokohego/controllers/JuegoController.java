@@ -24,12 +24,14 @@ public class JuegoController implements Initializable {
 	private static Button[][] backButton;
 	private static BackType[][] backType;
 	private static int nivel = 1;
+	private static boolean puerta=false;
 
 	// view
 	
 	@FXML
 	private BorderPane root;
-
+	
+	private CharacterBoxController character = new CharacterBoxController();
 
 	public JuegoController() throws IOException {
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/GameView.fxml"));
@@ -43,64 +45,40 @@ public class JuegoController implements Initializable {
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		root.setCenter(JokoUtils.generarNivel(2));
+		root.setCenter(JokoUtils.generarNivel(nivel++,this));
+		root.setRight(character);
 		backButton = JokoUtils.getButton();
 		backType = JokoUtils.getBackType();
 
 	}
 
 	@FXML
-	public static void onGeneralAction(ActionEvent event) {
+	public  void onGeneralAction(ActionEvent event) {
 		Button boton = (Button) event.getSource();
 		Point coordenadas = (Point) boton.getUserData();
+		
+		//Si Losa Oscura 
 		if (boton.getStyleClass().contains("LosaOscura")) {
 			
 			boton.getStyleClass().remove("LosaOscura");
 			BackType tipofondo = backType[(int) coordenadas.getX()][(int) coordenadas.getY()];
+			System.out.println(backType[(int) coordenadas.getX()][(int) coordenadas.getY()]);
 			if (tipofondo != BackType.Monster) {
-				System.out.println(tipofondo.toString());
 				boton.getStyleClass().add(tipofondo.toString());
 			} else {
-				System.out.println(JokoUtils.generarMonstruo().toString());
+//				System.out.println(JokoUtils.generarMonstruo().toString());
 				boton.getStyleClass().add(JokoUtils.generarMonstruo().toString());
 
 			} 
 		}
+		//Si Escalera
+		else if (boton.getStyleClass().contains("Escaleras")) {
+			JokoUtils.setEscalera(false);
+			root.setCenter(JokoUtils.generarNivel(nivel++,this));
+			backType = JokoUtils.getBackType();
+			
+		}
 		
 	}
-
-	@FXML
-	void onPocionAction(ActionEvent event) {
-//		if(event.getSource().equals(pocionButton1)) {
-//			if(pocionButton1.getStyleClass().contains("pocionvacia")) {
-//				pocionButton1.getStyleClass().remove("pocionvacia");
-//				pocionButton1.getStyleClass().add("pocion");
-//			}else {
-//				pocionButton1.getStyleClass().remove("pocion");
-//				pocionButton1.getStyleClass().add("pocionvacia");
-//			}
-//		}
-//		if(event.getSource().equals(pocionButton2)) {
-//			if(pocionButton2.getStyleClass().contains("pocionvacia")) {
-//				pocionButton2.getStyleClass().remove("pocionvacia");
-//				pocionButton2.getStyleClass().add("pocion");
-//			}else {
-//				pocionButton2.getStyleClass().remove("pocion");
-//				pocionButton2.getStyleClass().add("pocionvacia");
-//			}
-//		}
-//		if(event.getSource().equals(pocionButton3)) {
-//			if(pocionButton3.getStyleClass().contains("pocionvacia")) {
-//				pocionButton3.getStyleClass().remove("pocionvacia");
-//				pocionButton3.getStyleClass().add("pocion");
-//			}else {
-//				pocionButton3.getStyleClass().remove("pocion");
-//				pocionButton3.getStyleClass().add("pocionvacia");
-//			}
-//		}
-		System.out.println(event.getSource().toString());
-		
-	}
-
 
 }

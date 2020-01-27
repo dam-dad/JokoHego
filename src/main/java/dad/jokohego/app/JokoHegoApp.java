@@ -12,7 +12,7 @@ public class JokoHegoApp extends Application {
 		
 		JuegoController juego = new JuegoController();
 		
-		Scene scene = new Scene(juego.getView(),650,500);
+		Scene scene = new Scene(juego.getView(),750,500);
 		primaryStage.setResizable(false);
 		primaryStage.setScene(scene);
 		primaryStage.setTitle("JokoHego");
