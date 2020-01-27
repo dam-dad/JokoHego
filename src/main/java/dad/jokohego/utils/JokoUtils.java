@@ -35,6 +35,7 @@ public class JokoUtils {
 				buttons.add(button[i][j],i,j);
 				button[i][j].setMaxWidth(Integer.MAX_VALUE);
 				button[i][j].setMaxHeight(Integer.MAX_VALUE);
+				button[i][j].getStyleClass().add("LosaOscura");
 
 				backType[i][j] = generarFondo();
 			}
@@ -45,7 +46,8 @@ public class JokoUtils {
 	}
 	public static BackType generarFondo() {
 		BackType[] bt = BackType.values();
-		return bt[(int)(Math.random()*bt.length)];
+		return bt[(int)(Math.random()*(bt.length-1))+1];
+		//(hasta-desde+1)+desde
 	}
 	public static MonsterType generarMonstruo() {
 		MonsterType[] mt = MonsterType.values();
