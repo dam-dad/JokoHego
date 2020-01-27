@@ -11,7 +11,7 @@ import javafx.scene.layout.Priority;
 import javafx.scene.layout.RowConstraints;
 
 public class JokoUtils {
-	
+	//los botones tienen un objeto point en el userData para determinar la posicion en el array bidimensional
 	private static Button[][] button;
 	private static BackType[][] backType;
 	
@@ -46,6 +46,10 @@ public class JokoUtils {
 	public static BackType generarFondo() {
 		BackType[] bt = BackType.values();
 		return bt[(int)(Math.random()*bt.length)];
+	}
+	public static MonsterType generarMonstruo() {
+		MonsterType[] mt = MonsterType.values();
+		return mt[(int)(Math.random()*mt.length)];
 	}
 
 	public static Button[][] getButton() {
