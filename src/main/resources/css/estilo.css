@@ -1,3 +1,8 @@
+.button{
+	-fx-background-image: url(../Fondos/Losa.png);
+	-fx-background-size: cover;	
+}
+
 .pocion{
 	-fx-background-image: url(../Items/Posion.png);
 	-fx-background-size: cover;	
