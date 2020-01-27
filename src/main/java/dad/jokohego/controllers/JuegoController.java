@@ -62,7 +62,6 @@ public class JuegoController implements Initializable {
 			
 			boton.getStyleClass().remove("LosaOscura");
 			BackType tipofondo = backType[(int) coordenadas.getX()][(int) coordenadas.getY()];
-			System.out.println(backType[(int) coordenadas.getX()][(int) coordenadas.getY()]);
 			if (tipofondo != BackType.Monster) {
 				boton.getStyleClass().add(tipofondo.toString());
 			} else {

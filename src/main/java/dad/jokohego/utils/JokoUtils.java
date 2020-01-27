@@ -15,9 +15,11 @@ public class JokoUtils {
 	private static Button[][] button;
 	private static BackType[][] backType;
 	private static boolean escalera=false;
+	private static double nivel;
 	
 	
 	public static GridPane generarNivel(int nivel,JuegoController jg) {
+		JokoUtils.nivel = nivel;
 		int size = nivel + 4;
 		button = new Button[size+1][size+1];
 		backType = new BackType[size+1][size+1];
@@ -33,7 +35,6 @@ public class JokoUtils {
 			for(int j = 0; j < size;j++) {
 				
 				button[i][j] = new Button();
-				System.out.println("       "+button[i][j]);
 				button[i][j].setUserData(new Point(i,j));
 				button[i][j].setOnAction(e -> jg.onGeneralAction(e));
 				buttons.add(button[i][j],i,j);
@@ -52,13 +53,21 @@ public class JokoUtils {
 	}
 	public static BackType generarFondo() {
 		BackType[] bt = BackType.values();
-		BackType fondo;
-		if(escalera) {
-			fondo = bt[(int)(Math.random()*(bt.length-2))+2];
-		}else {
-			fondo = bt[(int)(Math.random()*(bt.length-1))+1];
-			if(fondo.equals(BackType.Escaleras))escalera=true;
+		BackType fondo = BackType.Losa;
+		int num = (int)((Math.random()*100)*(nivel/10+1));
+		if(num < 5 ) {
+			if(escalera) {
+				fondo = BackType.Losa;
+			}else {
+				fondo = BackType.Escaleras;
+				if(fondo.equals(BackType.Escaleras))escalera=true;
+			}
+		}else if(num < 10) {
+			fondo = BackType.Cofre;
+		}else if(num > 90) {
+			fondo = BackType.Monster;
 		}
+		System.out.println("         "+num);
 		return fondo;
 		//(hasta-desde+1)+desde
 	}
