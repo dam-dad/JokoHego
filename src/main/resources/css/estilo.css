@@ -27,6 +27,9 @@
 	-fx-background-image: url(../ImagenesGreenStyle/Items/cofreAbierto.png);
 	-fx-background-size: cover;	
 }
+.Monster{
+	
+}
 .Cutulu{
 	-fx-background-image: url(../ImagenesGreenStyle/Enemigos/cutulu.png);
 	-fx-background-size: cover;	

@@ -5,8 +5,10 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import dad.jokohego.model.Monster;
 import dad.jokohego.utils.BackType;
 import dad.jokohego.utils.JokoUtils;
+import dad.jokohego.utils.MonsterType;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -55,19 +57,21 @@ public class JuegoController implements Initializable {
 	@FXML
 	public  void onGeneralAction(ActionEvent event) {
 		Button boton = (Button) event.getSource();
-		Point coordenadas = (Point) boton.getUserData();
-		
+		System.out.println(boton.getStyleClass().toString());
 		//Si Losa Oscura 
 		if (boton.getStyleClass().contains("LosaOscura")) {
-			
+			Point coordenadas = (Point) boton.getUserData();
 			boton.getStyleClass().remove("LosaOscura");
 			BackType tipofondo = backType[(int) coordenadas.getX()][(int) coordenadas.getY()];
 			if (tipofondo != BackType.Monster) {
 				boton.getStyleClass().add(tipofondo.toString());
 			} else {
-//				System.out.println(JokoUtils.generarMonstruo().toString());
-				boton.getStyleClass().add(JokoUtils.generarMonstruo().toString());
-
+				MonsterType tipo = JokoUtils.generarMonstruo();
+				boton.getStyleClass().addAll(tipo.toString(),BackType.Monster.toString());
+				Object[] MonsterPoint = new Object[2];
+				MonsterPoint[0] = new Monster(tipo);
+				MonsterPoint[1] = coordenadas;
+				boton.setUserData(MonsterPoint);
 			} 
 		}
 		//Si Escalera
@@ -75,7 +79,12 @@ public class JuegoController implements Initializable {
 			JokoUtils.setEscalera(false);
 			root.setCenter(JokoUtils.generarNivel(nivel++,this));
 			backType = JokoUtils.getBackType();
-			
+		//Si Monstruo	
+		}else if(boton.getStyleClass().contains("Monster")) {
+			Object[] mt = (Object[])boton.getUserData();
+			Monster monster = (Monster)mt[0];
+			Point punto = (Point)mt[1];
+			character.getCharacter().vidaProperty().subtract(monster.getDanyo());
 		}
 		
 	}

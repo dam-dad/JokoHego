@@ -31,7 +31,6 @@ public class JokoUtils {
 		conRow.setVgrow(Priority.ALWAYS);
 		
 		for(int i = 0;i < size;i++ ) {
-			System.out.println(i+":");
 			for(int j = 0; j < size;j++) {
 				
 				button[i][j] = new Button();
@@ -67,7 +66,6 @@ public class JokoUtils {
 		}else if(num > 90) {
 			fondo = BackType.Monster;
 		}
-		System.out.println("         "+num);
 		return fondo;
 		//(hasta-desde+1)+desde
 	}
