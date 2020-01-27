@@ -12,8 +12,8 @@ public class PruebaApp extends Application {
 		CharacterBoxController a = new CharacterBoxController();
 		a.getCharacter().setArmadura(100);
 		a.getCharacter().setDanyo(100);
-		a.getCharacter().setVida(100);
-		a.getCharacter().setHombre(false);
+		a.getCharacter().setVida(0);
+		a.getCharacter().setHombre(true);
 		a.getCharacter().setDinero(100);
 		
 		

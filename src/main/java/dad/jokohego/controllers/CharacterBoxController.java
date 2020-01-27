@@ -86,13 +86,16 @@ public class CharacterBoxController extends VBox implements Initializable {
 				new NumberStringConverter("###"));
 		Bindings.bindBidirectional(moneyLabel.textProperty(), character.dineroProperty(),
 				new NumberStringConverter("###"));
-		if (character.isHombre()) {
-			characterImage.setImage(
-					new Image(this.getClass().getResourceAsStream("/ImagenesGreenStyle/Personajes/Hombre.png")));
-		} else {
-			characterImage.setImage(
-					new Image(this.getClass().getResourceAsStream("/ImagenesGreenStyle/Personajes/Mujer.png")));
-		}
+		character.hombreProperty().addListener((o,ov,nv) -> {
+			if (nv) {
+				characterImage.setImage(
+						new Image(this.getClass().getResourceAsStream("/ImagenesGreenStyle/Personajes/Hombre.png")));
+			} else {
+				characterImage.setImage(
+						new Image(this.getClass().getResourceAsStream("/ImagenesGreenStyle/Personajes/Mujer.png")));
+			}
+		});
+		
 	}
 
 	@FXML

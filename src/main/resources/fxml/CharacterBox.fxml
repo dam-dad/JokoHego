@@ -11,8 +11,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-
-<fx:root fx:id="root" alignment="CENTER" maxHeight="-Infinity" maxWidth="200.0" minHeight="-Infinity" minWidth="-Infinity" prefWidth="200.0" type="VBox" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root fx:id="root" alignment="CENTER" maxHeight="-Infinity" maxWidth="200.0" minHeight="-Infinity" minWidth="-Infinity" prefWidth="200.0" stylesheets="@../css/estilo.css" type="VBox" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
          <children>

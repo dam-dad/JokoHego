@@ -1,11 +1,3 @@
-.button{
-	-fx-background-image: url(LosaOscura.png);
-	-fx-background-size: cover;
-}
-.escalera{
-	-fx-background-image: url(escaleras.png);
-	-fx-background-size: cover;	
-}
 .pocion{
 	-fx-background-image: url(../Items/Posion.png);
 	-fx-background-size: cover;	
@@ -23,14 +15,45 @@
 	-fx-background-size: cover;	
 }
 .Escaleras{
-	-fx-background-image: url(../Items/escaleras.png);
+	-fx-background-image: url(../Fondos/escaleras.png);
 	-fx-background-size: cover;	
 }
 .Cofre{
 	-fx-background-image: url(../Items/cofreCerrado.png);
 	-fx-background-size: cover;	
 }
-.CofreCerrado{
+.CofreAbierto{
 	-fx-background-image: url(../Items/cofreAbierto.png);
+	-fx-background-size: cover;	
+}
+.cutulu{
+	-fx-background-image: url(../Enemigos/cutulu.png);
+	-fx-background-size: cover;	
+}.EscarabajoOro{
+	-fx-background-image: url(../Enemigos/EscarabajoOro.png);
+	-fx-background-size: cover;	
+}
+.gormiti{
+	-fx-background-image: url(../Enemigos/gormiti.png);
+	-fx-background-size: cover;	
+}
+.minik{
+	-fx-background-image: url(../Enemigos/minik.png);
+	-fx-background-size: cover;	
+}
+.gormiti{
+	-fx-background-image: url(../Enemigos/gormiti.png);
+	-fx-background-size: cover;	
+}
+.orco{
+	-fx-background-image: url(../Enemigos/Phantom.png);
+	-fx-background-size: cover;	
+}
+.rata{
+	-fx-background-image: url(../Enemigos/rata.png);
+	-fx-background-size: cover;	
+}
+.serpiente{
+	-fx-background-image: url(../Enemigos/serpiente.png);
 	-fx-background-size: cover;	
 }
