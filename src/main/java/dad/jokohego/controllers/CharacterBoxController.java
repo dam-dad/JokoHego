@@ -77,7 +77,7 @@ public class CharacterBoxController extends VBox implements Initializable {
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		
+
 //comprobar bindeos
 		Bindings.bindBidirectional(healthLabel.textProperty(), character.vidaProperty(),
 				new NumberStringConverter("###"));
@@ -87,7 +87,7 @@ public class CharacterBoxController extends VBox implements Initializable {
 				new NumberStringConverter("###"));
 		Bindings.bindBidirectional(moneyLabel.textProperty(), character.dineroProperty(),
 				new NumberStringConverter("###"));
-		character.hombreProperty().addListener((o,ov,nv) -> {
+		character.hombreProperty().addListener((o, ov, nv) -> {
 			if (nv) {
 				characterImage.setImage(
 						new Image(this.getClass().getResourceAsStream("/ImagenesGreenStyle/Personajes/Hombre.png")));
@@ -97,45 +97,36 @@ public class CharacterBoxController extends VBox implements Initializable {
 			}
 		});
 		character.setVida(100);
-		
+
 	}
 
 	@FXML
 	void onPocionAction(ActionEvent event) {
-		
-		if(event.getSource().equals(potionButton1)) {
-		if(potionButton1.getStyleClass().contains("pocionvacia")) {
-			potionButton1.getStyleClass().remove("pocionvacia");
-			potionButton1.getStyleClass().add("pocion");
-			character.setVida(0);
-		}else {
+
+		if (event.getSource().equals(potionButton1)) {
+
 			potionButton1.getStyleClass().remove("pocion");
 			potionButton1.getStyleClass().add("pocionvacia");
+			potionButton1.setDisable(true);
 			character.setVida(100);
+
 		}
-	}
-	if(event.getSource().equals(potionButton2)) {
-		if(potionButton2.getStyleClass().contains("pocionvacia")) {
-			potionButton2.getStyleClass().remove("pocionvacia");
-			potionButton2.getStyleClass().add("pocion");
-			character.setVida(0);
-		}else {
+		if (event.getSource().equals(potionButton2)) {
+
 			potionButton2.getStyleClass().remove("pocion");
 			potionButton2.getStyleClass().add("pocionvacia");
+			potionButton2.setDisable(true);
 			character.setVida(100);
+
 		}
-	}
-	if(event.getSource().equals(potionButton3)) {
-		if(potionButton3.getStyleClass().contains("pocionvacia")) {
-			potionButton3.getStyleClass().remove("pocionvacia");
-			potionButton3.getStyleClass().add("pocion");
-			character.setVida(0);
-		}else {
+		if (event.getSource().equals(potionButton3)) {
+
 			potionButton3.getStyleClass().remove("pocion");
 			potionButton3.getStyleClass().add("pocionvacia");
+			potionButton3.setDisable(true);
 			character.setVida(100);
+
 		}
-	}
 	}
 
 	public Button getPotionButton1() {
