@@ -96,6 +96,7 @@ public class CharacterBoxController extends VBox implements Initializable {
 						new Image(this.getClass().getResourceAsStream("/ImagenesGreenStyle/Personajes/Mujer.png")));
 			}
 		});
+		character.setVida(100);
 		
 	}
 

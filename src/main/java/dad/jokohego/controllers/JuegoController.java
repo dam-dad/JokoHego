@@ -84,7 +84,10 @@ public class JuegoController implements Initializable {
 			Object[] mt = (Object[])boton.getUserData();
 			Monster monster = (Monster)mt[0];
 			Point punto = (Point)mt[1];
-			character.getCharacter().vidaProperty().subtract(monster.getDanyo());
+			//character.getCharacter().vidaProperty().subtract(monster.getDanyo());
+			character.getCharacter().setVida(character.getCharacter().getVida()-(character.getCharacter().getArmadura()-monster.getDanyo()));
+		}else if(boton.getStyleClass().contains("Cofre")) {
+			
 		}
 		
 	}
