@@ -52,6 +52,7 @@ public class JuegoController implements Initializable {
 	public void initialize(URL location, ResourceBundle resources) {
 		root.setCenter(JokoUtils.generarNivel(nivel++,this));
 		root.setRight(character);
+		character.getCharacter().setHombre(false);
 		backButton = JokoUtils.getButton();
 		backType = JokoUtils.getBackType();
 		character.getCharacter().setDanyo(10);
