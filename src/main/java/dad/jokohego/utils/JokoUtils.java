@@ -36,6 +36,8 @@ public class JokoUtils {
 				button[i][j] = new Button();
 				button[i][j].setUserData(new Point(i,j));
 				button[i][j].setOnAction(e -> jg.onGeneralAction(e));
+				button[i][j].setOnMouseEntered(e -> jg.onMonsterInformation(e));
+				button[i][j].setOnMouseExited(e -> jg.onMonsterInformationExited(e));
 				buttons.add(button[i][j],i,j);
 				button[i][j].setMaxWidth(Integer.MAX_VALUE);
 				button[i][j].setMaxHeight(Integer.MAX_VALUE);

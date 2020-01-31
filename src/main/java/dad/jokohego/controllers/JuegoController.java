@@ -22,7 +22,9 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
@@ -41,6 +43,8 @@ public class JuegoController implements Initializable {
 	
 	@FXML
 	private BorderPane root;
+	
+	private PopOver poper = new PopOver();
 	
 	private CharacterBoxController character = new CharacterBoxController();
 
@@ -104,15 +108,12 @@ public class JuegoController implements Initializable {
 //			character.getCharacter().vidaProperty().subtract(monster.getDanyo());
 			character.getCharacter().setVida(character.getCharacter().getVida()-(monster.getDanyo()));
 			monster.setVida(monster.getVida()-character.getCharacter().getDanyo());
-			//popvida
-			PopOver a = new PopOver();
-			a.setArrowLocation(ArrowLocation.TOP_CENTER);
-			a.show(boton);
 			
-			if(monster.getVida()<0) {
+			if(monster.getVida()<=0) {
 				numMonster--;
 				boton.getStyleClass().removeAll(monster.getNombre(),"Monster");
 				boton.getStyleClass().add("Losa");
+				poper.hide();
 			
 			}
 		}else if(boton.getStyleClass().contains("Cofre")) {
@@ -174,6 +175,35 @@ public class JuegoController implements Initializable {
 			character.getCharacter().setArmadura(0);
 		}
 
+	}
+
+	public void onMonsterInformation(MouseEvent e) {
+		Button boton = (Button) e.getSource();
+		if (boton.getStyleClass().contains("Monster")) {
+			Object[] mt = (Object[]) boton.getUserData();
+			Monster monster = (Monster) mt[0];
+			poper.setArrowLocation(ArrowLocation.TOP_CENTER);
+			ImageView vida = new ImageView(
+					new Image(this.getClass().getResourceAsStream("/ImagenesGreenStyle/Items/Vida.png")));
+			ImageView danyo = new ImageView(
+					new Image(this.getClass().getResourceAsStream("/ImagenesGreenStyle/Items/Danyo.png")));
+			Label vidanum = new Label(monster.getVida() + "");
+			Label danyonum = new Label(monster.getDanyo() + "");
+			HBox info = new HBox(vida, vidanum, danyo, danyonum);
+			info.setAlignment(Pos.CENTER);
+			info.setSpacing(5);
+			info.setPadding(new Insets(5));
+			poper.setContentNode(info);
+			poper.show(boton);
+		}
+		
+	}
+
+	public void onMonsterInformationExited(MouseEvent e) {
+		Button boton = (Button) e.getSource();
+		if (boton.getStyleClass().contains("Monster")) {
+		poper.hide();
+		}
 	}
 
 }
