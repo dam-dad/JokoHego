@@ -51,12 +51,11 @@ public class JuegoController implements Initializable {
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		root.setCenter(JokoUtils.generarNivel(nivel++,this));
-		root.setRight(character);
 		character.getCharacter().setHombre(false);
-		backButton = JokoUtils.getButton();
+		root.setRight(character);
 		backType = JokoUtils.getBackType();
 		character.getCharacter().setDanyo(10);
-		character.getCharacter().setArmadura(5);
+		character.getCharacter().setArmadura(0);
 
 	}
 
@@ -124,6 +123,13 @@ public class JuegoController implements Initializable {
 			}
 		}
 		if(character.getCharacter().getVida()<0) {
+			nivel = 0;
+			root.setCenter(JokoUtils.generarNivel(nivel++,this));
+			character.getCharacter().setHombre(false);
+			root.setRight(character);
+			backType = JokoUtils.getBackType();
+			character.getCharacter().setDanyo(10);
+			character.getCharacter().setArmadura(0);
 			throw new RuntimeException("jaja rip");
 		}
 	}

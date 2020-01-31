@@ -70,8 +70,26 @@ public class JokoUtils {
 		//(hasta-desde+1)+desde
 	}
 	public static MonsterType generarMonstruo() {
+		MonsterType monster = null;
+		
 		MonsterType[] mt = MonsterType.values();
-		return mt[(int)(Math.random()*mt.length)];
+		int num = (int)((Math.random()*100)+(nivel*5));
+		
+		if(num < 40) {
+			monster = MonsterType.Rata;
+		}else if(num > 40 && num < 60) {
+			monster = MonsterType.Minik;
+		}else if(num > 60 && num < 100) {
+			monster = MonsterType.Serpiente;
+		}else if(num > 100 && num < 140) {
+			monster = MonsterType.Orco;
+		}else if(num > 140 && num < 160) {
+			monster = MonsterType.Phantom;
+		}else
+			monster = MonsterType.Cutulu;
+		
+		if(num == 80)monster = MonsterType.EscarabajoOro;
+		return monster;
 	}
 	
 	public static void setEscalera(boolean escalera) {
