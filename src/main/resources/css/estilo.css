@@ -61,3 +61,6 @@
 	-fx-background-image: url(../ImagenesGreenStyle/Enemigos/serpiente.png);
 	-fx-background-size: cover;	
 }
+.popup{
+	-fx-background-color:black;
+}
