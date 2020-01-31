@@ -59,8 +59,9 @@
 }
 .Serpiente{
 	-fx-background-image: url(../ImagenesGreenStyle/Enemigos/serpiente.png);
-	-fx-background-size: cover;	
+	-fx-background-size: cover;
 }
 .popup{
-	-fx-background-image: url(../ImagenesGreenStyle/Fondos/Losa.png);
-	-fx-background-size: cover;	}
+	-fx-background-image: url(../ImagenesGreenStyle/Fondos/PoperFondo.png);
+	-fx-background-size: cover, auto;
+		}

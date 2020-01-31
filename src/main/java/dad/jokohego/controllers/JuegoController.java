@@ -3,6 +3,8 @@ package dad.jokohego.controllers;
 import java.awt.Point;
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 
 import javax.management.RuntimeErrorException;
@@ -20,6 +22,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
@@ -45,7 +48,7 @@ public class JuegoController implements Initializable {
 	private BorderPane root;
 	
 	private PopOver poper = new PopOver();
-	
+	private HBox infoPoper;
 	private CharacterBoxController character = new CharacterBoxController();
 
 	public JuegoController() throws IOException {
@@ -66,6 +69,26 @@ public class JuegoController implements Initializable {
 		backType = JokoUtils.getBackType();
 		character.getCharacter().setDanyo(10);
 		character.getCharacter().setArmadura(0);
+		
+		//poper
+		
+		poper.setArrowLocation(ArrowLocation.TOP_CENTER);
+//		poper.getStyleClass().clear();
+//		poper.getStyleClass().add("popup");
+		poper.setArrowSize(0);
+		poper.setAnimated(false);
+		
+		ImageView vida = new ImageView(
+				new Image(this.getClass().getResourceAsStream("/ImagenesGreenStyle/Items/Vida.png")));
+		ImageView danyo = new ImageView(
+				new Image(this.getClass().getResourceAsStream("/ImagenesGreenStyle/Items/Danyo.png")));
+		Label vidanum = new Label();
+		Label danyonum = new Label();
+		infoPoper = new HBox(vida, vidanum, danyo, danyonum);
+//		infoPoper.getStyleClass().add("Losa");
+		infoPoper.setAlignment(Pos.CENTER);
+		infoPoper.setSpacing(5);
+		infoPoper.setPadding(new Insets(5));
 
 	}
 
@@ -106,8 +129,12 @@ public class JuegoController implements Initializable {
 			Point punto = (Point)mt[1];
 			// intentar hacerlo con bindeos
 //			character.getCharacter().vidaProperty().subtract(monster.getDanyo());
+			int vidaMonster = monster.getVida()-character.getCharacter().getDanyo();
 			character.getCharacter().setVida(character.getCharacter().getVida()-(monster.getDanyo()));
-			monster.setVida(monster.getVida()-character.getCharacter().getDanyo());
+			monster.setVida(vidaMonster);
+			List<Node> nodos = infoPoper.getChildren();
+			Label aux = (Label)nodos.get(1);
+			aux.setText(vidaMonster+"");
 			
 			if(monster.getVida()<=0) {
 				numMonster--;
@@ -182,18 +209,12 @@ public class JuegoController implements Initializable {
 		if (boton.getStyleClass().contains("Monster")) {
 			Object[] mt = (Object[]) boton.getUserData();
 			Monster monster = (Monster) mt[0];
-			poper.setArrowLocation(ArrowLocation.TOP_CENTER);
-			ImageView vida = new ImageView(
-					new Image(this.getClass().getResourceAsStream("/ImagenesGreenStyle/Items/Vida.png")));
-			ImageView danyo = new ImageView(
-					new Image(this.getClass().getResourceAsStream("/ImagenesGreenStyle/Items/Danyo.png")));
-			Label vidanum = new Label(monster.getVida() + "");
-			Label danyonum = new Label(monster.getDanyo() + "");
-			HBox info = new HBox(vida, vidanum, danyo, danyonum);
-			info.setAlignment(Pos.CENTER);
-			info.setSpacing(5);
-			info.setPadding(new Insets(5));
-			poper.setContentNode(info);
+			List<Node> nodos = infoPoper.getChildren();
+			Label aux = (Label)nodos.get(1);
+			Label aux2 = (Label)nodos.get(3);
+			aux.setText(monster.getVida()+"");
+			aux2.setText(monster.getDanyo()+"");
+			poper.setContentNode(infoPoper);
 			poper.show(boton);
 		}
 		
