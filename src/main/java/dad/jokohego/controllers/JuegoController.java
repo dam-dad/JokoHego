@@ -104,7 +104,11 @@ public class JuegoController implements Initializable {
 //			character.getCharacter().vidaProperty().subtract(monster.getDanyo());
 			character.getCharacter().setVida(character.getCharacter().getVida()-(monster.getDanyo()));
 			monster.setVida(monster.getVida()-character.getCharacter().getDanyo());
-			System.out.println(character.getCharacter().getVida());
+			//popvida
+			PopOver a = new PopOver();
+			a.setArrowLocation(ArrowLocation.TOP_CENTER);
+			a.show(boton);
+			
 			if(monster.getVida()<0) {
 				numMonster--;
 				boton.getStyleClass().removeAll(monster.getNombre(),"Monster");
@@ -168,7 +172,6 @@ public class JuegoController implements Initializable {
 			backType = JokoUtils.getBackType();
 			character.getCharacter().setDanyo(10);
 			character.getCharacter().setArmadura(0);
-			throw new RuntimeException("jaja rip");
 		}
 
 	}
