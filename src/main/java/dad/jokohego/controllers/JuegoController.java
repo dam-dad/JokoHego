@@ -5,6 +5,8 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import javax.management.RuntimeErrorException;
+
 import dad.jokohego.model.Monster;
 import dad.jokohego.utils.BackType;
 import dad.jokohego.utils.JokoUtils;
@@ -26,6 +28,7 @@ public class JuegoController implements Initializable {
 	private static Button[][] backButton;
 	private static BackType[][] backType;
 	private static int nivel = 1;
+	private static int numMonster = 0;
 	private static boolean puerta=false;
 
 	// view
@@ -65,9 +68,13 @@ public class JuegoController implements Initializable {
 			Point coordenadas = (Point) boton.getUserData();
 			boton.getStyleClass().remove("LosaOscura");
 			BackType tipofondo = backType[(int) coordenadas.getX()][(int) coordenadas.getY()];
+			
+			character.getCharacter().setVida(character.getCharacter().getVida()-(numMonster*5));
+			
 			if (tipofondo != BackType.Monster) {
 				boton.getStyleClass().add(tipofondo.toString());
 			} else {
+				numMonster++;
 				MonsterType tipo = JokoUtils.generarMonstruo();
 				boton.getStyleClass().addAll(tipo.toString(),BackType.Monster.toString());
 				Object[] MonsterPoint = new Object[2];
@@ -79,6 +86,7 @@ public class JuegoController implements Initializable {
 		//Si Escalera
 		else if (boton.getStyleClass().contains("Escaleras")) {
 			JokoUtils.setEscalera(false);
+			numMonster=0;
 			root.setCenter(JokoUtils.generarNivel(nivel++,this));
 			backType = JokoUtils.getBackType();
 		//Si Monstruo	
@@ -86,11 +94,16 @@ public class JuegoController implements Initializable {
 			Object[] mt = (Object[])boton.getUserData();
 			Monster monster = (Monster)mt[0];
 			Point punto = (Point)mt[1];
-			//character.getCharacter().vidaProperty().subtract(monster.getDanyo());
+			// intentar hacerlo con bindeos
+//			character.getCharacter().vidaProperty().subtract(monster.getDanyo());
 			character.getCharacter().setVida(character.getCharacter().getVida()-(monster.getDanyo()));
 			monster.setVida(monster.getVida()-character.getCharacter().getDanyo());
+			System.out.println(character.getCharacter().getVida());
 			if(monster.getVida()<0) {
-				System.out.println("Ta muerto");
+				numMonster--;
+				boton.getStyleClass().removeAll(monster.getNombre(),"Monster");
+				boton.getStyleClass().add("Losa");
+			
 			}
 		}else if(boton.getStyleClass().contains("Cofre")) {
 			boton.getStyleClass().remove("Cofre");
@@ -109,7 +122,9 @@ public class JuegoController implements Initializable {
 				character.getPotionButton3().getStyleClass().add("pocion");
 			}
 		}
-		
+		if(character.getCharacter().getVida()<0) {
+			throw new RuntimeException("jaja rip");
+		}
 	}
 
 }

@@ -3,14 +3,18 @@ package dad.jokohego.model;
 import dad.jokohego.utils.MonsterType;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
 
 public class Monster {
 	
+	private StringProperty nombre = new SimpleStringProperty();
 	private IntegerProperty vida = new SimpleIntegerProperty();
 	private IntegerProperty danyo = new SimpleIntegerProperty();
 	private IntegerProperty dinero = new SimpleIntegerProperty();
 
 	public Monster(MonsterType tipo) {
+		nombre.set(tipo.toString());
 		switch(tipo) {
 			case Cutulu:{
 				vida.set(50);
@@ -106,6 +110,21 @@ public class Monster {
 	public final void setDinero(final int dinero) {
 		this.dineroProperty().set(dinero);
 	}
+
+	public final StringProperty nombreProperty() {
+		return this.nombre;
+	}
+	
+
+	public final String getNombre() {
+		return this.nombreProperty().get();
+	}
+	
+
+	public final void setNombre(final String nombre) {
+		this.nombreProperty().set(nombre);
+	}
+	
 	
 	
 	
