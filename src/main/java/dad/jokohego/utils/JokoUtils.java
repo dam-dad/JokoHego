@@ -77,13 +77,13 @@ public class JokoUtils {
 		
 		if(num < 40) {
 			monster = MonsterType.Rata;
-		}else if(num > 40 && num < 60) {
+		}else if(num >= 40 && num < 60) {
 			monster = MonsterType.Minik;
-		}else if(num > 60 && num < 100) {
+		}else if(num >= 60 && num < 100) {
 			monster = MonsterType.Serpiente;
-		}else if(num > 100 && num < 140) {
+		}else if(num >= 100 && num < 140) {
 			monster = MonsterType.Orco;
-		}else if(num > 140 && num < 160) {
+		}else if(num >= 140 && num < 160) {
 			monster = MonsterType.Phantom;
 		}else
 			monster = MonsterType.Cutulu;
