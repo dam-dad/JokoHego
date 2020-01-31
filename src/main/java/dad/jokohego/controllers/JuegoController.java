@@ -130,7 +130,6 @@ public class JuegoController implements Initializable {
 			// intentar hacerlo con bindeos
 //			character.getCharacter().vidaProperty().subtract(monster.getDanyo());
 			int vidaMonster = monster.getVida()-character.getCharacter().getDanyo();
-			character.getCharacter().setVida(character.getCharacter().getVida()-(monster.getDanyo()));
 			monster.setVida(vidaMonster);
 			List<Node> nodos = infoPoper.getChildren();
 			Label aux = (Label)nodos.get(1);
@@ -142,6 +141,8 @@ public class JuegoController implements Initializable {
 				boton.getStyleClass().add("Losa");
 				poper.hide();
 			
+			}else {
+				character.getCharacter().setVida(character.getCharacter().getVida()-(monster.getDanyo()));
 			}
 		}else if(boton.getStyleClass().contains("Cofre")) {
 			boton.getStyleClass().remove("Cofre");
