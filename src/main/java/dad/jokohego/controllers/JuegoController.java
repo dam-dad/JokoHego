@@ -7,6 +7,9 @@ import java.util.ResourceBundle;
 
 import javax.management.RuntimeErrorException;
 
+import org.controlsfx.control.PopOver;
+import org.controlsfx.control.PopOver.ArrowLocation;
+
 import dad.jokohego.model.Monster;
 import dad.jokohego.utils.BackType;
 import dad.jokohego.utils.JokoUtils;
@@ -15,11 +18,14 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
 
 public class JuegoController implements Initializable {
 
@@ -109,6 +115,36 @@ public class JuegoController implements Initializable {
 		}else if(boton.getStyleClass().contains("Cofre")) {
 			boton.getStyleClass().remove("Cofre");
 			boton.getStyleClass().add("CofreAbierto");
+			
+			PopOver a = new PopOver();
+			a.getRoot().getStyleClass().add("popup");
+			a.setArrowLocation(ArrowLocation.TOP_CENTER);
+			a.setAnchorX(300);
+			a.setAnchorY(250);
+			a.detach();
+			a.requestFocus();
+			
+			Button item1 = new Button();
+			item1.setPrefHeight(40);
+			item1.setPrefWidth(40);
+			item1.getStyleClass().add("pocion");
+			Button item2 = new Button();
+			item2.setPrefHeight(40);
+			item2.setPrefWidth(40);
+			item2.getStyleClass().add("pocion");
+			Button item3 = new Button();
+			item3.setPrefHeight(40);
+			item3.setPrefWidth(40);
+			item3.getStyleClass().add("pocion");
+			HBox botonera = new HBox(item1,item2,item3);
+			botonera.setAlignment(Pos.CENTER);
+			botonera.setSpacing(5);
+			botonera.setPadding(new Insets(5));
+			a.setContentNode(botonera);
+			
+			a.show(boton);
+			
+			/*
 			if(character.getPotionButton1().isDisabled()) {
 				character.getPotionButton1().setDisable(false);
 				character.getPotionButton1().getStyleClass().remove("pocionvacia");
@@ -122,10 +158,9 @@ public class JuegoController implements Initializable {
 				character.getPotionButton3().getStyleClass().remove("pocionvacia");
 				character.getPotionButton3().getStyleClass().add("pocion");
 			}
+			*/
 		}
-		if(character.getCharacter().getVida()<0) {
-			throw new RuntimeException("jaja rip");
-		}
+		
 	}
 
 }
