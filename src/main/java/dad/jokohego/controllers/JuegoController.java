@@ -52,6 +52,8 @@ public class JuegoController implements Initializable {
 		character.getCharacter().setHombre(false);
 		backButton = JokoUtils.getButton();
 		backType = JokoUtils.getBackType();
+		character.getCharacter().setDanyo(10);
+		character.getCharacter().setArmadura(5);
 
 	}
 
@@ -85,7 +87,28 @@ public class JuegoController implements Initializable {
 			Object[] mt = (Object[])boton.getUserData();
 			Monster monster = (Monster)mt[0];
 			Point punto = (Point)mt[1];
-			character.getCharacter().vidaProperty().subtract(monster.getDanyo());
+			//character.getCharacter().vidaProperty().subtract(monster.getDanyo());
+			character.getCharacter().setVida(character.getCharacter().getVida()-(monster.getDanyo()));
+			monster.setVida(monster.getVida()-character.getCharacter().getDanyo());
+			if(monster.getVida()<0) {
+				System.out.println("Ta muerto");
+			}
+		}else if(boton.getStyleClass().contains("Cofre")) {
+			boton.getStyleClass().remove("Cofre");
+			boton.getStyleClass().add("CofreAbierto");
+			if(character.getPotionButton1().isDisabled()) {
+				character.getPotionButton1().setDisable(false);
+				character.getPotionButton1().getStyleClass().remove("pocionvacia");
+				character.getPotionButton1().getStyleClass().add("pocion");
+			} else if(character.getPotionButton2().isDisabled()) {
+				character.getPotionButton2().setDisable(false);
+				character.getPotionButton2().getStyleClass().remove("pocionvacia");
+				character.getPotionButton2().getStyleClass().add("pocion");
+			}else if(character.getPotionButton3().isDisabled()) {
+				character.getPotionButton3().setDisable(false);
+				character.getPotionButton3().getStyleClass().remove("pocionvacia");
+				character.getPotionButton3().getStyleClass().add("pocion");
+			}
 		}
 		
 	}
