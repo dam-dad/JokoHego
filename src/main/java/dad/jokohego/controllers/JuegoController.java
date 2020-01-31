@@ -33,7 +33,7 @@ public class JuegoController implements Initializable {
 
 	private static Button[][] backButton;
 	private static BackType[][] backType;
-	private static int nivel = 1;
+	private static int nivel = 0;
 	private static int numMonster = 0;
 	private static boolean puerta=false;
 
@@ -56,7 +56,7 @@ public class JuegoController implements Initializable {
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		root.setCenter(JokoUtils.generarNivel(nivel++,this));
+		root.setCenter(JokoUtils.generarNivel(++nivel,this));
 		character.getCharacter().setHombre(false);
 		root.setRight(character);
 		backType = JokoUtils.getBackType();
@@ -75,7 +75,7 @@ public class JuegoController implements Initializable {
 			boton.getStyleClass().remove("LosaOscura");
 			BackType tipofondo = backType[(int) coordenadas.getX()][(int) coordenadas.getY()];
 			
-			character.getCharacter().setVida(character.getCharacter().getVida()-(numMonster*5));
+			character.getCharacter().setVida(character.getCharacter().getVida()-(numMonster*nivel));
 			
 			if (tipofondo != BackType.Monster) {
 				boton.getStyleClass().add(tipofondo.toString());
@@ -162,13 +162,12 @@ public class JuegoController implements Initializable {
 
 		if(character.getCharacter().getVida()<0) {
 			nivel = 0;
-			root.setCenter(JokoUtils.generarNivel(nivel++,this));
-			character.getCharacter().setHombre(false);
-			root.setRight(character);
+			numMonster=0;
+			root.setCenter(JokoUtils.generarNivel(++nivel,this));
 			backType = JokoUtils.getBackType();
+			character.getCharacter().setVida(100);
 			character.getCharacter().setDanyo(10);
 			character.getCharacter().setArmadura(0);
-			throw new RuntimeException("jaja rip");
 		}
 
 	}
