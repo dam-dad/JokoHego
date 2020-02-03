@@ -159,15 +159,18 @@ public class JuegoController implements Initializable {
 			Button item1 = new Button();
 			item1.setPrefHeight(40);
 			item1.setPrefWidth(40);
-			item1.getStyleClass().add("pocion");
+			item1.getStyleClass().add("espada");
+			item1.setOnAction(e->onCofreAction(e,a));
 			Button item2 = new Button();
 			item2.setPrefHeight(40);
 			item2.setPrefWidth(40);
 			item2.getStyleClass().add("pocion");
+			item2.setOnAction(e->onCofreAction(e,a));
 			Button item3 = new Button();
 			item3.setPrefHeight(40);
 			item3.setPrefWidth(40);
 			item3.getStyleClass().add("pocion");
+			item3.setOnAction(e->onCofreAction(e,a));
 			HBox botonera = new HBox(item1,item2,item3);
 			botonera.setAlignment(Pos.CENTER);
 			botonera.setSpacing(5);
@@ -176,21 +179,6 @@ public class JuegoController implements Initializable {
 			
 			a.show(boton);
 			
-			/*
-			if(character.getPotionButton1().isDisabled()) {
-				character.getPotionButton1().setDisable(false);
-				character.getPotionButton1().getStyleClass().remove("pocionvacia");
-				character.getPotionButton1().getStyleClass().add("pocion");
-			} else if(character.getPotionButton2().isDisabled()) {
-				character.getPotionButton2().setDisable(false);
-				character.getPotionButton2().getStyleClass().remove("pocionvacia");
-				character.getPotionButton2().getStyleClass().add("pocion");
-			}else if(character.getPotionButton3().isDisabled()) {
-				character.getPotionButton3().setDisable(false);
-				character.getPotionButton3().getStyleClass().remove("pocionvacia");
-				character.getPotionButton3().getStyleClass().add("pocion");
-			}
-			*/
 		}
 
 		if(character.getCharacter().getVida()<0) {
@@ -201,8 +189,38 @@ public class JuegoController implements Initializable {
 			character.getCharacter().setVida(100);
 			character.getCharacter().setDanyo(10);
 			character.getCharacter().setArmadura(0);
+			puerta=false;
 		}
 
+	}
+
+	private void onCofreAction(ActionEvent event, PopOver a) {
+		Button boton = (Button) event.getSource();
+		
+		if (boton.getStyleClass().contains("espada")) {
+			character.getSwordImage().setImage(new Image(this.getClass().getResourceAsStream("/ImagenesGreenStyle/Items/espadaitem.png")));
+			//TODO hacer objetos espada y armadura
+			character.getCharacter().setDanyo(20);
+			a.hide();
+		}if(boton.getStyleClass().contains("pocion")) {
+			if(character.getPotionButton1().isDisabled()) {
+				character.getPotionButton1().setDisable(false);
+				character.getPotionButton1().getStyleClass().remove("pocionvacia");
+				character.getPotionButton1().getStyleClass().add("pocion");
+				a.hide();
+			} else if(character.getPotionButton2().isDisabled()) {
+				character.getPotionButton2().setDisable(false);
+				character.getPotionButton2().getStyleClass().remove("pocionvacia");
+				character.getPotionButton2().getStyleClass().add("pocion");
+				a.hide();
+			}else if(character.getPotionButton3().isDisabled()) {
+				character.getPotionButton3().setDisable(false);
+				character.getPotionButton3().getStyleClass().remove("pocionvacia");
+				character.getPotionButton3().getStyleClass().add("pocion");
+				a.hide();
+			}	
+		}
+		
 	}
 
 	public void onMonsterInformation(MouseEvent e) {

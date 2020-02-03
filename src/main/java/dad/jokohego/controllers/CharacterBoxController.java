@@ -78,7 +78,7 @@ public class CharacterBoxController extends VBox implements Initializable {
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 
-		//comprobar bindeos
+		// comprobar bindeos
 		Bindings.bindBidirectional(healthLabel.textProperty(), character.vidaProperty(),
 				new NumberStringConverter("###"));
 		Bindings.bindBidirectional(damageLabel.textProperty(), character.danyoProperty(),
@@ -139,6 +139,14 @@ public class CharacterBoxController extends VBox implements Initializable {
 
 	public Button getPotionButton3() {
 		return potionButton3;
+	}
+
+	public ImageView getSwordImage() {
+		return swordImage;
+	}
+
+	public ImageView getArmorImage() {
+		return armorImage;
 	}
 
 }
