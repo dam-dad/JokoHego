@@ -176,10 +176,13 @@ public class JuegoController implements Initializable {
 			a.show(boton);
 		}
 
-		if (character.getCharacter().getVida() < 0) {
+		if (character.getCharacter().getVida() <= 0) {
 			nivel = 0;
 			numMonster = 0;
 			puerta = false;
+			CharacterBoxController.switchPotion(character.getPotionButton1());
+			CharacterBoxController.switchPotion(character.getPotionButton2());
+			CharacterBoxController.switchPotion(character.getPotionButton3());
 			root.setCenter(JokoUtils.generarNivel(++nivel, this));
 			backType = JokoUtils.getBackType();
 			character.getCharacter().setVida(100);
@@ -195,17 +198,11 @@ public class JuegoController implements Initializable {
 		if (boton.getStyleClass().contains("pocion")) {
 
 			if (character.getPotionButton1().isDisabled()) {
-				character.getPotionButton1().setDisable(false);
-				character.getPotionButton1().getStyleClass().remove("pocionvacia");
-				character.getPotionButton1().getStyleClass().add("pocion");		
+				CharacterBoxController.switchPotion(character.getPotionButton1());
 			} else if (character.getPotionButton2().isDisabled()) {
-				character.getPotionButton2().setDisable(false);
-				character.getPotionButton2().getStyleClass().remove("pocionvacia");
-				character.getPotionButton2().getStyleClass().add("pocion");
+				CharacterBoxController.switchPotion(character.getPotionButton2());
 			} else if (character.getPotionButton3().isDisabled()) {
-				character.getPotionButton3().setDisable(false);
-				character.getPotionButton3().getStyleClass().remove("pocionvacia");
-				character.getPotionButton3().getStyleClass().add("pocion");
+				CharacterBoxController.switchPotion(character.getPotionButton3());
 			}
 			a.hide();
 		}
@@ -234,5 +231,7 @@ public class JuegoController implements Initializable {
 			poper.hide();
 		}
 	}
+	
+
 
 }

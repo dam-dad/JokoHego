@@ -64,7 +64,7 @@ public class JokoUtils {
 				fondo = BackType.Escaleras;
 				if(fondo.equals(BackType.Escaleras))escalera=true;
 			}
-		}else if(num < 10) {
+		}else if(num <= 40 && num >=35) {
 			fondo = BackType.Cofre;
 		}else if(num > 90) {
 			fondo = BackType.Monster;
@@ -84,9 +84,9 @@ public class JokoUtils {
 			monster = MonsterType.Minik;
 		}else if(num >= 60 && num < 100) {
 			monster = MonsterType.Serpiente;
-		}else if(num >= 100 && num < 140) {
+		}else if(num >= 100 && num < 120) {
 			monster = MonsterType.Orco;
-		}else if(num >= 140 && num < 160) {
+		}else if(num >= 120 && num < 140) {
 			monster = MonsterType.Phantom;
 		}else
 			monster = MonsterType.Cutulu;

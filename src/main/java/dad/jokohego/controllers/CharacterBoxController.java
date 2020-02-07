@@ -57,7 +57,7 @@ public class CharacterBoxController extends VBox implements Initializable {
 
 	// model
 
-	private Personaje character = new Personaje();
+	private static Personaje character = new Personaje();
 
 	public Personaje getCharacter() {
 		return character;
@@ -104,28 +104,25 @@ public class CharacterBoxController extends VBox implements Initializable {
 	void onPocionAction(ActionEvent event) {
 
 		if (event.getSource().equals(potionButton1)) {
-
-			potionButton1.getStyleClass().remove("pocion");
-			potionButton1.getStyleClass().add("pocionvacia");
-			potionButton1.setDisable(true);
-			character.setVida(100);
-
+			switchPotion(potionButton1);
 		}
 		if (event.getSource().equals(potionButton2)) {
-
-			potionButton2.getStyleClass().remove("pocion");
-			potionButton2.getStyleClass().add("pocionvacia");
-			potionButton2.setDisable(true);
-			character.setVida(100);
-
+			switchPotion(potionButton2);
 		}
 		if (event.getSource().equals(potionButton3)) {
-
-			potionButton3.getStyleClass().remove("pocion");
-			potionButton3.getStyleClass().add("pocionvacia");
-			potionButton3.setDisable(true);
+			switchPotion(potionButton3);
+		}
+	}
+	public static void switchPotion(Button boton) {
+		if (!boton.isDisabled()) {
+			boton.getStyleClass().remove("pocion");
+			boton.getStyleClass().add("pocionvacia");
+			boton.setDisable(true);
 			character.setVida(100);
-
+		}else {
+			boton.getStyleClass().remove("pocionvacia");
+			boton.getStyleClass().add("pocion");
+			boton.setDisable(false);
 		}
 	}
 
