@@ -14,12 +14,13 @@ public class JokoUtils {
 	//los botones tienen un objeto point en el userData para determinar la posicion en el array bidimensional
 	private static Button[][] button;
 	private static BackType[][] backType;
-	private static boolean escalera=false;
+	private static boolean escalera;
 	private static double nivel;
 	
 	
 	public static GridPane generarNivel(int nivel,JuegoController jg) {
 		JokoUtils.nivel = nivel;
+		escalera = false;
 		int size = nivel + 4;
 		button = new Button[size+1][size+1];
 		backType = new BackType[size+1][size+1];
