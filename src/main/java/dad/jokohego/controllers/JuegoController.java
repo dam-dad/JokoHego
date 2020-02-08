@@ -180,9 +180,9 @@ public class JuegoController implements Initializable {
 			nivel = 0;
 			numMonster = 0;
 			puerta = false;
-			CharacterBoxController.switchPotion(character.getPotionButton1());
-			CharacterBoxController.switchPotion(character.getPotionButton2());
-			CharacterBoxController.switchPotion(character.getPotionButton3());
+			CharacterBoxController.enablePotion(character.getPotionButton1());
+			CharacterBoxController.enablePotion(character.getPotionButton2());
+			CharacterBoxController.enablePotion(character.getPotionButton3());
 			root.setCenter(JokoUtils.generarNivel(++nivel, this));
 			backType = JokoUtils.getBackType();
 			character.getCharacter().setVida(100);
@@ -198,11 +198,11 @@ public class JuegoController implements Initializable {
 		if (boton.getStyleClass().contains("pocion")) {
 
 			if (character.getPotionButton1().isDisabled()) {
-				CharacterBoxController.switchPotion(character.getPotionButton1());
+				CharacterBoxController.enablePotion(character.getPotionButton1());
 			} else if (character.getPotionButton2().isDisabled()) {
-				CharacterBoxController.switchPotion(character.getPotionButton2());
+				CharacterBoxController.enablePotion(character.getPotionButton2());
 			} else if (character.getPotionButton3().isDisabled()) {
-				CharacterBoxController.switchPotion(character.getPotionButton3());
+				CharacterBoxController.enablePotion(character.getPotionButton3());
 			}
 			a.hide();
 		}

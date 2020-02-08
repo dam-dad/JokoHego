@@ -104,26 +104,25 @@ public class CharacterBoxController extends VBox implements Initializable {
 	void onPocionAction(ActionEvent event) {
 
 		if (event.getSource().equals(potionButton1)) {
-			switchPotion(potionButton1);
+			disablePotion(potionButton1);
 		}
 		if (event.getSource().equals(potionButton2)) {
-			switchPotion(potionButton2);
+			disablePotion(potionButton2);
 		}
 		if (event.getSource().equals(potionButton3)) {
-			switchPotion(potionButton3);
+			disablePotion(potionButton3);
 		}
 	}
-	public static void switchPotion(Button boton) {
-		if (!boton.isDisabled()) {
-			boton.getStyleClass().remove("pocion");
-			boton.getStyleClass().add("pocionvacia");
-			boton.setDisable(true);
-			character.setVida(100);
-		}else {
+	public static void disablePotion(Button boton) {
+		boton.getStyleClass().remove("pocion");
+		boton.getStyleClass().add("pocionvacia");
+		boton.setDisable(true);
+		character.setVida(100);
+	}
+	public static void enablePotion(Button boton) {
 			boton.getStyleClass().remove("pocionvacia");
 			boton.getStyleClass().add("pocion");
 			boton.setDisable(false);
-		}
 	}
 
 	public Button getPotionButton1() {

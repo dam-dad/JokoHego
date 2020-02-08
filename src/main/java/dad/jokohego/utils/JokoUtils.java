@@ -35,6 +35,7 @@ public class JokoUtils {
 			for(int j = 0; j < size;j++) {
 				
 				button[i][j] = new Button();
+				//point -> BackType
 				button[i][j].setUserData(new Point(i,j));
 				button[i][j].setOnAction(e -> jg.onGeneralAction(e));
 				button[i][j].setOnMouseEntered(e -> jg.onMonsterInformation(e));
@@ -62,7 +63,7 @@ public class JokoUtils {
 				fondo = BackType.Losa;
 			}else {
 				fondo = BackType.Escaleras;
-				if(fondo.equals(BackType.Escaleras))escalera=true;
+				escalera=true;
 			}
 		}else if(num <= 40 && num >=35) {
 			fondo = BackType.Cofre;
