@@ -31,10 +31,6 @@ public class JokoUtils {
 		button = new Button[size + 1][size + 1];
 		GridPane buttons = new GridPane();
 
-		ColumnConstraints conCol = new ColumnConstraints();
-		conCol.setHgrow(Priority.ALWAYS);
-		RowConstraints conRow = new RowConstraints();
-		conRow.setVgrow(Priority.ALWAYS);
 		// generar el gridpane dinamico
 		for (int i = 0; i < size; i++) {
 			for (int j = 0; j < size; j++) {
@@ -76,6 +72,11 @@ public class JokoUtils {
 			aux2.setAlignment(Pos.CENTER);
 			buttons.add(aux2, 0, i + 1);
 
+			
+			ColumnConstraints conCol = new ColumnConstraints();
+			conCol.setHgrow(Priority.ALWAYS);
+			RowConstraints conRow = new RowConstraints();
+			conRow.setVgrow(Priority.ALWAYS);
 			buttons.getColumnConstraints().add(conCol);
 			buttons.getRowConstraints().add(conRow);
 		}
@@ -84,8 +85,15 @@ public class JokoUtils {
 		aux3.getStyleClass().add("nivel");
 		aux3.setAlignment(Pos.CENTER);
 		buttons.add(aux3, 0, 0);
+		
+		
+		ColumnConstraints conCol = new ColumnConstraints();
+		conCol.setHgrow(Priority.ALWAYS);
+		RowConstraints conRow = new RowConstraints();
+		conRow.setVgrow(Priority.ALWAYS);
 		buttons.getColumnConstraints().add(conCol);
 		buttons.getRowConstraints().add(conRow);
+		
 		if (!escalera)
 			button[size - 1][size - 1].setUserData(BackType.Escaleras);
 		return buttons;
