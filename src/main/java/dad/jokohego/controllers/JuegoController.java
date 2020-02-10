@@ -33,7 +33,6 @@ public class JuegoController implements Initializable {
 	// model
 
 	private static Button[][] backButton;
-	private static BackType[][] backType;
 	private static int nivel = 0;
 	private static int numMonster = 0;
 	private static boolean puerta = false;
@@ -62,7 +61,6 @@ public class JuegoController implements Initializable {
 		root.setCenter(JokoUtils.generarNivel(++nivel, this));
 		character.getCharacter().setHombre(false);
 		root.setRight(character);
-		backType = JokoUtils.getBackType();
 		character.getCharacter().setDanyo(10);
 		character.getCharacter().setVida(100);
 		character.getCharacter().setVidamax(100);
@@ -97,9 +95,8 @@ public class JuegoController implements Initializable {
 		System.out.println(boton.getStyleClass().toString());
 		// Si Losa Oscura
 		if (boton.getStyleClass().contains("LosaOscura")) {
-			Point coordenadas = (Point) boton.getUserData();
 			boton.getStyleClass().remove("LosaOscura");
-			BackType tipofondo = backType[(int) coordenadas.getX()][(int) coordenadas.getY()];
+			BackType tipofondo = (BackType) boton.getUserData();
 
 			character.getCharacter().setVida(character.getCharacter().getVida() - (numMonster * nivel));
 
@@ -109,10 +106,7 @@ public class JuegoController implements Initializable {
 				numMonster++;
 				MonsterType tipo = JokoUtils.generarMonstruo();
 				boton.getStyleClass().addAll(tipo.toString(), BackType.Monster.toString());
-				Object[] MonsterPoint = new Object[2];
-				MonsterPoint[0] = new Monster(tipo);
-				MonsterPoint[1] = coordenadas;
-				boton.setUserData(MonsterPoint);
+				boton.setUserData(new Monster(JokoUtils.generarMonstruo()));
 			}
 		}
 		// Si Escalera
@@ -120,12 +114,9 @@ public class JuegoController implements Initializable {
 			JokoUtils.setEscalera(false);
 			numMonster = 0;
 			root.setCenter(JokoUtils.generarNivel(nivel++, this));
-			backType = JokoUtils.getBackType();
 			// Si Monstruo
 		} else if (boton.getStyleClass().contains("Monster")) {
-			Object[] mt = (Object[]) boton.getUserData();
-			Monster monster = (Monster) mt[0];
-			Point punto = (Point) mt[1];
+			Monster monster = (Monster) boton.getUserData();
 			// intentar hacerlo con bindeos
 //			character.getCharacter().vidaProperty().subtract(monster.getDanyo());
 			int vidaMonster = monster.getVida() - character.getCharacter().getDanyo();
@@ -187,7 +178,6 @@ public class JuegoController implements Initializable {
 			CharacterBoxController.enablePotion(character.getPotionButton2());
 			CharacterBoxController.enablePotion(character.getPotionButton3());
 			root.setCenter(JokoUtils.generarNivel(++nivel, this));
-			backType = JokoUtils.getBackType();
 			character.getCharacter().setVida(100);
 			character.getCharacter().setDanyo(10);
 			character.getCharacter().setVidamax(100);
@@ -221,8 +211,7 @@ public class JuegoController implements Initializable {
 	public void onMonsterInformation(MouseEvent e) {
 		Button boton = (Button) e.getSource();
 		if (boton.getStyleClass().contains("Monster")) {
-			Object[] mt = (Object[]) boton.getUserData();
-			Monster monster = (Monster) mt[0];
+			Monster monster = (Monster) boton.getUserData();
 			List<Node> nodos = infoPoper.getChildren();
 			Label aux = (Label) nodos.get(1);
 			Label aux2 = (Label) nodos.get(3);

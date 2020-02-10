@@ -3,6 +3,7 @@ package dad.jokohego.utils;
 import java.awt.Point;
 
 import dad.jokohego.controllers.JuegoController;
+import dad.jokohego.model.Monster;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Button;
 import javafx.scene.layout.ColumnConstraints;
@@ -13,7 +14,6 @@ import javafx.scene.layout.RowConstraints;
 public class JokoUtils {
 	//los botones tienen un objeto point en el userData para determinar la posicion en el array bidimensional
 	private static Button[][] button;
-	private static BackType[][] backType;
 	private static boolean escalera;
 	private static double nivel;
 	
@@ -23,35 +23,61 @@ public class JokoUtils {
 		escalera = false;
 		int size = nivel + 4;
 		button = new Button[size+1][size+1];
-		backType = new BackType[size+1][size+1];
 		GridPane buttons = new GridPane();
 		
 		ColumnConstraints conCol =  new ColumnConstraints();
 		conCol.setHgrow(Priority.ALWAYS);
 		RowConstraints conRow = new RowConstraints();
 		conRow.setVgrow(Priority.ALWAYS);
-		
+		//generar el gridpane dinamico
 		for(int i = 0;i < size;i++ ) {
 			for(int j = 0; j < size;j++) {
 				
 				button[i][j] = new Button();
-				//point -> BackType
-				button[i][j].setUserData(new Point(i,j));
+				button[i][j].setUserData(generarFondo());
 				button[i][j].setOnAction(e -> jg.onGeneralAction(e));
 				button[i][j].setOnMouseEntered(e -> jg.onMonsterInformation(e));
 				button[i][j].setOnMouseExited(e -> jg.onMonsterInformationExited(e));
-				buttons.add(button[i][j],i,j);
+				buttons.add(button[i][j],i+1,j+1);
 				button[i][j].setMaxWidth(Integer.MAX_VALUE);
 				button[i][j].setMaxHeight(Integer.MAX_VALUE);
 				button[i][j].getStyleClass().add("LosaOscura");
-
-				backType[i][j] = generarFondo();
 			}
+			
+			
+		}
+		//Calcular niveles de peligrosidad
+		int danger;
+		for(int i = 0;i < size;i++ ) {
+			danger = 0;
+			for(int j = 0; j < size;j++) {
+				if(button[i][j].getUserData().equals(BackType.Monster))danger++;
+			
+
+			}
+			Button aux = new Button();
+			aux.setMaxWidth(Integer.MAX_VALUE);
+			aux.setMaxHeight(Integer.MAX_VALUE);
+			aux.setDisable(true);
+			aux.setText(danger+"");
+			buttons.add(aux,i+1,0);
+			danger = 0;
+			for(int j = 0; j < size;j++) {
+				if(button[j][i].getUserData().equals(BackType.Monster))danger++;
+			}
+			Button aux2 = new Button();
+			aux2.setMaxWidth(Integer.MAX_VALUE);
+			aux2.setMaxHeight(Integer.MAX_VALUE);
+			aux2.setDisable(true);
+			aux2.setText(danger+"");
+			buttons.add(aux2,0,i+1);
 			
 			buttons.getColumnConstraints().add(conCol);
 			buttons.getRowConstraints().add(conRow);
 		}
-		if(!escalera)backType[size-1][size-1]=BackType.Escaleras;
+			buttons.getColumnConstraints().add(conCol);
+			buttons.getRowConstraints().add(conRow);
+		if(!escalera)button[size-1][size-1].setUserData(BackType.Escaleras);
 		return buttons;
 	}
 	public static BackType generarFondo() {
@@ -104,11 +130,6 @@ public class JokoUtils {
 	}
 	public static Button[][] getButton() {
 		return button;
-	}
-
-
-	public static BackType[][] getBackType() {
-		return backType;
 	}
 	
 }
