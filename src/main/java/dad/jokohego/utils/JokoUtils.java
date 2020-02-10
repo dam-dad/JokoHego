@@ -56,6 +56,8 @@ public class JokoUtils {
 
 			}
 			Button aux = new Button();
+			//aux.getStyleClass().clear();
+			aux.getStyleClass().add("danger");
 			aux.setMaxWidth(Integer.MAX_VALUE);
 			aux.setMaxHeight(Integer.MAX_VALUE);
 			aux.setDisable(true);
@@ -66,6 +68,8 @@ public class JokoUtils {
 				if(button[j][i].getUserData().equals(BackType.Monster))danger++;
 			}
 			Button aux2 = new Button();
+			//aux2.getStyleClass().clear();
+			aux2.getStyleClass().add("danger");
 			aux2.setMaxWidth(Integer.MAX_VALUE);
 			aux2.setMaxHeight(Integer.MAX_VALUE);
 			aux2.setDisable(true);

@@ -63,13 +63,25 @@
 }
 .popup{
 	-fx-background-image: url(../ImagenesGreenStyle/Fondos/PoperFondo.png);
-	-fx-background-size: cover, auto;
+	-fx-background-size: cover;
 }
 .damage{
 	-fx-background-image: url(../ImagenesGreenStyle/Items/Espada.png);
-	-fx-background-size: cover, auto;
+	-fx-background-size: cover;
 }
 .armor{
 	-fx-background-image: url(../ImagenesGreenStyle/Items/Vida.png);
-	-fx-background-size: cover, auto;
+	-fx-background-size: cover;
+}
+.danger{
+	-fx-background-image: url(../ImagenesGreenStyle/Fondos/FondoPeligroso.png);
+	-fx-font-size:16pt;
+	-fx-font-weight: bold;
+	-fx-background-size: cover;
+	-fx-opacity: 1.0; 
+			
+}
+.danger Text{
+	-fx-text-fill:orange;
+	-fx-effect: dropshadow( gaussian , #a30000 , 0,0,0,2 );
 }

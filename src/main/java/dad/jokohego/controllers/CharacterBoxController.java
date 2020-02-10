@@ -110,7 +110,7 @@ public class CharacterBoxController extends VBox implements Initializable {
 		boton.getStyleClass().remove("pocion");
 		boton.getStyleClass().add("pocionvacia");
 		boton.setDisable(true);
-		character.setVida(100);
+		character.setVida(character.getVidamax());
 	}
 	public static void enablePotion(Button boton) {
 			boton.getStyleClass().remove("pocionvacia");
