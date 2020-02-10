@@ -13,7 +13,6 @@ import javafx.scene.layout.RowConstraints;
 public class JokoUtils {
 	//los botones tienen un objeto point en el userData para determinar la posicion en el array bidimensional
 	private static Button[][] button;
-	private static BackType[][] backType;
 	private static boolean escalera;
 	private static double nivel;
 	
@@ -23,7 +22,6 @@ public class JokoUtils {
 		escalera = false;
 		int size = nivel + 4;
 		button = new Button[size+1][size+1];
-		backType = new BackType[size+1][size+1];
 		GridPane buttons = new GridPane();
 		
 		ColumnConstraints conCol =  new ColumnConstraints();
@@ -36,7 +34,7 @@ public class JokoUtils {
 				
 				button[i][j] = new Button();
 				//point -> BackType
-				button[i][j].setUserData(new Point(i,j));
+				button[i][j].setUserData(generarFondo());
 				button[i][j].setOnAction(e -> jg.onGeneralAction(e));
 				button[i][j].setOnMouseEntered(e -> jg.onMonsterInformation(e));
 				button[i][j].setOnMouseExited(e -> jg.onMonsterInformationExited(e));
@@ -44,14 +42,12 @@ public class JokoUtils {
 				button[i][j].setMaxWidth(Integer.MAX_VALUE);
 				button[i][j].setMaxHeight(Integer.MAX_VALUE);
 				button[i][j].getStyleClass().add("LosaOscura");
-
-				backType[i][j] = generarFondo();
 			}
 			
 			buttons.getColumnConstraints().add(conCol);
 			buttons.getRowConstraints().add(conRow);
 		}
-		if(!escalera)backType[size-1][size-1]=BackType.Escaleras;
+		if(!escalera)button[size-1][size-1].setUserData(BackType.Escaleras);
 		return buttons;
 	}
 	public static BackType generarFondo() {
@@ -104,11 +100,6 @@ public class JokoUtils {
 	}
 	public static Button[][] getButton() {
 		return button;
-	}
-
-
-	public static BackType[][] getBackType() {
-		return backType;
 	}
 	
 }
