@@ -89,8 +89,12 @@
 	-fx-background-size: cover;
 			
 }
+<<<<<<< HEAD
 .nivel .label{
 	-fx-text-fill:red;
+=======
+.danger Text{
+>>>>>>> 398d88775901f71a241a0d11d573c71d34a683e1
 	-fx-effect: dropshadow( gaussian , #a30000 , 0,0,0,2 );
 	-fx-font-size:16pt;
 	-fx-font-weight: bold;

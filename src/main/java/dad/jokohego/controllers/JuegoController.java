@@ -70,8 +70,6 @@ public class JuegoController implements Initializable {
 		// poper
 
 		poper.setArrowLocation(ArrowLocation.TOP_CENTER);
-//		poper.getStyleClass().clear();
-//		poper.getStyleClass().add("popup");
 		poper.setArrowSize(0);
 		poper.setAnimated(false);
 
@@ -82,7 +80,6 @@ public class JuegoController implements Initializable {
 		Label vidanum = new Label();
 		Label danyonum = new Label();
 		infoPoper = new HBox(vida, vidanum, danyo, danyonum);
-//		infoPoper.getStyleClass().add("Losa");
 		infoPoper.setAlignment(Pos.CENTER);
 		infoPoper.setSpacing(5);
 		infoPoper.setPadding(new Insets(5));
