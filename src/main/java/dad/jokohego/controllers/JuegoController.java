@@ -33,7 +33,7 @@ public class JuegoController implements Initializable {
 	// model
 
 	private static Button[][] backButton;
-	private static int nivel = 0;
+	private static int nivel = 1;
 	private static int numMonster = 0;
 	private static boolean puerta = false;
 
@@ -58,7 +58,7 @@ public class JuegoController implements Initializable {
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		root.setCenter(JokoUtils.generarNivel(++nivel, this));
+		root.setCenter(JokoUtils.generarNivel(nivel, this));
 		character.getCharacter().setHombre(false);
 		root.setRight(character);
 		character.getCharacter().setDanyo(10);
@@ -103,14 +103,14 @@ public class JuegoController implements Initializable {
 				numMonster++;
 				MonsterType tipo = JokoUtils.generarMonstruo();
 				boton.getStyleClass().addAll(tipo.toString(), BackType.Monster.toString());
-				boton.setUserData(new Monster(JokoUtils.generarMonstruo()));
+				boton.setUserData(new Monster(tipo));
 			}
 		}
 		// Si Escalera
 		else if (boton.getStyleClass().contains("Escaleras")) {
 			JokoUtils.setEscalera(false);
 			numMonster = 0;
-			root.setCenter(JokoUtils.generarNivel(nivel++, this));
+			root.setCenter(JokoUtils.generarNivel(++nivel, this));
 			// Si Monstruo
 		} else if (boton.getStyleClass().contains("Monster")) {
 			Monster monster = (Monster) boton.getUserData();
@@ -124,6 +124,7 @@ public class JuegoController implements Initializable {
 
 			if (monster.getVida() <= 0) {
 				numMonster--;
+
 				boton.getStyleClass().removeAll(monster.getNombre(), "Monster");
 				boton.getStyleClass().add("Losa");
 				poper.hide();
@@ -168,13 +169,13 @@ public class JuegoController implements Initializable {
 		}
 
 		if (character.getCharacter().getVida() <= 0) {
-			nivel = 0;
+			nivel = 1;
 			numMonster = 0;
 			puerta = false;
 			CharacterBoxController.enablePotion(character.getPotionButton1());
 			CharacterBoxController.enablePotion(character.getPotionButton2());
 			CharacterBoxController.enablePotion(character.getPotionButton3());
-			root.setCenter(JokoUtils.generarNivel(++nivel, this));
+			root.setCenter(JokoUtils.generarNivel(nivel, this));
 			character.getCharacter().setVida(100);
 			character.getCharacter().setDanyo(10);
 			character.getCharacter().setVidamax(100);

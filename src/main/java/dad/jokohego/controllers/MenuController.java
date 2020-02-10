@@ -28,7 +28,7 @@ public class MenuController implements Initializable {
     
     //controllers
     
-    JuegoController juego = new JuegoController();
+    JuegoController juego;
 
     public BorderPane getView() {
     	return root;
@@ -42,7 +42,12 @@ public class MenuController implements Initializable {
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
+		try {
+			juego = new JuegoController();
+		} catch (IOException e) {
 
+			e.printStackTrace();
+		}
 	}
 	
     @FXML
@@ -52,14 +57,7 @@ public class MenuController implements Initializable {
 
     @FXML
     void onJugarAction(ActionEvent event) {
-    	try {
-			FXMLLoader loader = new FXMLLoader(getClass()
-			        .getResource("/fxml/GameView.fxml"));
-			loader.setController(juego);
-			loader.load();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+
     	
     	root.getChildren().setAll(juego.getView());
     	

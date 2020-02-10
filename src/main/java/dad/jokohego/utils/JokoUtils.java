@@ -18,8 +18,7 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 
 public class JokoUtils {
-	// los botones tienen un objeto point en el userData para determinar la posicion
-	// en el array bidimensional
+	// los botones tienen en el  userData un tipo BackType
 	private static Button[][] button;
 	private static boolean escalera;
 	private static double nivel;
