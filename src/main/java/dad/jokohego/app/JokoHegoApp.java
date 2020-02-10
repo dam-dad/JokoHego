@@ -1,6 +1,7 @@
 package dad.jokohego.app;
 
 import dad.jokohego.controllers.JuegoController;
+import dad.jokohego.controllers.MenuController;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
@@ -10,9 +11,9 @@ public class JokoHegoApp extends Application {
 	@Override
 	public void start(Stage primaryStage) throws Exception {
 		
-		JuegoController juego = new JuegoController();
+		MenuController juego = new MenuController();
 		
-		Scene scene = new Scene(juego.getView(),750,500);
+		Scene scene = new Scene(juego.getView());
 		primaryStage.setResizable(false);
 		primaryStage.setScene(scene);
 		primaryStage.setTitle("JokoHego");
