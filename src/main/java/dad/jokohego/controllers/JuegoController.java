@@ -64,7 +64,10 @@ public class JuegoController implements Initializable {
 		root.setRight(character);
 		backType = JokoUtils.getBackType();
 		character.getCharacter().setDanyo(10);
-		character.getCharacter().setArmadura(0);
+		character.getCharacter().setVida(100);
+		character.getCharacter().setVidamax(100);
+		character.getCharacter().setHombre(false);
+		character.getCharacter().setDinero(0);
 
 		// poper
 
@@ -187,7 +190,7 @@ public class JuegoController implements Initializable {
 			backType = JokoUtils.getBackType();
 			character.getCharacter().setVida(100);
 			character.getCharacter().setDanyo(10);
-			character.getCharacter().setArmadura(0);
+			character.getCharacter().setVidamax(100);
 		}
 
 	}
@@ -209,7 +212,7 @@ public class JuegoController implements Initializable {
 			character.getCharacter().setDanyo(character.getCharacter().getDanyo()+1);
 			a.hide();
 		}else if (boton.getStyleClass().contains("armor")) {
-			character.getCharacter().setArmadura(character.getCharacter().getArmadura()+1);
+			character.getCharacter().setVidamax(character.getCharacter().getVidamax()+10);
 			a.hide();
 		}
 

@@ -10,7 +10,6 @@ public class PruebaApp extends Application {
 	@Override
 	public void start(Stage primaryStage) throws Exception {
 		CharacterBoxController a = new CharacterBoxController();
-		a.getCharacter().setArmadura(100);
 		a.getCharacter().setDanyo(100);
 		a.getCharacter().setVida(0);
 		a.getCharacter().setHombre(true);

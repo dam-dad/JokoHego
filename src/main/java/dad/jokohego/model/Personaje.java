@@ -9,7 +9,7 @@ public class Personaje {
 	
 	private IntegerProperty vida = new SimpleIntegerProperty();
 	private IntegerProperty danyo = new SimpleIntegerProperty();
-	private IntegerProperty armadura = new SimpleIntegerProperty();
+	private IntegerProperty vidamax = new SimpleIntegerProperty();
 	private IntegerProperty dinero = new SimpleIntegerProperty();
 	private BooleanProperty hombre = new SimpleBooleanProperty();
 
@@ -41,21 +41,6 @@ public class Personaje {
 	}
 	
 
-
-	public final IntegerProperty armaduraProperty() {
-		return this.armadura;
-	}
-	
-
-	public final int getArmadura() {
-		return this.armaduraProperty().get();
-	}
-	
-
-	public final void setArmadura(final int armadura) {
-		this.armaduraProperty().set(armadura);
-	}
-
 	public final IntegerProperty dineroProperty() {
 		return this.dinero;
 	}
@@ -83,6 +68,21 @@ public class Personaje {
 	public final void setHombre(final boolean hombre) {
 		this.hombreProperty().set(hombre);
 	}
+
+	public final IntegerProperty vidamaxProperty() {
+		return this.vidamax;
+	}
+	
+
+	public final int getVidamax() {
+		return this.vidamaxProperty().get();
+	}
+	
+
+	public final void setVidamax(final int vidamax) {
+		this.vidamaxProperty().set(vidamax);
+	}
+	
 	
 	
 	

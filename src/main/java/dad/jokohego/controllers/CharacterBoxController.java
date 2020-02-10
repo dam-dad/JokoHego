@@ -35,16 +35,10 @@ public class CharacterBoxController extends VBox implements Initializable {
 	private Label damageLabel;
 
 	@FXML
-	private Label armorLabel;
-
-	@FXML
 	private Label moneyLabel;
 
 	@FXML
 	private ImageView swordImage;
-
-	@FXML
-	private ImageView armorImage;
 
 	@FXML
 	private Button potionButton1;
@@ -83,7 +77,7 @@ public class CharacterBoxController extends VBox implements Initializable {
 				new NumberStringConverter("###"));
 		Bindings.bindBidirectional(damageLabel.textProperty(), character.danyoProperty(),
 				new NumberStringConverter("###"));
-		Bindings.bindBidirectional(armorLabel.textProperty(), character.armaduraProperty(),
+		Bindings.bindBidirectional(totalhealthLabel.textProperty(), character.vidamaxProperty(),
 				new NumberStringConverter("###"));
 		Bindings.bindBidirectional(moneyLabel.textProperty(), character.dineroProperty(),
 				new NumberStringConverter("###"));
@@ -96,7 +90,6 @@ public class CharacterBoxController extends VBox implements Initializable {
 						new Image(this.getClass().getResourceAsStream("/ImagenesGreenStyle/Personajes/Mujer.png")));
 			}
 		});
-		character.setVida(100);
 
 	}
 
@@ -139,10 +132,6 @@ public class CharacterBoxController extends VBox implements Initializable {
 
 	public ImageView getSwordImage() {
 		return swordImage;
-	}
-
-	public ImageView getArmorImage() {
-		return armorImage;
 	}
 
 }
