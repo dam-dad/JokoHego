@@ -160,12 +160,12 @@ public class JuegoController implements Initializable {
 			Button item2 = new Button();
 			item2.setPrefHeight(40);
 			item2.setPrefWidth(40);
-			item2.getStyleClass().add("pocion");
+			item2.getStyleClass().add("damage");
 			item2.setOnAction(e -> onGetChestItemAction(e, a));
 			Button item3 = new Button();
 			item3.setPrefHeight(40);
 			item3.setPrefWidth(40);
-			item3.getStyleClass().add("pocion");
+			item3.getStyleClass().add("armor");
 			item3.setOnAction(e -> onGetChestItemAction(e, a));
 			HBox botonera = new HBox(item1, item2, item3);
 			botonera.setAlignment(Pos.CENTER);
@@ -204,6 +204,12 @@ public class JuegoController implements Initializable {
 			} else if (character.getPotionButton3().isDisabled()) {
 				CharacterBoxController.enablePotion(character.getPotionButton3());
 			}
+			a.hide();
+		}else if (boton.getStyleClass().contains("damage")) {
+			character.getCharacter().setDanyo(character.getCharacter().getDanyo()+1);
+			a.hide();
+		}else if (boton.getStyleClass().contains("armor")) {
+			character.getCharacter().setArmadura(character.getCharacter().getArmadura()+1);
 			a.hide();
 		}
 
