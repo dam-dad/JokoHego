@@ -41,15 +41,18 @@ public class JuegoController implements Initializable {
 
 	@FXML
 	private BorderPane root;
+	
+	MainController main;
 
 	private PopOver poper = new PopOver();
 	private HBox infoPoper;
 	private CharacterBoxController character = new CharacterBoxController();
 
-	public JuegoController() throws IOException {
+	public JuegoController(MainController mainController) throws IOException {
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/GameView.fxml"));
 		loader.setController(this);
 		loader.load();
+		main = mainController;
 	}
 
 	public BorderPane getView() {
@@ -61,7 +64,6 @@ public class JuegoController implements Initializable {
 		root.setCenter(JokoUtils.generarNivel(nivel, this));
 		character.getCharacter().setHombre(false);
 		root.setRight(character);
-		
 
 		// poper
 
@@ -120,7 +122,8 @@ public class JuegoController implements Initializable {
 
 			if (monster.getVida() <= 0) {
 				numMonster--;
-				character.getCharacter().setExperiencia(character.getCharacter().getExperiencia()+monster.getExperiencia());
+				character.getCharacter()
+						.setExperiencia(character.getCharacter().getExperiencia() + monster.getExperiencia());
 				boton.getStyleClass().removeAll(monster.getNombre(), "Monster");
 				boton.getStyleClass().add("Losa");
 				poper.hide();
@@ -171,10 +174,10 @@ public class JuegoController implements Initializable {
 			character = new CharacterBoxController();
 			root.setCenter(JokoUtils.generarNivel(nivel, this));
 			try {
+				main.setMenu();
 			} catch (Exception e2) {
 			}
 
-			
 		}
 
 	}
@@ -192,11 +195,11 @@ public class JuegoController implements Initializable {
 				CharacterBoxController.enablePotion(character.getPotionButton3());
 			}
 			a.hide();
-		}else if (boton.getStyleClass().contains("damage")) {
-			character.getCharacter().setDanyo(character.getCharacter().getDanyo()+1);
+		} else if (boton.getStyleClass().contains("damage")) {
+			character.getCharacter().setDanyo(character.getCharacter().getDanyo() + 1);
 			a.hide();
-		}else if (boton.getStyleClass().contains("armor")) {
-			character.getCharacter().setVidamax(character.getCharacter().getVidamax()+10);
+		} else if (boton.getStyleClass().contains("armor")) {
+			character.getCharacter().setVidamax(character.getCharacter().getVidamax() + 10);
 			a.hide();
 		}
 
@@ -223,7 +226,5 @@ public class JuegoController implements Initializable {
 			poper.hide();
 		}
 	}
-	
-
 
 }

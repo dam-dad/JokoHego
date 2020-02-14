@@ -82,6 +82,16 @@
             </VBox>
          </children>
       </HBox>
-      <Button fx:id="lvlUpButton" mnemonicParsing="false" onAction="#onlvlUpAction" text="Subir nivel" />
+      <Button fx:id="lvlUpButton" mnemonicParsing="false" onAction="#onlvlUpAction">
+         <graphic>
+            <ImageView fitHeight="56.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../ImagenesGreenStyle/Items/lvlup.png" />
+               </image>
+            </ImageView>
+         </graphic>
+         <VBox.margin>
+            <Insets top="30.0" />
+         </VBox.margin></Button>
    </children>
 </fx:root>
