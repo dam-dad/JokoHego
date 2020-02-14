@@ -4,16 +4,22 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import org.controlsfx.control.PopOver;
+import org.controlsfx.control.PopOver.ArrowLocation;
+
 import dad.jokohego.model.Personaje;
 import javafx.beans.binding.Bindings;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.util.converter.NumberStringConverter;
 
@@ -38,9 +44,6 @@ public class CharacterBoxController extends VBox implements Initializable {
 	private Label moneyLabel;
 
 	@FXML
-	private ImageView swordImage;
-
-	@FXML
 	private Button potionButton1;
 
 	@FXML
@@ -48,6 +51,9 @@ public class CharacterBoxController extends VBox implements Initializable {
 
 	@FXML
 	private Button potionButton3;
+
+	@FXML
+	private Button lvlUpButton;
 
 	// model
 
@@ -71,7 +77,18 @@ public class CharacterBoxController extends VBox implements Initializable {
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
+		
+		character.setDanyo(10);
+		character.setVida(100);
+		character.setVidamax(100);
+		character.setHombre(false);
+		character.setNivel(1);
+		character.setExperiencia(0);
 
+		enablePotion(potionButton1);
+		enablePotion(potionButton2);
+		enablePotion(potionButton3);
+		
 		// comprobar bindeos
 		Bindings.bindBidirectional(healthLabel.textProperty(), character.vidaProperty(),
 				new NumberStringConverter("###"));
@@ -79,7 +96,7 @@ public class CharacterBoxController extends VBox implements Initializable {
 				new NumberStringConverter("###"));
 		Bindings.bindBidirectional(totalhealthLabel.textProperty(), character.vidamaxProperty(),
 				new NumberStringConverter("###"));
-		Bindings.bindBidirectional(moneyLabel.textProperty(), character.dineroProperty(),
+		Bindings.bindBidirectional(moneyLabel.textProperty(), character.experienciaProperty(),
 				new NumberStringConverter("###"));
 		character.hombreProperty().addListener((o, ov, nv) -> {
 			if (nv) {
@@ -88,6 +105,16 @@ public class CharacterBoxController extends VBox implements Initializable {
 			} else {
 				characterImage.setImage(
 						new Image(this.getClass().getResourceAsStream("/ImagenesGreenStyle/Personajes/Mujer.png")));
+			}
+		});
+		
+		lvlUpButton.setDisable(true);
+		
+		character.experienciaProperty().addListener((o,ov,nv)->{
+			if(character.getExperiencia()>(10*character.getNivel())) {
+				lvlUpButton.setDisable(false);
+			}else {
+				lvlUpButton.setDisable(true);
 			}
 		});
 
@@ -106,16 +133,65 @@ public class CharacterBoxController extends VBox implements Initializable {
 			disablePotion(potionButton3);
 		}
 	}
+
+	@FXML
+	void onlvlUpAction(ActionEvent event) {
+		Button boton = (Button) event.getSource();
+		
+		PopOver a = new PopOver();
+		a.getRoot().getStyleClass().add("popup");
+		a.setArrowLocation(ArrowLocation.TOP_CENTER);
+		a.setAnchorX(300);
+		a.setAnchorY(250);
+		a.detach();
+		a.requestFocus();
+
+		Button item1 = new Button();
+		item1.setPrefHeight(40);
+		item1.setPrefWidth(40);
+		item1.getStyleClass().add("damage");
+		item1.setOnAction(e -> onSkillSelectedAction(e, a));
+		Button item2 = new Button();
+		item2.setPrefHeight(40);
+		item2.setPrefWidth(40);
+		item2.getStyleClass().add("vida");
+		item2.setOnAction(e -> onSkillSelectedAction(e, a));
+		HBox botonera = new HBox(item1, item2);
+		botonera.setAlignment(Pos.CENTER);
+		botonera.setSpacing(5);
+		botonera.setPadding(new Insets(5));
+		a.setContentNode(botonera);
+
+		a.show(boton);
+	}
+
+	private void onSkillSelectedAction(ActionEvent event, PopOver a) {
+		Button boton = (Button) event.getSource();
+		
+		if(boton.getStyleClass().contains("damage")) {
+			
+			character.setDanyo(character.getDanyo()+1);
+		}
+		if(boton.getStyleClass().contains("vida")) {
+			character.setVidamax(character.getVidamax()+2);
+		}
+		character.setExperiencia(character.getExperiencia()-10*character.getNivel());
+		character.setNivel(character.getNivel()+1);
+		a.hide();
+		
+	}
+
 	public static void disablePotion(Button boton) {
 		boton.getStyleClass().remove("pocion");
 		boton.getStyleClass().add("pocionvacia");
 		boton.setDisable(true);
 		character.setVida(character.getVidamax());
 	}
+
 	public static void enablePotion(Button boton) {
-			boton.getStyleClass().remove("pocionvacia");
-			boton.getStyleClass().add("pocion");
-			boton.setDisable(false);
+		boton.getStyleClass().remove("pocionvacia");
+		boton.getStyleClass().add("pocion");
+		boton.setDisable(false);
 	}
 
 	public Button getPotionButton1() {
@@ -130,8 +206,8 @@ public class CharacterBoxController extends VBox implements Initializable {
 		return potionButton3;
 	}
 
-	public ImageView getSwordImage() {
-		return swordImage;
+	public Button getLvlUpButton() {
+		return lvlUpButton;
 	}
 
 }

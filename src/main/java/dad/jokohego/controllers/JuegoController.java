@@ -61,11 +61,7 @@ public class JuegoController implements Initializable {
 		root.setCenter(JokoUtils.generarNivel(nivel, this));
 		character.getCharacter().setHombre(false);
 		root.setRight(character);
-		character.getCharacter().setDanyo(10);
-		character.getCharacter().setVida(100);
-		character.getCharacter().setVidamax(100);
-		character.getCharacter().setHombre(false);
-		character.getCharacter().setDinero(0);
+		
 
 		// poper
 
@@ -124,7 +120,7 @@ public class JuegoController implements Initializable {
 
 			if (monster.getVida() <= 0) {
 				numMonster--;
-
+				character.getCharacter().setExperiencia(character.getCharacter().getExperiencia()+monster.getExperiencia());
 				boton.getStyleClass().removeAll(monster.getNombre(), "Monster");
 				boton.getStyleClass().add("Losa");
 				poper.hide();
@@ -157,7 +153,7 @@ public class JuegoController implements Initializable {
 			Button item3 = new Button();
 			item3.setPrefHeight(40);
 			item3.setPrefWidth(40);
-			item3.getStyleClass().add("armor");
+			item3.getStyleClass().add("vida");
 			item3.setOnAction(e -> onGetChestItemAction(e, a));
 			HBox botonera = new HBox(item1, item2, item3);
 			botonera.setAlignment(Pos.CENTER);
@@ -172,13 +168,13 @@ public class JuegoController implements Initializable {
 			nivel = 1;
 			numMonster = 0;
 			puerta = false;
-			CharacterBoxController.enablePotion(character.getPotionButton1());
-			CharacterBoxController.enablePotion(character.getPotionButton2());
-			CharacterBoxController.enablePotion(character.getPotionButton3());
+			character = new CharacterBoxController();
 			root.setCenter(JokoUtils.generarNivel(nivel, this));
-			character.getCharacter().setVida(100);
-			character.getCharacter().setDanyo(10);
-			character.getCharacter().setVidamax(100);
+			try {
+			} catch (Exception e2) {
+			}
+
+			
 		}
 
 	}

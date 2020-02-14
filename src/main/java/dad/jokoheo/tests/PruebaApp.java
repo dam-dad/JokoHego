@@ -13,7 +13,6 @@ public class PruebaApp extends Application {
 		a.getCharacter().setDanyo(100);
 		a.getCharacter().setVida(0);
 		a.getCharacter().setHombre(true);
-		a.getCharacter().setDinero(100);
 		
 		
 		

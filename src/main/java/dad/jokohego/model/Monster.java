@@ -11,7 +11,7 @@ public class Monster {
 	private StringProperty nombre = new SimpleStringProperty();
 	private IntegerProperty vida = new SimpleIntegerProperty();
 	private IntegerProperty danyo = new SimpleIntegerProperty();
-	private IntegerProperty dinero = new SimpleIntegerProperty();
+	private IntegerProperty experiencia = new SimpleIntegerProperty();
 
 	public Monster(MonsterType tipo) {
 		nombre.set(tipo.toString());
@@ -19,49 +19,49 @@ public class Monster {
 			case Cutulu:{
 				vida.set(50);
 				danyo.set(7);
-				dinero.set(10);
+				experiencia.set(10);
 				break;
 			}
 			case Gormiti:{
 				vida.set(60);
 				danyo.set(2);
-				dinero.set(8);
+				experiencia.set(8);
 				break;
 			}
 			case Minik:{
 				vida.set(20);
 				danyo.set(3);
-				dinero.set(3);
+				experiencia.set(3);
 				break;
 			}
 			case Orco:{
 				vida.set(40);
 				danyo.set(6);
-				dinero.set(5);
+				experiencia.set(5);
 				break;
 			}
 			case Phantom:{
 				vida.set(20);
 				danyo.set(14);
-				dinero.set(5);
+				experiencia.set(5);
 				break;
 			}
 			case Rata:{
 				vida.set(10);
 				danyo.set(5);
-				dinero.set(1);
+				experiencia.set(1);
 				break;
 			}
 			case Serpiente:{
 				vida.set(20);
 				danyo.set(5);
-				dinero.set(4);
+				experiencia.set(4);
 				break;
 			}
 			case EscarabajoOro:{
 				vida.set(5);
 				danyo.set(0);
-				dinero.set(100);
+				experiencia.set(100);
 				break;
 			}
 		}
@@ -97,19 +97,10 @@ public class Monster {
 		this.danyoProperty().set(danyo);
 	}
 
-	public final IntegerProperty dineroProperty() {
-		return this.dinero;
-	}
+	
 	
 
-	public final int getDinero() {
-		return this.dineroProperty().get();
-	}
 	
-
-	public final void setDinero(final int dinero) {
-		this.dineroProperty().set(dinero);
-	}
 
 	public final StringProperty nombreProperty() {
 		return this.nombre;
@@ -124,6 +115,21 @@ public class Monster {
 	public final void setNombre(final String nombre) {
 		this.nombreProperty().set(nombre);
 	}
+
+	public final IntegerProperty experienciaProperty() {
+		return this.experiencia;
+	}
+	
+
+	public final int getExperiencia() {
+		return this.experienciaProperty().get();
+	}
+	
+
+	public final void setExperiencia(final int experiencia) {
+		this.experienciaProperty().set(experiencia);
+	}
+	
 	
 	
 	
