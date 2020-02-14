@@ -80,7 +80,7 @@ public class JokoUtils {
 			buttons.getRowConstraints().add(conRow);
 		}
 		VBox aux3 = new VBox();
-		aux3.getChildren().add(new Label("NV:" + nivel));
+		aux3.getChildren().add(new Label("" + nivel));
 		aux3.getStyleClass().add("nivel");
 		aux3.setAlignment(Pos.CENTER);
 		buttons.add(aux3, 0, 0);

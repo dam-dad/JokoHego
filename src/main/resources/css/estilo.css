@@ -91,4 +91,7 @@
 }
 .nivel .label{
 	-fx-text-fill:red;
+	-fx-effect: dropshadow( gaussian , #a30000 , 0,0,0,2 );
+	-fx-font-size:16pt;
+	-fx-font-weight: bold;
 }
