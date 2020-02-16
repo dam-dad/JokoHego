@@ -1,8 +1,6 @@
 package dad.jokohego.app;
 
-import dad.jokohego.controllers.JuegoController;
 import dad.jokohego.controllers.MainController;
-import dad.jokohego.controllers.MenuController;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.stage.Stage;

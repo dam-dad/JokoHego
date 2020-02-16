@@ -41,7 +41,7 @@ public class CharacterBoxController extends VBox implements Initializable {
 	private Label damageLabel;
 
 	@FXML
-	private Label moneyLabel;
+    private Label experienciaLabel;
 
 	@FXML
 	private Button potionButton1;
@@ -96,7 +96,7 @@ public class CharacterBoxController extends VBox implements Initializable {
 				new NumberStringConverter("###"));
 		Bindings.bindBidirectional(totalhealthLabel.textProperty(), character.vidamaxProperty(),
 				new NumberStringConverter("###"));
-		Bindings.bindBidirectional(moneyLabel.textProperty(), character.experienciaProperty(),
+		Bindings.bindBidirectional(experienciaLabel.textProperty(), character.experienciaProperty(),
 				new NumberStringConverter("###"));
 		character.hombreProperty().addListener((o, ov, nv) -> {
 			if (nv) {

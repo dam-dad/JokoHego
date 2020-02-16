@@ -14,33 +14,34 @@ public class MainController implements Initializable {
 	@FXML
 	private BorderPane root;
 
-	private  MenuController menu;
-	private  JuegoController juego;
+	private MenuController menu;
+	private JuegoController juego;
 
 	public BorderPane getView() {
 		return root;
 	}
-	
+
 	public MainController() throws IOException {
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/MainView.fxml"));
 		loader.setController(this);
-		loader.load();	
+		loader.load();
 	}
-	
+
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		try {
 			juego = new JuegoController(this);
 			menu = new MenuController(this);
-			root.setCenter(menu.getView());
+			setMenu();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 	}
-	
+
 	public void setJuego() {
 		root.setCenter(juego.getView());
 	}
+
 	public void setMenu() {
 		root.setCenter(menu.getView());
 	}
