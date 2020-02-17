@@ -90,7 +90,7 @@ public class MenuController implements Initializable {
 		transicion.setAutoReverse(true);
 		transicion.setCycleCount(1);
 		transicion.setDelay(Duration.ZERO);
-		transicion.setDuration(Duration.seconds(10));
+		transicion.setDuration(Duration.seconds(5));
 		transicion.setFromValue(0);
 		transicion.setToValue(1);
 		transicion.setRate(1);
@@ -106,7 +106,7 @@ public class MenuController implements Initializable {
 
 		if (nodo.getId().equals("puertauno")) {
 
-			translate.setDuration(Duration.seconds(5));
+			translate.setDuration(Duration.seconds(2));
 			translate.setFromX(0);
 			translate.setToX(-300);
 			translate.setNode(nodo);
@@ -123,7 +123,7 @@ public class MenuController implements Initializable {
 
 		} else if (nodo.getId().equals("puertados")) {
 
-			translate.setDuration(Duration.seconds(5));
+			translate.setDuration(Duration.seconds(2));
 			translate.setFromX(0);
 			translate.setToX(300);
 			translate.setNode(nodo);
@@ -139,11 +139,13 @@ public class MenuController implements Initializable {
 			transicion.play();
 		}
 		
+		
 		transicion.currentTimeProperty().addListener((o,ov,nv)->{
-			if(nv.equals(Duration.seconds(5))) {
+			if(nv.equals(Duration.seconds(2))) {
 				main.setJuego();
 			}
 		});
+		
 		
 	}
 
