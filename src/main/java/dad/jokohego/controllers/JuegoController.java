@@ -222,7 +222,7 @@ public class JuegoController implements Initializable {
 		} else if (boton.getStyleClass().contains("damage")) {
 			character.getCharacter().setDanyo(character.getCharacter().getDanyo() + 1);
 			a.hide();
-		} else if (boton.getStyleClass().contains("armor")) {
+		} else if (boton.getStyleClass().contains("vida")) {
 			character.getCharacter().setVidamax(character.getCharacter().getVidamax() + 10);
 			a.hide();
 		}
@@ -260,14 +260,12 @@ public class JuegoController implements Initializable {
 
 		ImageView vida = new ImageView(
 				new Image(this.getClass().getResourceAsStream("/ImagenesGreenStyle/Items/Vida.png")));
-		vida.setTranslateX(button.getLayoutX()+button.getWidth()/2);
-		vida.setTranslateY(button.getLayoutY()+button.getHeight()/2);
 		megaroot.getChildren().add(vida);
 		
 
 		translate.setDuration(Duration.seconds(2.5));
-		translate.setFromX(button.getLayoutX());
-		translate.setFromY(button.getLayoutY());
+		translate.setFromX(button.getLayoutX()+button.getWidth()/2);
+		translate.setFromY(button.getLayoutY()+button.getHeight()/2);
 		translate.setToX(800);
 		translate.setToY(530);
 		translate.setNode(vida);
