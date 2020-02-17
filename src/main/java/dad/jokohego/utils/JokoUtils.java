@@ -141,7 +141,6 @@ public class JokoUtils {
 			monster = MonsterType.EscarabajoOro;
 		return monster;
 	}
-
 	public static void setEscalera(boolean escalera) {
 		JokoUtils.escalera = escalera;
 	}

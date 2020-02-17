@@ -13,6 +13,7 @@ import dad.jokohego.model.Monster;
 import dad.jokohego.utils.BackType;
 import dad.jokohego.utils.JokoUtils;
 import dad.jokohego.utils.MonsterType;
+import dad.jokohego.utils.Music;
 import javafx.animation.Interpolator;
 import javafx.animation.SequentialTransition;
 import javafx.animation.Transition;
@@ -58,6 +59,7 @@ public class JuegoController implements Initializable {
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/GameView.fxml"));
 		loader.setController(this);
 		loader.load();
+		new Music().play();
 		main = mainController;
 	}
 
