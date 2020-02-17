@@ -13,7 +13,10 @@ import dad.jokohego.model.Monster;
 import dad.jokohego.utils.BackType;
 import dad.jokohego.utils.JokoUtils;
 import dad.jokohego.utils.MonsterType;
+import javafx.animation.FadeTransition;
 import javafx.animation.Interpolator;
+import javafx.animation.ParallelTransition;
+import javafx.animation.ScaleTransition;
 import javafx.animation.SequentialTransition;
 import javafx.animation.Transition;
 import javafx.animation.TranslateTransition;
@@ -32,6 +35,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.StackPane;
 import javafx.util.Duration;
 
 public class JuegoController implements Initializable {
@@ -44,6 +48,9 @@ public class JuegoController implements Initializable {
 	private static boolean puerta = false;
 
 	// view
+
+	@FXML
+	private StackPane megaroot;
 
 	@FXML
 	private BorderPane root;
@@ -61,8 +68,8 @@ public class JuegoController implements Initializable {
 		main = mainController;
 	}
 
-	public BorderPane getView() {
-		return root;
+	public StackPane getView() {
+		return megaroot;
 	}
 
 	@Override
@@ -86,18 +93,17 @@ public class JuegoController implements Initializable {
 		infoPoper = new HBox(vida, vidanum, danyo, danyonum);
 		infoPoper.setAlignment(Pos.CENTER);
 		infoPoper.setSpacing(5);
-		infoPoper.setPadding(new Insets(5));	
-		
-		 root.setOnMouseMoved(new EventHandler<MouseEvent>() {
-		      public void handle(MouseEvent event) {
-		        String msg =
-		          "(x: "       + event.getX()      + ", y: "       + event.getY()       + ") -- " +
-		          "(sceneX: "  + event.getSceneX() + ", sceneY: "  + event.getSceneY()  + ") -- " +
-		          "(screenX: " + event.getScreenX()+ ", screenY: " + event.getScreenY() + ")";
-
-		        System.out.println(msg);
-		      }
-		    });
+		infoPoper.setPadding(new Insets(5));
+//		
+//		root.setOnMouseMoved(new EventHandler<MouseEvent>() {
+//			public void handle(MouseEvent event) {
+//				String msg = "(x: " + event.getX() + ", y: " + event.getY() + ") -- " + "(sceneX: " + event.getSceneX()
+//						+ ", sceneY: " + event.getSceneY() + ") -- " + "(screenX: " + event.getScreenX() + ", screenY: "
+//						+ event.getScreenY() + ")";
+//
+//				System.out.println(msg);
+//			}
+//		});
 		
 
 	}
@@ -145,7 +151,7 @@ public class JuegoController implements Initializable {
 				boton.getStyleClass().removeAll(monster.getNombre(), "Monster");
 				boton.getStyleClass().add("Losa");
 				poper.hide();
-				//onObtainexperience(boton);
+				onObtainexperience(boton);
 			} else {
 				character.getCharacter().setVida(character.getCharacter().getVida() - (monster.getDanyo()));
 			}
@@ -245,33 +251,45 @@ public class JuegoController implements Initializable {
 		}
 	}
 
-	public void onObtainexperience(Node button) {
-		SequentialTransition transicion = new SequentialTransition();
+	public void onObtainexperience(Button button) {
+		ParallelTransition secuencia = new ParallelTransition();
 		TranslateTransition translate = new TranslateTransition();
+		ScaleTransition scale = new ScaleTransition();
+
+
 
 		ImageView vida = new ImageView(
 				new Image(this.getClass().getResourceAsStream("/ImagenesGreenStyle/Items/Vida.png")));
-		vida.setX(50);
-		vida.setY(50);
-		vida.setLayoutX(button.getLayoutX());
-		vida.setLayoutY(button.getLayoutY());
+		vida.setTranslateX(button.getLayoutX()+button.getWidth()/2);
+		vida.setTranslateY(button.getLayoutY()+button.getHeight()/2);
+		megaroot.getChildren().add(vida);
+		
 
-		translate.setDuration(Duration.seconds(5));
+		translate.setDuration(Duration.seconds(2.5));
 		translate.setFromX(button.getLayoutX());
 		translate.setFromY(button.getLayoutY());
 		translate.setToX(800);
 		translate.setToY(530);
-		translate.setNode(button);
+		translate.setNode(vida);
 		translate.setInterpolator(Interpolator.EASE_BOTH);
 		translate.setAutoReverse(false);
+		
+		scale.setAutoReverse(true);
+		scale.setCycleCount(1);
+		scale.setDelay(Duration.ZERO);
+		scale.setDuration(Duration.seconds(2.40));
+		scale.setFromX(10);
+		scale.setToX(0);
+		scale.setFromY(10);
+		scale.setToY(0);
+		scale.setNode(vida);
+		scale.setInterpolator(Interpolator.EASE_BOTH);
+		
 
-		transicion = new SequentialTransition();
-		transicion.getChildren().addAll(translate);
-		transicion.setAutoReverse(false);
-
-		transicion.setCycleCount(1);
-
-		transicion.play();
+    	secuencia.setAutoReverse(true);
+    	secuencia.setCycleCount(1);
+    	secuencia.getChildren().addAll(translate, scale);
+    	secuencia.play();
 	}
 
 }
