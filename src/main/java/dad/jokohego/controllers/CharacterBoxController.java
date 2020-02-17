@@ -111,7 +111,7 @@ public class CharacterBoxController extends VBox implements Initializable {
 		lvlUpButton.setDisable(true);
 		
 		character.experienciaProperty().addListener((o,ov,nv)->{
-			if(character.getExperiencia()>(10*character.getNivel())) {
+			if(character.getExperiencia()>=(10*character.getNivel())) {
 				lvlUpButton.setDisable(false);
 			}else {
 				lvlUpButton.setDisable(true);

@@ -13,7 +13,12 @@ import dad.jokohego.model.Monster;
 import dad.jokohego.utils.BackType;
 import dad.jokohego.utils.JokoUtils;
 import dad.jokohego.utils.MonsterType;
+import javafx.animation.Interpolator;
+import javafx.animation.SequentialTransition;
+import javafx.animation.Transition;
+import javafx.animation.TranslateTransition;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -27,6 +32,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
+import javafx.util.Duration;
 
 public class JuegoController implements Initializable {
 
@@ -41,7 +47,7 @@ public class JuegoController implements Initializable {
 
 	@FXML
 	private BorderPane root;
-	
+
 	MainController main;
 
 	private PopOver poper = new PopOver();
@@ -80,7 +86,19 @@ public class JuegoController implements Initializable {
 		infoPoper = new HBox(vida, vidanum, danyo, danyonum);
 		infoPoper.setAlignment(Pos.CENTER);
 		infoPoper.setSpacing(5);
-		infoPoper.setPadding(new Insets(5));
+		infoPoper.setPadding(new Insets(5));	
+		
+		 root.setOnMouseMoved(new EventHandler<MouseEvent>() {
+		      public void handle(MouseEvent event) {
+		        String msg =
+		          "(x: "       + event.getX()      + ", y: "       + event.getY()       + ") -- " +
+		          "(sceneX: "  + event.getSceneX() + ", sceneY: "  + event.getSceneY()  + ") -- " +
+		          "(screenX: " + event.getScreenX()+ ", screenY: " + event.getScreenY() + ")";
+
+		        System.out.println(msg);
+		      }
+		    });
+		
 
 	}
 
@@ -127,7 +145,7 @@ public class JuegoController implements Initializable {
 				boton.getStyleClass().removeAll(monster.getNombre(), "Monster");
 				boton.getStyleClass().add("Losa");
 				poper.hide();
-
+				//onObtainexperience(boton);
 			} else {
 				character.getCharacter().setVida(character.getCharacter().getVida() - (monster.getDanyo()));
 			}
@@ -225,6 +243,35 @@ public class JuegoController implements Initializable {
 		if (boton.getStyleClass().contains("Monster")) {
 			poper.hide();
 		}
+	}
+
+	public void onObtainexperience(Node button) {
+		SequentialTransition transicion = new SequentialTransition();
+		TranslateTransition translate = new TranslateTransition();
+
+		ImageView vida = new ImageView(
+				new Image(this.getClass().getResourceAsStream("/ImagenesGreenStyle/Items/Vida.png")));
+		vida.setX(50);
+		vida.setY(50);
+		vida.setLayoutX(button.getLayoutX());
+		vida.setLayoutY(button.getLayoutY());
+
+		translate.setDuration(Duration.seconds(5));
+		translate.setFromX(button.getLayoutX());
+		translate.setFromY(button.getLayoutY());
+		translate.setToX(800);
+		translate.setToY(530);
+		translate.setNode(button);
+		translate.setInterpolator(Interpolator.EASE_BOTH);
+		translate.setAutoReverse(false);
+
+		transicion = new SequentialTransition();
+		transicion.getChildren().addAll(translate);
+		transicion.setAutoReverse(false);
+
+		transicion.setCycleCount(1);
+
+		transicion.play();
 	}
 
 }

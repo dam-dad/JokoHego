@@ -114,7 +114,6 @@ public class MenuController implements Initializable {
 			translate.setAutoReverse(false);
 
 			transicion = new SequentialTransition();
-			transicion.setCycleCount(Transition.INDEFINITE);
 			transicion.getChildren().addAll(translate);
 			transicion.setAutoReverse(false);
 
@@ -132,7 +131,6 @@ public class MenuController implements Initializable {
 			translate.setAutoReverse(false);
 
 			transicion = new SequentialTransition();
-			transicion.setCycleCount(Transition.INDEFINITE);
 			transicion.getChildren().addAll(translate);
 			transicion.setAutoReverse(false);
 
