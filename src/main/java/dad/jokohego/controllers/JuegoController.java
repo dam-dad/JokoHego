@@ -1,6 +1,5 @@
 package dad.jokohego.controllers;
 
-import java.awt.Point;
 import java.io.IOException;
 import java.net.URL;
 import java.util.List;
@@ -10,19 +9,11 @@ import org.controlsfx.control.PopOver;
 import org.controlsfx.control.PopOver.ArrowLocation;
 
 import dad.jokohego.model.Monster;
+import dad.jokohego.utils.Animations;
 import dad.jokohego.utils.BackType;
 import dad.jokohego.utils.JokoUtils;
 import dad.jokohego.utils.MonsterType;
-import dad.jokohego.utils.Music;
-import javafx.animation.FadeTransition;
-import javafx.animation.Interpolator;
-import javafx.animation.ParallelTransition;
-import javafx.animation.ScaleTransition;
-import javafx.animation.SequentialTransition;
-import javafx.animation.Transition;
-import javafx.animation.TranslateTransition;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -37,16 +28,12 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
-import javafx.util.Duration;
-
 public class JuegoController implements Initializable {
 
 	// model
 
-	private static Button[][] backButton;
 	private static int nivel = 1;
 	private static int numMonster = 0;
-	private static boolean puerta = false;
 
 	// view
 
@@ -66,7 +53,6 @@ public class JuegoController implements Initializable {
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/GameView.fxml"));
 		loader.setController(this);
 		loader.load();
-		new Music().play();
 		main = mainController;
 	}
 
@@ -153,7 +139,7 @@ public class JuegoController implements Initializable {
 				boton.getStyleClass().removeAll(monster.getNombre(), "Monster");
 				boton.getStyleClass().add("Losa");
 				poper.hide();
-				onObtainexperience(boton);
+				Animations.Obtainexperience(boton,megaroot);
 			} else {
 				character.getCharacter().setVida(character.getCharacter().getVida() - (monster.getDanyo()));
 			}
@@ -168,6 +154,7 @@ public class JuegoController implements Initializable {
 			a.setAnchorY(250);
 			a.detach();
 			a.requestFocus();
+			a.setAnimated(false);
 
 			Button item1 = new Button();
 			item1.setPrefHeight(40);
@@ -196,7 +183,6 @@ public class JuegoController implements Initializable {
 		if (character.getCharacter().getVida() <= 0) {
 			nivel = 1;
 			numMonster = 0;
-			puerta = false;
 			character = new CharacterBoxController();
 			root.setCenter(JokoUtils.generarNivel(nivel, this));
 			try {
@@ -253,43 +239,6 @@ public class JuegoController implements Initializable {
 		}
 	}
 
-	public void onObtainexperience(Button button) {
-		ParallelTransition secuencia = new ParallelTransition();
-		TranslateTransition translate = new TranslateTransition();
-		ScaleTransition scale = new ScaleTransition();
-
-
-
-		ImageView vida = new ImageView(
-				new Image(this.getClass().getResourceAsStream("/ImagenesGreenStyle/Items/Vida.png")));
-		megaroot.getChildren().add(vida);
-		
-
-		translate.setDuration(Duration.seconds(2.5));
-		translate.setFromX(button.getLayoutX()+button.getWidth()/2);
-		translate.setFromY(button.getLayoutY()+button.getHeight()/2);
-		translate.setToX(800);
-		translate.setToY(530);
-		translate.setNode(vida);
-		translate.setInterpolator(Interpolator.EASE_BOTH);
-		translate.setAutoReverse(false);
-		
-		scale.setAutoReverse(true);
-		scale.setCycleCount(1);
-		scale.setDelay(Duration.ZERO);
-		scale.setDuration(Duration.seconds(2.40));
-		scale.setFromX(10);
-		scale.setToX(0);
-		scale.setFromY(10);
-		scale.setToY(0);
-		scale.setNode(vida);
-		scale.setInterpolator(Interpolator.EASE_BOTH);
-		
-
-    	secuencia.setAutoReverse(true);
-    	secuencia.setCycleCount(1);
-    	secuencia.getChildren().addAll(translate, scale);
-    	secuencia.play();
-	}
+	
 
 }

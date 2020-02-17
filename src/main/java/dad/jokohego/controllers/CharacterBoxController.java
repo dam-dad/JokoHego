@@ -144,9 +144,10 @@ public class CharacterBoxController extends VBox implements Initializable {
 		a.setAnchorX(300);
 		a.setAnchorY(250);
 		a.detach();
+		a.setAnimated(false);
 		a.requestFocus();
 
-		Button item1 = new Button();
+		Button item1 = new Button();  
 		item1.setPrefHeight(40);
 		item1.setPrefWidth(40);
 		item1.getStyleClass().add("damage");
@@ -175,8 +176,9 @@ public class CharacterBoxController extends VBox implements Initializable {
 		if(boton.getStyleClass().contains("vida")) {
 			character.setVidamax(character.getVidamax()+2);
 		}
-		character.setExperiencia(character.getExperiencia()-10*character.getNivel());
 		character.setNivel(character.getNivel()+1);
+		character.setExperiencia(character.getExperiencia()-10*(character.getNivel()-1));
+		
 		a.hide();
 		
 	}
