@@ -70,6 +70,7 @@ public class JuegoController implements Initializable {
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		iniciarNivel();
+		nivel++;
 		root.setRight(character);
 
 		// poper
@@ -89,15 +90,15 @@ public class JuegoController implements Initializable {
 		infoPoper.setSpacing(5);
 		infoPoper.setPadding(new Insets(5));
 		
-		root.setOnMouseMoved(new EventHandler<MouseEvent>() {
-			public void handle(MouseEvent event) {
-				String msg = "(x: " + event.getX() + ", y: " + event.getY() + ") -- " + "(sceneX: " + event.getSceneX()
-						+ ", sceneY: " + event.getSceneY() + ") -- " + "(screenX: " + event.getScreenX() + ", screenY: "
-						+ event.getScreenY() + ")";
-
-				System.out.println(msg);
-			}
-		});
+//		root.setOnMouseMoved(new EventHandler<MouseEvent>() {
+//			public void handle(MouseEvent event) {
+//				String msg = "(x: " + event.getX() + ", y: " + event.getY() + ") -- " + "(sceneX: " + event.getSceneX()
+//						+ ", sceneY: " + event.getSceneY() + ") -- " + "(screenX: " + event.getScreenX() + ", screenY: "
+//						+ event.getScreenY() + ")";
+//
+//				System.out.println(msg);
+//			}
+//		});
 		
 
 	}
@@ -149,12 +150,12 @@ public class JuegoController implements Initializable {
 				
 				numMonster--;
 				
-				VBox vuno = (VBox)getNode(coordenadas.x,0);
+				VBox vuno = (VBox)getNode(0,coordenadas.x+1);
 				Label uno = (Label) vuno.getChildren().get(0);
 				uno.setText((Integer.parseInt(uno.getText())-1)+"");
-				VBox vdos = (VBox)getNode(0,coordenadas.y);
+				VBox vdos = (VBox)getNode(coordenadas.y+1,0);
 				Label dos = (Label) vdos.getChildren().get(0);
-				dos.setText((Integer.parseInt(uno.getText())-1)+"");
+				dos.setText((Integer.parseInt(dos.getText())-1)+"");
 				
 				
 				character.getCharacter()
