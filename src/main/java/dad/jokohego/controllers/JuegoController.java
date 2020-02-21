@@ -14,6 +14,7 @@ import dad.jokohego.utils.Animations;
 import dad.jokohego.utils.BackType;
 import dad.jokohego.utils.JokoUtils;
 import dad.jokohego.utils.MonsterType;
+import dad.jokohego.utils.Sounds;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -70,7 +71,7 @@ public class JuegoController implements Initializable {
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		iniciarNivel();
-		nivel++;
+		
 		root.setRight(character);
 
 		// poper
@@ -124,6 +125,7 @@ public class JuegoController implements Initializable {
 				Object[] userdata = new Object[2];
 				userdata[0] = coordenadas;
 				userdata[1] = new Monster(tipo);
+				Sounds.playEffectSound(tipo.toString());
 				boton.setUserData(userdata);
 			}
 		}
@@ -131,8 +133,8 @@ public class JuegoController implements Initializable {
 		else if (boton.getStyleClass().contains("Escaleras")) {
 			JokoUtils.setEscalera(false);
 			numMonster = 0;
-			iniciarNivel();
 			nivel++;
+			iniciarNivel();		
 			// Si Monstruo
 		} else if (boton.getStyleClass().contains("Monster")) {
 			Object[] userdata= (Object[]) boton.getUserData();

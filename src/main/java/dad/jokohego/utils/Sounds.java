@@ -26,36 +26,9 @@ public class Sounds {
 		return mediaPlayer;
 		
 	}
-	public static void playMonsterSound() {
+	public static void playEffectSound(String file) {
 		
-		String musica = Sounds.class.getResource("/music/DungeonKing.mp3").toString();  
-		Media sound = new Media(musica);
-		MediaPlayer mediaPlayer = new MediaPlayer(sound);
-//		mediaPlayer.setCycleCount(Transition.INDEFINITE);
-		mediaPlayer.play();
-		
-	}
-	public static void playChestSound() {
-		
-		String musica = Sounds.class.getResource("/music/DungeonKing.mp3").toString();  
-		Media sound = new Media(musica);
-		MediaPlayer mediaPlayer = new MediaPlayer(sound);
-//		mediaPlayer.setCycleCount(Transition.INDEFINITE);
-		mediaPlayer.play();
-		
-	}
-	public static void playExperienceSound() {
-		
-		String musica = Sounds.class.getResource("/music/DungeonKing.mp3").toString();  
-		Media sound = new Media(musica);
-		MediaPlayer mediaPlayer = new MediaPlayer(sound);
-//		mediaPlayer.setCycleCount(Transition.INDEFINITE);
-		mediaPlayer.play();
-		
-	}
-	public static void playSwordSound() {
-		
-		String musica = Sounds.class.getResource("/music/DungeonKing.mp3").toString();  
+		String musica = Sounds.class.getResource("/music/"+file+".wav").toString();  
 		Media sound = new Media(musica);
 		MediaPlayer mediaPlayer = new MediaPlayer(sound);
 //		mediaPlayer.setCycleCount(Transition.INDEFINITE);
