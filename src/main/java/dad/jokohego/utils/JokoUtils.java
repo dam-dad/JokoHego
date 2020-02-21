@@ -141,6 +141,8 @@ public class JokoUtils {
 			monster = MonsterType.Orco;
 		} else if (num >= 120 && num < 140) {
 			monster = MonsterType.Phantom;
+		} else if (num >= 130 && num < 150) {
+			monster = MonsterType.Gormiti;
 		} else
 			monster = MonsterType.Cutulu;
 
