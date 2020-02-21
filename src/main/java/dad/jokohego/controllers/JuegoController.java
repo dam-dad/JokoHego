@@ -147,7 +147,7 @@ public class JuegoController implements Initializable {
 			List<Node> nodos = infoPoper.getChildren();
 			Label aux = (Label) nodos.get(1);
 			aux.setText(vidaMonster + "");
-
+			Sounds.playEffectSound("hit");
 			if (monster.getVida() <= 0) {
 				
 				numMonster--;
@@ -176,6 +176,7 @@ public class JuegoController implements Initializable {
 			boton.getStyleClass().add("CofreAbierto");
 
 			PopOver a = new PopOver();
+			a.setTitle("");
 			a.getRoot().getStyleClass().add("popup");
 			a.setArrowLocation(ArrowLocation.TOP_CENTER);
 			a.setAnchorX(300);

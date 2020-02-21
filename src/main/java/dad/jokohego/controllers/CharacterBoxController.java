@@ -150,6 +150,7 @@ public class CharacterBoxController extends VBox implements Initializable {
 		Button boton = (Button) event.getSource();
 		
 		PopOver a = new PopOver();
+		a.setTitle("");
 		a.getRoot().getStyleClass().add("popup");
 		a.setArrowLocation(ArrowLocation.TOP_CENTER);
 		a.setAnchorX(300);
