@@ -35,6 +35,7 @@ public class JokoUtils {
 			for (int j = 0; j < size; j++) {
 
 				button[i][j] = new Button();
+				button[i][j].getStyleClass().clear();
 				button[i][j].setUserData(generarFondo());
 				button[i][j].setOnAction(e -> jg.onGeneralAction(e));
 				button[i][j].setOnMouseEntered(e -> jg.onMonsterInformation(e));

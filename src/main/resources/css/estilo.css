@@ -95,3 +95,11 @@
 	-fx-font-size:16pt;
 	-fx-font-weight: bold;
 }
+.lvlenabled{
+	-fx-background-image: url(../ImagenesGreenStyle/Items/lvlup.png);
+	-fx-background-size: cover;
+}
+.lvldisabled{
+	-fx-background-image: url(../ImagenesGreenStyle/Items/lvlnoup.png);
+	-fx-background-size: cover;
+}
