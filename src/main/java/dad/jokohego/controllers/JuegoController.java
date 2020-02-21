@@ -165,7 +165,9 @@ public class JuegoController implements Initializable {
 				boton.getStyleClass().removeAll(monster.getNombre(), "Monster");
 				boton.getStyleClass().add("Losa");
 				poper.hide();
+				
 				Animations.Obtainexperience(boton,megaroot);
+				Sounds.playEffectSound("experience1");
 			} else {
 				character.getCharacter().setVida(character.getCharacter().getVida() - (monster.getDanyo()));
 			}

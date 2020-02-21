@@ -8,6 +8,7 @@ import org.controlsfx.control.PopOver;
 import org.controlsfx.control.PopOver.ArrowLocation;
 
 import dad.jokohego.model.Personaje;
+import dad.jokohego.utils.Sounds;
 import javafx.beans.binding.Bindings;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -197,6 +198,7 @@ public class CharacterBoxController extends VBox implements Initializable {
 		boton.getStyleClass().remove("pocion");
 		boton.getStyleClass().add("pocionvacia");
 		boton.setDisable(true);
+		Sounds.playEffectSound("drink");
 		character.setVida(character.getVidamax());
 	}
 
