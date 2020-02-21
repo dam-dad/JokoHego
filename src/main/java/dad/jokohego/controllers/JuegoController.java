@@ -14,6 +14,7 @@ import dad.jokohego.utils.BackType;
 import dad.jokohego.utils.JokoUtils;
 import dad.jokohego.utils.MonsterType;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -82,16 +83,16 @@ public class JuegoController implements Initializable {
 		infoPoper.setAlignment(Pos.CENTER);
 		infoPoper.setSpacing(5);
 		infoPoper.setPadding(new Insets(5));
-//		
-//		root.setOnMouseMoved(new EventHandler<MouseEvent>() {
-//			public void handle(MouseEvent event) {
-//				String msg = "(x: " + event.getX() + ", y: " + event.getY() + ") -- " + "(sceneX: " + event.getSceneX()
-//						+ ", sceneY: " + event.getSceneY() + ") -- " + "(screenX: " + event.getScreenX() + ", screenY: "
-//						+ event.getScreenY() + ")";
-//
-//				System.out.println(msg);
-//			}
-//		});
+		
+		root.setOnMouseMoved(new EventHandler<MouseEvent>() {
+			public void handle(MouseEvent event) {
+				String msg = "(x: " + event.getX() + ", y: " + event.getY() + ") -- " + "(sceneX: " + event.getSceneX()
+						+ ", sceneY: " + event.getSceneY() + ") -- " + "(screenX: " + event.getScreenX() + ", screenY: "
+						+ event.getScreenY() + ")";
+
+				System.out.println(msg);
+			}
+		});
 		
 
 	}

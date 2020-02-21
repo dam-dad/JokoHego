@@ -79,6 +79,7 @@ public class CharacterBoxController extends VBox implements Initializable {
 	public void initialize(URL location, ResourceBundle resources) {
 		
 		lvlUpButton.getStyleClass().clear();
+		lvlUpButton.getStyleClass().add("lvldisabled");
 		potionButton1.getStyleClass().clear();
 		potionButton2.getStyleClass().clear();
 		potionButton3.getStyleClass().clear();
@@ -117,8 +118,12 @@ public class CharacterBoxController extends VBox implements Initializable {
 		
 		character.experienciaProperty().addListener((o,ov,nv)->{
 			if(character.getExperiencia()>=(10*character.getNivel())) {
+				lvlUpButton.getStyleClass().clear();
+				lvlUpButton.getStyleClass().add("lvlenabled");
 				lvlUpButton.setDisable(false);
 			}else {
+				lvlUpButton.getStyleClass().clear();
+				lvlUpButton.getStyleClass().add("lvldisabled");
 				lvlUpButton.setDisable(true);
 			}
 		});

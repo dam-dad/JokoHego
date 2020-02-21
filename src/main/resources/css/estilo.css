@@ -100,6 +100,17 @@
 	-fx-background-size: cover;
 }
 .lvldisabled{
-	-fx-background-image: url(../ImagenesGreenStyle/Items/lvlnoup.png);
+	-fx-background-image: url(../ImagenesGreenStyle/Items/notlvl.png);
 	-fx-background-size: cover;
+}
+.character{
+	-fx-background-image: url(../ImagenesGreenStyle/Fondos/characterFondo.png);
+	-fx-background-size: cover;
+}
+
+.character .label{
+	-fx-text-fill:orange;
+	-fx-effect: dropshadow( gaussian , #a30000 , 0,0,0,2 );
+	-fx-font-size:12pt;
+	-fx-font-weight: bold;
 }
