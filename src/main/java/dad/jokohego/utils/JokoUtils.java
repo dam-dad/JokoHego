@@ -52,6 +52,8 @@ public class JokoUtils {
 			}
 
 		}
+		if (!escalera)
+			backType[size - 1 ][size - 1] = BackType.Escaleras;
 		// Calcular niveles de peligrosidad
 		int danger;
 		for (int i = 0; i < size; i++) {
@@ -99,8 +101,7 @@ public class JokoUtils {
 		buttons.getColumnConstraints().add(conCol);
 		buttons.getRowConstraints().add(conRow);
 		
-		if (!escalera)
-			backType[size - 1 ][size - 1] = BackType.Escaleras;
+		
 		return buttons;
 	}
 
