@@ -22,21 +22,24 @@ public class JokoUtils {
 	private static Button[][] button;
 	private static boolean escalera;
 	private static double nivel;
+	private static BackType[][] backType;
+	private static GridPane buttons;
 
 	public static GridPane generarNivel(int nivel, JuegoController jg) {
 		JokoUtils.nivel = nivel;
 		escalera = false;
 		int size = nivel + 4;
 		button = new Button[size + 1][size + 1];
-		GridPane buttons = new GridPane();
+		backType = new BackType[size + 1][size + 1];
+		buttons = new GridPane();
 
 		// generar el gridpane dinamico
 		for (int i = 0; i < size; i++) {
 			for (int j = 0; j < size; j++) {
-
+				
 				button[i][j] = new Button();
 				button[i][j].getStyleClass().clear();
-				button[i][j].setUserData(generarFondo());
+				button[i][j].setUserData(new Point(i,j));
 				button[i][j].setOnAction(e -> jg.onGeneralAction(e));
 				button[i][j].setOnMouseEntered(e -> jg.onMonsterInformation(e));
 				button[i][j].setOnMouseExited(e -> jg.onMonsterInformationExited(e));
@@ -44,6 +47,8 @@ public class JokoUtils {
 				button[i][j].setMaxWidth(Integer.MAX_VALUE);
 				button[i][j].setMaxHeight(Integer.MAX_VALUE);
 				button[i][j].getStyleClass().add("LosaOscura");
+				
+				backType[i][j] = generarFondo();
 			}
 
 		}
@@ -52,7 +57,7 @@ public class JokoUtils {
 		for (int i = 0; i < size; i++) {
 			danger = 0;
 			for (int j = 0; j < size; j++) {
-				if (button[i][j].getUserData().equals(BackType.Monster))
+				if (backType[i][j].equals(BackType.Monster))
 					danger++;
 
 			}
@@ -63,7 +68,7 @@ public class JokoUtils {
 			buttons.add(aux, i + 1, 0);
 			danger = 0;
 			for (int j = 0; j < size; j++) {
-				if (button[j][i].getUserData().equals(BackType.Monster))
+				if (backType[j][i].equals(BackType.Monster))
 					danger++;
 			}
 			VBox aux2 = new VBox();
@@ -95,7 +100,7 @@ public class JokoUtils {
 		buttons.getRowConstraints().add(conRow);
 		
 		if (!escalera)
-			button[size - 1][size - 1].setUserData(BackType.Escaleras);
+			backType[size - 1 ][size - 1] = BackType.Escaleras;
 		return buttons;
 	}
 
@@ -153,5 +158,15 @@ public class JokoUtils {
 	public static Button[][] getButton() {
 		return button;
 	}
+
+	public static BackType[][] getBackType() {
+		return backType;
+	}
+
+	public static GridPane getButtons() {
+		return buttons;
+	}
+	
+	
 
 }

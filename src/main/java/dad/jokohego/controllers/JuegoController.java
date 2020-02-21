@@ -1,5 +1,6 @@
 package dad.jokohego.controllers;
 
+import java.awt.Point;
 import java.io.IOException;
 import java.net.URL;
 import java.util.List;
@@ -13,6 +14,7 @@ import dad.jokohego.utils.Animations;
 import dad.jokohego.utils.BackType;
 import dad.jokohego.utils.JokoUtils;
 import dad.jokohego.utils.MonsterType;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -27,14 +29,18 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
 public class JuegoController implements Initializable {
 
 	// model
 
 	private static int nivel = 1;
 	private static int numMonster = 0;
+	private static BackType[][] backType;
+	private static GridPane buttons;
 
 	// view
 
@@ -63,8 +69,7 @@ public class JuegoController implements Initializable {
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		root.setCenter(JokoUtils.generarNivel(nivel, this));
-		character.getCharacter().setHombre(false);
+		iniciarNivel();
 		root.setRight(character);
 
 		// poper
@@ -104,7 +109,8 @@ public class JuegoController implements Initializable {
 		// Si Losa Oscura
 		if (boton.getStyleClass().contains("LosaOscura")) {
 			boton.getStyleClass().remove("LosaOscura");
-			BackType tipofondo = (BackType) boton.getUserData();
+			Point coordenadas = (Point) boton.getUserData();
+			BackType tipofondo = backType[coordenadas.x][coordenadas.y];
 
 			character.getCharacter().setVida(character.getCharacter().getVida() - (numMonster * nivel));
 
@@ -114,17 +120,23 @@ public class JuegoController implements Initializable {
 				numMonster++;
 				MonsterType tipo = JokoUtils.generarMonstruo();
 				boton.getStyleClass().addAll(tipo.toString(), BackType.Monster.toString());
-				boton.setUserData(new Monster(tipo));
+				Object[] userdata = new Object[2];
+				userdata[0] = coordenadas;
+				userdata[1] = new Monster(tipo);
+				boton.setUserData(userdata);
 			}
 		}
 		// Si Escalera
 		else if (boton.getStyleClass().contains("Escaleras")) {
 			JokoUtils.setEscalera(false);
 			numMonster = 0;
-			root.setCenter(JokoUtils.generarNivel(++nivel, this));
+			iniciarNivel();
+			nivel++;
 			// Si Monstruo
 		} else if (boton.getStyleClass().contains("Monster")) {
-			Monster monster = (Monster) boton.getUserData();
+			Object[] userdata= (Object[]) boton.getUserData();
+			Point coordenadas = (Point)userdata[0];
+			Monster monster = (Monster)userdata[1];
 			// intentar hacerlo con bindeos
 //			character.getCharacter().vidaProperty().subtract(monster.getDanyo());
 			int vidaMonster = monster.getVida() - character.getCharacter().getDanyo();
@@ -134,7 +146,17 @@ public class JuegoController implements Initializable {
 			aux.setText(vidaMonster + "");
 
 			if (monster.getVida() <= 0) {
+				
 				numMonster--;
+				
+				VBox vuno = (VBox)getNode(coordenadas.x,0);
+				Label uno = (Label) vuno.getChildren().get(0);
+				uno.setText((Integer.parseInt(uno.getText())-1)+"");
+				VBox vdos = (VBox)getNode(0,coordenadas.y);
+				Label dos = (Label) vdos.getChildren().get(0);
+				dos.setText((Integer.parseInt(uno.getText())-1)+"");
+				
+				
 				character.getCharacter()
 						.setExperiencia(character.getCharacter().getExperiencia() + monster.getExperiencia());
 				boton.getStyleClass().removeAll(monster.getNombre(), "Monster");
@@ -185,7 +207,7 @@ public class JuegoController implements Initializable {
 			nivel = 1;
 			numMonster = 0;
 			character = new CharacterBoxController();
-			root.setCenter(JokoUtils.generarNivel(nivel, this));
+			iniciarNivel();
 			try {
 				main.setMenu();
 			} catch (Exception e2) {
@@ -194,7 +216,13 @@ public class JuegoController implements Initializable {
 		}
 
 	}
-
+	
+	private void iniciarNivel() {
+		root.setCenter(JokoUtils.generarNivel(nivel, this));
+		backType = JokoUtils.getBackType();
+		buttons = JokoUtils.getButtons();
+	}
+	
 	private void onGetChestItemAction(ActionEvent event, PopOver a) {
 		Button boton = (Button) event.getSource();
 
@@ -221,7 +249,8 @@ public class JuegoController implements Initializable {
 	public void onMonsterInformation(MouseEvent e) {
 		Button boton = (Button) e.getSource();
 		if (boton.getStyleClass().contains("Monster")) {
-			Monster monster = (Monster) boton.getUserData();
+			Object[] userdata= (Object[]) boton.getUserData();
+			Monster monster = (Monster)userdata[1];
 			List<Node> nodos = infoPoper.getChildren();
 			Label aux = (Label) nodos.get(1);
 			Label aux2 = (Label) nodos.get(3);
@@ -239,6 +268,23 @@ public class JuegoController implements Initializable {
 			poper.hide();
 		}
 	}
+	
+	
+	private Node getNode ( int row,  int column) {
+	    Node result = null;
+	    ObservableList<Node> childrens = buttons.getChildren();
+
+	    for (Node node : childrens) {
+	        if(GridPane.getRowIndex(node) == row && GridPane.getColumnIndex(node) == column) {
+	            result = node;
+	            break;
+	        }
+	    }
+
+	    return result;
+	}
+	
+	
 
 	
 
