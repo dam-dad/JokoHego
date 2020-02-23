@@ -12,9 +12,8 @@ public class JokoHegoApp extends Application {
 	public void start(Stage primaryStage) throws Exception {
 		
 		MainController juego = new MainController();
-		
-		Scene scene = new Scene(juego.getView(),900,700);
-//		primaryStage.getIcons().add(new Image(this.getClass().getResource("/Items/Libro.png").getPath()));
+		Scene scene = new Scene(juego.getView(),900,700);	
+		primaryStage.getIcons().add(new Image(this.getClass().getResource("/ImagenesGreenStyle/Items/Libro.png").toString()));
 		primaryStage.setResizable(false);
 		primaryStage.setScene(scene);
 		primaryStage.setTitle("JokoHego");
