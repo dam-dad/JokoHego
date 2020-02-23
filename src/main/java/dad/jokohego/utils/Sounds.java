@@ -31,7 +31,7 @@ public class Sounds {
 		String musica = Sounds.class.getResource("/music/"+file+".wav").toString();  
 		Media sound = new Media(musica);
 		MediaPlayer mediaPlayer = new MediaPlayer(sound);
-//		mediaPlayer.setCycleCount(Transition.INDEFINITE);
+		mediaPlayer.setVolume(0.5);
 		mediaPlayer.play();
 		
 	}

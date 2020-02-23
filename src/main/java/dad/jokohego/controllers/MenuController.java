@@ -64,7 +64,7 @@ public class MenuController implements Initializable {
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 
-		buttonsAnimation();
+		Animations.buttonsAnimation(botonera);
 
 	}
 
@@ -85,22 +85,7 @@ public class MenuController implements Initializable {
 		System.exit(0);
 	}
 
-	public void buttonsAnimation() {
 
-		FadeTransition transicion = new FadeTransition();
-
-		transicion.setAutoReverse(true);
-		transicion.setCycleCount(1);
-		transicion.setDelay(Duration.ZERO);
-		transicion.setDuration(Duration.seconds(5));
-		transicion.setFromValue(0);
-		transicion.setToValue(1);
-		transicion.setRate(1);
-		transicion.setNode(botonera);
-		transicion.setInterpolator(Interpolator.LINEAR);
-
-		transicion.play();
-	}
 
 
 }
