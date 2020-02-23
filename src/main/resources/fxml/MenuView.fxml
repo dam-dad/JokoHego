@@ -33,8 +33,11 @@
                   <VBox fx:id="botonera" alignment="CENTER" fillWidth="false" spacing="5.0" StackPane.alignment="CENTER">
                      <children>
                         <ImageView fitHeight="150.0" fitWidth="428.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../ImagenesGreenStyle/Fondos/jokohegologo.png" />
+                           </image>
                            <VBox.margin>
-                              <Insets bottom="100.0" />
+                              <Insets bottom="75.0" top="75.0" />
                            </VBox.margin>
                         </ImageView>
                         <Button fx:id="jugarButton" mnemonicParsing="false" onAction="#onJugarAction" prefWidth="100.0" text="Jugar" />
