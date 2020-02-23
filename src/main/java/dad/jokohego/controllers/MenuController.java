@@ -5,6 +5,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import dad.jokohego.utils.Animations;
+import dad.jokohego.utils.Sounds;
 import javafx.animation.FadeTransition;
 import javafx.animation.Interpolator;
 import javafx.animation.SequentialTransition;
@@ -74,8 +75,9 @@ public class MenuController implements Initializable {
 
 	@FXML
 	void onJugarAction(ActionEvent event) {
-		doorsAnimation(puertauno);
-		doorsAnimation(puertados);
+		Animations.doorsAnimation(puertauno,main);
+		Animations.doorsAnimation(puertados,main);
+		Sounds.playEffectSound("door");
 	}
 
 	@FXML
@@ -100,53 +102,5 @@ public class MenuController implements Initializable {
 		transicion.play();
 	}
 
-	public void doorsAnimation(Node nodo) {
-		SequentialTransition transicion = new SequentialTransition();
-		TranslateTransition translate = new TranslateTransition();
-
-		if (nodo.getId().equals("puertauno")) {
-
-			translate.setDuration(Duration.seconds(2));
-			translate.setFromX(0);
-			translate.setToX(-300);
-			translate.setNode(nodo);
-			translate.setInterpolator(Interpolator.EASE_BOTH);
-			translate.setAutoReverse(false);
-
-			transicion = new SequentialTransition();
-			transicion.getChildren().addAll(translate);
-			transicion.setAutoReverse(false);
-
-			transicion.setCycleCount(1);
-
-			transicion.play();
-
-		} else if (nodo.getId().equals("puertados")) {
-
-			translate.setDuration(Duration.seconds(2));
-			translate.setFromX(0);
-			translate.setToX(300);
-			translate.setNode(nodo);
-			translate.setInterpolator(Interpolator.EASE_BOTH);
-			translate.setAutoReverse(false);
-
-			transicion = new SequentialTransition();
-			transicion.getChildren().addAll(translate);
-			transicion.setAutoReverse(false);
-
-			transicion.setCycleCount(1);
-
-			transicion.play();
-		}
-		
-		
-		transicion.currentTimeProperty().addListener((o,ov,nv)->{
-			if(nv.equals(Duration.seconds(2))) {
-				main.setJuego();
-			}
-		});
-		
-		
-	}
 
 }

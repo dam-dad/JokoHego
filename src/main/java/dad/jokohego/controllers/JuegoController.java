@@ -128,6 +128,7 @@ public class JuegoController implements Initializable {
 				Sounds.playEffectSound(tipo.toString());
 				boton.setUserData(userdata);
 			}
+			Sounds.playEffectSound("descubrir");
 		}
 		// Si Escalera
 		else if (boton.getStyleClass().contains("Escaleras")) {

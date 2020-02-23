@@ -2,11 +2,15 @@ package dad.jokohego.utils;
 
 
 import dad.jokohego.controllers.JuegoController;
+import dad.jokohego.controllers.MainController;
+import dad.jokohego.controllers.MenuController;
 import javafx.animation.Interpolator;
 import javafx.animation.ParallelTransition;
 import javafx.animation.ScaleTransition;
 import javafx.animation.SequentialTransition;
+import javafx.animation.Transition;
 import javafx.animation.TranslateTransition;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -74,6 +78,52 @@ public class Animations {
     	secuencia2.setCycleCount(0);
     	
     	secuencia2.play();
+	}
+	
+	public static void doorsAnimation(Node nodo,MainController main) {
+		SequentialTransition transicion = new SequentialTransition();
+		TranslateTransition translate = new TranslateTransition();
+		if (nodo.getId().equals("puertauno")) {
+
+			translate.setDuration(Duration.seconds(2));
+			translate.setFromX(0);
+			translate.setToX(-300);
+			translate.setNode(nodo);
+			translate.setInterpolator(Interpolator.EASE_BOTH);
+			translate.setAutoReverse(false);
+
+			transicion = new SequentialTransition();
+			transicion.getChildren().addAll(translate);
+			transicion.setAutoReverse(false);
+
+			transicion.setCycleCount(1);
+
+			transicion.play();
+
+		} else if (nodo.getId().equals("puertados")) {
+
+			translate.setDuration(Duration.seconds(2));
+			translate.setFromX(0);
+			translate.setToX(300);
+			translate.setNode(nodo);
+			translate.setInterpolator(Interpolator.EASE_BOTH);
+			translate.setAutoReverse(false);
+
+			transicion = new SequentialTransition();
+			transicion.getChildren().addAll(translate);
+			transicion.setAutoReverse(false);
+
+			transicion.setCycleCount(1);
+
+			transicion.play();
+		}
+		
+		
+		transicion.currentTimeProperty().addListener((o,ov,nv)->{
+			if(nv.equals(Duration.seconds(2))) {
+				main.setJuego();	
+			}
+		});	
 	}
 
 }
