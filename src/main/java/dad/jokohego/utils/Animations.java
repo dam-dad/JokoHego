@@ -103,8 +103,16 @@ public class Animations {
 			transicion1.setAutoReverse(false);
 
 			transicion1.setCycleCount(1);
-			transicion1.setOnFinished(e -> stoped(e));
+			//transicion1.setOnFinished(e -> stoped(e));
 			transicion1.play();
+			
+			transicion1.currentTimeProperty().addListener((o,ov,nv)->{
+				if(nv.equals(Duration.seconds(2))) {
+					main.setJuego();
+					transicion1.jumpTo(Duration.ZERO);
+					transicion1.stop();
+				}
+			});	
 		
 
 		} else if (nodo.getId().equals("puertados")) {
@@ -123,27 +131,30 @@ public class Animations {
 			transicion2.setCycleCount(1);
 			transicion2.play();
 			
+			transicion2.currentTimeProperty().addListener((o,ov,nv)->{
+				if(nv.equals(Duration.seconds(2))) {
+					main.setJuego();
+					transicion2.jumpTo(Duration.ZERO);
+					transicion2.stop();
+				}
+			});	
+			
 		}
 		
 		
-//		transicion.currentTimeProperty().addListener((o,ov,nv)->{
-//			if(nv.equals(Duration.seconds(2))) {
-//				main.setJuego();
-//				transicion.jumpTo(Duration.ZERO);
-//				transicion.stop();
-//			}
-//		});	
+		
+
 	}
 
 
-	private static void stoped(ActionEvent e) {
-		SequentialTransition transicion =  (SequentialTransition) e.getSource();
-		main.setJuego();
-		transicion1.jumpTo(Duration.ZERO);
-		transicion1.stop();
-		transicion2.jumpTo(Duration.ZERO);
-		transicion2.stop();
-	}
+//	private static void stoped(ActionEvent e) {
+//		SequentialTransition transicion =  (SequentialTransition) e.getSource();
+//		main.setJuego();
+//		transicion1.jumpTo(Duration.ZERO);
+//		transicion1.stop();
+//		transicion2.jumpTo(Duration.ZERO);
+//		transicion2.stop();
+//	}
 
 	public static void buttonsAnimation(Node n) {
 
