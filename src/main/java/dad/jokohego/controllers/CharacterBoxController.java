@@ -88,7 +88,6 @@ public class CharacterBoxController extends VBox implements Initializable {
 		character.setDanyo(10);
 		character.setVida(100);
 		character.setVidamax(100);
-		character.setHombre(false);
 		character.setNivel(1);
 		character.setExperiencia(0);
 
@@ -105,15 +104,6 @@ public class CharacterBoxController extends VBox implements Initializable {
 				new NumberStringConverter("###"));
 		Bindings.bindBidirectional(experienciaLabel.textProperty(), character.experienciaProperty(),
 				new NumberStringConverter("###"));
-//		character.hombreProperty().addListener((o, ov, nv) -> {
-//			if (nv) {
-//				characterImage.setImage(
-//						new Image(this.getClass().getResourceAsStream("/ImagenesGreenStyle/Personajes/Hombre.png")));
-//			} else {
-//				characterImage.setImage(
-//						new Image(this.getClass().getResourceAsStream("/ImagenesGreenStyle/Personajes/Mujer.png")));
-//			}
-//		});
 		
 		lvlUpButton.setDisable(true);
 		

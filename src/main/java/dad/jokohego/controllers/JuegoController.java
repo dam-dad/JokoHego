@@ -57,6 +57,10 @@ public class JuegoController implements Initializable {
 	private HBox infoPoper;
 	private CharacterBoxController character = new CharacterBoxController();
 
+	public CharacterBoxController getCharacter() {
+		return character;
+	}
+
 	public JuegoController(MainController mainController) throws IOException {
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/GameView.fxml"));
 		loader.setController(this);

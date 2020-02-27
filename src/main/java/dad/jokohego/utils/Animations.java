@@ -88,6 +88,7 @@ public class Animations {
 	public static void doorsAnimation(Node nodo,MainController main) {
 		
 		Animations.main = main;
+		main.getMenu().getJugarButton().setDisable(true);
 		TranslateTransition translate = new TranslateTransition();
 		if (nodo.getId().equals("puertauno")) {
 			transicion1 = new SequentialTransition();
@@ -136,6 +137,7 @@ public class Animations {
 					main.setJuego();
 					transicion2.jumpTo(Duration.ZERO);
 					transicion2.stop();
+					main.getMenu().getJugarButton().setDisable(false);
 				}
 			});	
 			

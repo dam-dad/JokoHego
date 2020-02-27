@@ -1,8 +1,6 @@
 package dad.jokohego.model;
 
-import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.IntegerProperty;
-import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 
 public class Personaje {
@@ -11,7 +9,6 @@ public class Personaje {
 	private IntegerProperty danyo = new SimpleIntegerProperty();
 	private IntegerProperty vidamax = new SimpleIntegerProperty();
 	private IntegerProperty experiencia = new SimpleIntegerProperty();
-	private BooleanProperty hombre = new SimpleBooleanProperty();
 	private IntegerProperty nivel = new SimpleIntegerProperty();
 
 	public final IntegerProperty vidaProperty() {
@@ -36,18 +33,6 @@ public class Personaje {
 
 	public final void setDanyo(final int danyo) {
 		this.danyoProperty().set(danyo);
-	}
-
-	public final BooleanProperty hombreProperty() {
-		return this.hombre;
-	}
-
-	public final boolean isHombre() {
-		return this.hombreProperty().get();
-	}
-
-	public final void setHombre(final boolean hombre) {
-		this.hombreProperty().set(hombre);
 	}
 
 	public final IntegerProperty vidamaxProperty() {

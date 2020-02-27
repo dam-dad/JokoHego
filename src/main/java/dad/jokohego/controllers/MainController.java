@@ -52,5 +52,9 @@ public class MainController implements Initializable {
 		root.setCenter(menu.getView());
 		music = Sounds.playMenuSong();
 	}
+	
+	public MenuController getMenu() {
+		return menu;
+	}
 
 }

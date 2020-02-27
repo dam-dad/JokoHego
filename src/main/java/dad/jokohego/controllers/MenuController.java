@@ -84,6 +84,10 @@ public class MenuController implements Initializable {
 	void onSalirAction(ActionEvent event) {
 		System.exit(0);
 	}
+	
+	public Button getJugarButton() {
+		return jugarButton;
+	}
 
 
 

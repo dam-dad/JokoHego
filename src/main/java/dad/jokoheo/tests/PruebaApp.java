@@ -12,7 +12,6 @@ public class PruebaApp extends Application {
 		CharacterBoxController a = new CharacterBoxController();
 		a.getCharacter().setDanyo(100);
 		a.getCharacter().setVida(0);
-		a.getCharacter().setHombre(true);
 		
 		
 		
