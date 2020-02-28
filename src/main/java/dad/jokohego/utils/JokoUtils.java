@@ -1,8 +1,16 @@
 package dad.jokohego.utils;
 
+import java.awt.Desktop;
 import java.awt.Point;
+import java.io.File;
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
+import dad.jokohego.app.JokoHegoApp;
 import dad.jokohego.controllers.JuegoController;
+import dad.jokohego.model.GameData;
+import dad.jokohego.model.GameDataProvider;
 import dad.jokohego.model.Monster;
 import javafx.event.ActionEvent;
 import javafx.geometry.Pos;
@@ -16,6 +24,16 @@ import javafx.scene.layout.Priority;
 import javafx.scene.layout.RowConstraints;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
+import javafx.stage.DirectoryChooser;
+import javafx.stage.FileChooser;
+import javafx.stage.FileChooser.ExtensionFilter;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperCompileManager;
+import net.sf.jasperreports.engine.JasperExportManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 
 public class JokoUtils {
 	// los botones tienen en el  userData un tipo BackType
@@ -150,6 +168,28 @@ public class JokoUtils {
 			monster = MonsterType.EscarabajoOro;
 		return monster;
 	}
+	
+	public static void generarPdf(GameData game) throws JRException, IOException {
+		GameDataProvider gamedata = new GameDataProvider(game);
+
+		JasperReport report = JasperCompileManager.compileReport(JokoUtils.class.getResourceAsStream("/reports/JokoHegoReport.jrxml"));		
+
+		Map<String, Object> parameters = new HashMap<String, Object>();
+		parameters.put("anyo", 2014); 
+		
+        JasperPrint print  = JasperFillManager.fillReport(report, parameters, new JRBeanCollectionDataSource(gamedata.getData()));
+        
+        
+        DirectoryChooser chooser = new DirectoryChooser();
+		
+
+		chooser.setTitle("Elegir directorio");
+
+		
+        JasperExportManager.exportReportToPdfFile(print, chooser.showDialog(JokoHegoApp.getStage()).toString()+"\\"+game.getNombre()+".pdf");
+        
+	}
+	
 	public static void setEscalera(boolean escalera) {
 		JokoUtils.escalera = escalera;
 	}

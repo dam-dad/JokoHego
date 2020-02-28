@@ -4,11 +4,13 @@ import java.awt.Point;
 import java.io.IOException;
 import java.net.URL;
 import java.util.List;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 import org.controlsfx.control.PopOver;
 import org.controlsfx.control.PopOver.ArrowLocation;
 
+import dad.jokohego.model.GameData;
 import dad.jokohego.model.Monster;
 import dad.jokohego.utils.Animations;
 import dad.jokohego.utils.BackType;
@@ -26,20 +28,26 @@ import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextInputDialog;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundImage;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
+import net.sf.jasperreports.engine.JRException;
+
 public class JuegoController implements Initializable {
 
 	// model
 
 	private static int nivel = 1;
 	private static int numMonster = 0;
+	private static int monsterKilled = 0;
 	private static BackType[][] backType;
 	private static GridPane buttons;
 
@@ -74,8 +82,10 @@ public class JuegoController implements Initializable {
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
+		poper.getStyleClass().clear();
+		poper.getStyleClass().add("popup");
 		iniciarNivel();
-		
+
 		root.setRight(character);
 
 		// poper
@@ -94,7 +104,7 @@ public class JuegoController implements Initializable {
 		infoPoper.setAlignment(Pos.CENTER);
 		infoPoper.setSpacing(5);
 		infoPoper.setPadding(new Insets(5));
-		
+
 //		root.setOnMouseMoved(new EventHandler<MouseEvent>() {
 //			public void handle(MouseEvent event) {
 //				String msg = "(x: " + event.getX() + ", y: " + event.getY() + ") -- " + "(sceneX: " + event.getSceneX()
@@ -104,7 +114,6 @@ public class JuegoController implements Initializable {
 //				System.out.println(msg);
 //			}
 //		});
-		
 
 	}
 
@@ -139,12 +148,12 @@ public class JuegoController implements Initializable {
 			JokoUtils.setEscalera(false);
 			numMonster = 0;
 			nivel++;
-			iniciarNivel();		
+			iniciarNivel();
 			// Si Monstruo
 		} else if (boton.getStyleClass().contains("Monster")) {
-			Object[] userdata= (Object[]) boton.getUserData();
-			Point coordenadas = (Point)userdata[0];
-			Monster monster = (Monster)userdata[1];
+			Object[] userdata = (Object[]) boton.getUserData();
+			Point coordenadas = (Point) userdata[0];
+			Monster monster = (Monster) userdata[1];
 			// intentar hacerlo con bindeos
 //			character.getCharacter().vidaProperty().subtract(monster.getDanyo());
 			int vidaMonster = monster.getVida() - character.getCharacter().getDanyo();
@@ -154,24 +163,23 @@ public class JuegoController implements Initializable {
 			aux.setText(vidaMonster + "");
 			Sounds.playEffectSound("hit");
 			if (monster.getVida() <= 0) {
-				
+
 				numMonster--;
-				
-				VBox vuno = (VBox)getNode(0,coordenadas.x+1);
+				monsterKilled++;
+				VBox vuno = (VBox) getNode(0, coordenadas.x + 1);
 				Label uno = (Label) vuno.getChildren().get(0);
-				uno.setText((Integer.parseInt(uno.getText())-1)+"");
-				VBox vdos = (VBox)getNode(coordenadas.y+1,0);
+				uno.setText((Integer.parseInt(uno.getText()) - 1) + "");
+				VBox vdos = (VBox) getNode(coordenadas.y + 1, 0);
 				Label dos = (Label) vdos.getChildren().get(0);
-				dos.setText((Integer.parseInt(dos.getText())-1)+"");
-				
-				
+				dos.setText((Integer.parseInt(dos.getText()) - 1) + "");
+
 				character.getCharacter()
 						.setExperiencia(character.getCharacter().getExperiencia() + monster.getExperiencia());
 				boton.getStyleClass().removeAll(monster.getNombre(), "Monster");
 				boton.getStyleClass().add("Losa");
 				poper.hide();
-				
-				Animations.Obtainexperience(boton,megaroot);
+
+				Animations.Obtainexperience(boton, megaroot);
 				Sounds.playEffectSound("experience1");
 			} else {
 				character.getCharacter().setVida(character.getCharacter().getVida() - (monster.getDanyo()));
@@ -182,27 +190,33 @@ public class JuegoController implements Initializable {
 
 			PopOver a = new PopOver();
 			a.setTitle("");
-			a.getRoot().getStyleClass().add("popup");
+			a.setArrowSize(0);
+			a.getStyleClass().clear();
+			a.getStyleClass().add("popup");
+
 			a.setArrowLocation(ArrowLocation.TOP_CENTER);
 			a.setAnchorX(300);
 			a.setAnchorY(250);
-			a.detach();
+			// a.detach();
 			a.requestFocus();
 			a.setAnimated(false);
 
 			Button item1 = new Button();
 			item1.setPrefHeight(40);
 			item1.setPrefWidth(40);
+			item1.getStyleClass().clear();
 			item1.getStyleClass().add("pocion");
 			item1.setOnAction(e -> onGetChestItemAction(e, a));
 			Button item2 = new Button();
 			item2.setPrefHeight(40);
 			item2.setPrefWidth(40);
+			item2.getStyleClass().clear();
 			item2.getStyleClass().add("damage");
 			item2.setOnAction(e -> onGetChestItemAction(e, a));
 			Button item3 = new Button();
 			item3.setPrefHeight(40);
 			item3.setPrefWidth(40);
+			item3.getStyleClass().clear();
 			item3.getStyleClass().add("vida");
 			item3.setOnAction(e -> onGetChestItemAction(e, a));
 			HBox botonera = new HBox(item1, item2, item3);
@@ -215,6 +229,24 @@ public class JuegoController implements Initializable {
 		}
 
 		if (character.getCharacter().getVida() <= 0) {
+
+			TextInputDialog dialog = new TextInputDialog();
+			dialog.setTitle("Guardar estadísticas");
+			dialog.setHeaderText("Estadísticas");
+			dialog.setContentText("Introduce tu nombre:");
+
+			Optional<String> result = dialog.showAndWait();
+			if (result.isPresent()) {
+				GameData gamedata = new GameData(result.get(),character.getCharacter(),nivel,monsterKilled);
+				try {
+					JokoUtils.generarPdf(gamedata);
+				} catch (JRException e) {
+					e.printStackTrace();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
+
 			nivel = 1;
 			numMonster = 0;
 			character = new CharacterBoxController();
@@ -227,13 +259,13 @@ public class JuegoController implements Initializable {
 		}
 
 	}
-	
+
 	private void iniciarNivel() {
 		root.setCenter(JokoUtils.generarNivel(nivel, this));
 		backType = JokoUtils.getBackType();
 		buttons = JokoUtils.getButtons();
 	}
-	
+
 	private void onGetChestItemAction(ActionEvent event, PopOver a) {
 		Button boton = (Button) event.getSource();
 
@@ -260,8 +292,8 @@ public class JuegoController implements Initializable {
 	public void onMonsterInformation(MouseEvent e) {
 		Button boton = (Button) e.getSource();
 		if (boton.getStyleClass().contains("Monster")) {
-			Object[] userdata= (Object[]) boton.getUserData();
-			Monster monster = (Monster)userdata[1];
+			Object[] userdata = (Object[]) boton.getUserData();
+			Monster monster = (Monster) userdata[1];
 			List<Node> nodos = infoPoper.getChildren();
 			Label aux = (Label) nodos.get(1);
 			Label aux2 = (Label) nodos.get(3);
@@ -279,24 +311,19 @@ public class JuegoController implements Initializable {
 			poper.hide();
 		}
 	}
-	
-	
-	private Node getNode ( int row,  int column) {
-	    Node result = null;
-	    ObservableList<Node> childrens = buttons.getChildren();
 
-	    for (Node node : childrens) {
-	        if(GridPane.getRowIndex(node) == row && GridPane.getColumnIndex(node) == column) {
-	            result = node;
-	            break;
-	        }
-	    }
+	private Node getNode(int row, int column) {
+		Node result = null;
+		ObservableList<Node> childrens = buttons.getChildren();
 
-	    return result;
+		for (Node node : childrens) {
+			if (GridPane.getRowIndex(node) == row && GridPane.getColumnIndex(node) == column) {
+				result = node;
+				break;
+			}
+		}
+
+		return result;
 	}
-	
-	
-
-	
 
 }
