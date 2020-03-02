@@ -72,7 +72,7 @@ public class MenuController implements Initializable {
 	@FXML
 	void onAyudaAction(ActionEvent event) {
 		try {
-			Desktop.getDesktop().browse(new URI("https://www.discoduroderoer.es/abrir-un-enlace-desde-nuestra-aplicacion-en-java/"));
+			Desktop.getDesktop().browse(new URI("https://github.com/dam-dad/JokoHego/blob/master/src/main/resources/documentacion/documentacion.md"));
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

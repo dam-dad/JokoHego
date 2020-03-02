@@ -77,7 +77,7 @@ public class CharacterBoxController extends VBox implements Initializable {
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/CharacterBox.fxml"));
 			loader.setController(this);
 			loader.setRoot(this);
-			loader.load();z
+			loader.load();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -130,7 +130,7 @@ public class CharacterBoxController extends VBox implements Initializable {
 
 	/**
 	 * 
-	 * 
+	 * Consume una poción.
 	 * 
 	 * @param event
 	 */
@@ -149,6 +149,13 @@ public class CharacterBoxController extends VBox implements Initializable {
 		}
 	}
 
+	/**
+	 * 
+	 * Muestra un popover con las opciones de mejorar daño o la vida.
+	 * 
+	 * @param event
+	 */
+	
 	@FXML
 	void onlvlUpAction(ActionEvent event) {
 		Button boton = (Button) event.getSource();
@@ -181,7 +188,7 @@ public class CharacterBoxController extends VBox implements Initializable {
 
 		a.show(boton);
 	}
-
+	
 	private void onSkillSelectedAction(ActionEvent event, PopOver a) {
 		Button boton = (Button) event.getSource();
 		
