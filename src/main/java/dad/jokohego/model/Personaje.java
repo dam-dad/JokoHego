@@ -6,11 +6,12 @@ import javafx.beans.property.SimpleIntegerProperty;
 
 /**
  * 
- * Modelo del personaje con sus atributos.
+ * Beans del personaje con sus atributos.
  * 
  * @author SERGIO GARCÍA DELGADO
  * @author AMARO YANES CABRERA
  */
+
 public class Personaje {
 
 	private IntegerProperty vida = new SimpleIntegerProperty();

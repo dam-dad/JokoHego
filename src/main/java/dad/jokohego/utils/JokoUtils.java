@@ -48,8 +48,8 @@ public class JokoUtils {
 	 * 
 	 * Genera dinámicamente un gridpane de botones dependinedo del parámeto nivel.
 	 * 
-	 * @param nivel Nivel actual del juego
-	 * @param jg Juego
+	 * @param nivel Nivel actual del juego.
+	 * @param jg Juego.
 	 * @return
 	 */
 	
@@ -141,7 +141,6 @@ public class JokoUtils {
 	 */
 	
 	public static BackType generarFondo() {
-		BackType[] bt = BackType.values();
 		BackType fondo = BackType.Losa;
 		int num = (int) ((Math.random() * 100) * (nivel / 10 + 1));
 		if (num < 5) {
@@ -169,7 +168,6 @@ public class JokoUtils {
 	public static MonsterType generarMonstruo() {
 		MonsterType monster = null;
 
-		MonsterType[] mt = MonsterType.values();
 		int num = (int) ((Math.random() * 100) + (nivel * 5));
 
 		if (num < 40) {

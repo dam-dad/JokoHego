@@ -19,7 +19,6 @@ import dad.jokohego.utils.MonsterType;
 import dad.jokohego.utils.Sounds;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -32,14 +31,20 @@ import javafx.scene.control.TextInputDialog;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundImage;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import net.sf.jasperreports.engine.JRException;
+
+/**
+ * 
+ * Controlador del juego.
+ * 
+ * @author SERGIO GARCÍA DELGADO
+ * @author AMARO YANES CABRERA
+ */
 
 public class JuegoController implements Initializable {
 
@@ -84,9 +89,13 @@ public class JuegoController implements Initializable {
 	public void initialize(URL location, ResourceBundle resources) {
 		poper.getStyleClass().clear();
 		poper.getStyleClass().add("popup");
+		monsterKilled = 0;
+		nivel = 1;
+		numMonster = 0;
 		iniciarNivel();
-
 		root.setRight(character);
+		
+		
 
 		// poper
 
@@ -107,6 +116,18 @@ public class JuegoController implements Initializable {
 
 	}
 
+	/**
+	 * 
+	 * Evento realizar diferentes acciones dependiendo del tipo de Backtype encontrado.</br>
+	 * - LosaOscura cambiará el fondo de losa oscura al BackType correspondiente en el Array bidimensional.</br>
+	 * - Monster Intercambiará daño con el personaje y una vez muerto es convertido en Losa.</br>
+	 * - Cofre Abre el cofre y muestra los posibles objetos.</br>
+	 * - Escaleras Aumenta el nivel y genera un nuevo piso.</br>
+	 * 
+	 * Si la vida del personaje llega a 0 se generará un diálogo para poder guardar un informe con la puntuacion obtenida.
+	 * @param event
+	 */
+	
 	@FXML
 	public void onGeneralAction(ActionEvent event) {
 		Button boton = (Button) event.getSource();
@@ -144,8 +165,6 @@ public class JuegoController implements Initializable {
 			Object[] userdata = (Object[]) boton.getUserData();
 			Point coordenadas = (Point) userdata[0];
 			Monster monster = (Monster) userdata[1];
-			// intentar hacerlo con bindeos
-//			character.getCharacter().vidaProperty().subtract(monster.getDanyo());
 			int vidaMonster = monster.getVida() - character.getCharacter().getDanyo();
 			monster.setVida(vidaMonster);
 			List<Node> nodos = infoPoper.getChildren();
@@ -237,9 +256,8 @@ public class JuegoController implements Initializable {
 				}
 			}
 			Animations.buttonsAnimation(main.getMenu().getBotonera(), true);
-			monsterKilled = 0;
-			nivel = 1;
-			numMonster = 0;
+			
+			
 			character = new CharacterBoxController();
 			iniciarNivel();
 			try {
@@ -251,11 +269,25 @@ public class JuegoController implements Initializable {
 
 	}
 
+	/**
+	 * 
+	 * Inicia el nivel generando BackType nuevos.
+	 * 
+	 */
+	
 	private void iniciarNivel() {
 		root.setCenter(JokoUtils.generarNivel(nivel, this));
 		backType = JokoUtils.getBackType();
 		buttons = JokoUtils.getButtons();
 	}
+	
+	/**
+	 * 
+	 * Dependiendo del botón pulsado en el cofre, aumenta el daño,la vida máxima u obtienes una poción.
+	 * 
+	 * @param event
+	 * @param a
+	 */
 
 	private void onGetChestItemAction(ActionEvent event, PopOver a) {
 		Button boton = (Button) event.getSource();
@@ -280,6 +312,13 @@ public class JuegoController implements Initializable {
 
 	}
 
+	/**
+	 * 
+	 * Evento que muestra la información del monstruo.
+	 * 
+	 * @param e
+	 */
+	
 	public void onMonsterInformation(MouseEvent e) {
 		Button boton = (Button) e.getSource();
 		if (boton.getStyleClass().contains("Monster")) {
@@ -296,6 +335,7 @@ public class JuegoController implements Initializable {
 
 	}
 
+	
 	public void onMonsterInformationExited(MouseEvent e) {
 		Button boton = (Button) e.getSource();
 		if (boton.getStyleClass().contains("Monster")) {
@@ -303,6 +343,14 @@ public class JuegoController implements Initializable {
 		}
 	}
 
+	/**
+	 * Da el nodo dependiendo de la fila y columna.
+	 * 
+	 * @param row Fila.
+	 * @param column Columna.
+	 * @return
+	 */
+	
 	private Node getNode(int row, int column) {
 		Node result = null;
 		ObservableList<Node> childrens = buttons.getChildren();
@@ -313,7 +361,6 @@ public class JuegoController implements Initializable {
 				break;
 			}
 		}
-
 		return result;
 	}
 

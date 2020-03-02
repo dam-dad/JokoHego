@@ -5,6 +5,15 @@ import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
+
+/**
+ * 
+ * Información necesaria para realiar el informe.
+ * 
+ * @author SERGIO GARCÍA DELGADO
+ * @author AMARO YANES CABRERA
+ */
+
 public class GameData {
 	
 	private IntegerProperty numMonstruos = new SimpleIntegerProperty();
