@@ -36,7 +36,7 @@ La información que aparece en pantalla es la siguiente:
 
 #### Explorar los niveles
 
-Mientras completas los niveles te podras encontrar con enemigos que no podrás ignorar ya que si descubres nuevas casillas teniendo monstruos en pantalla te haran daño. **(piso actual * nº de enemigos)**
+Mientras completas los niveles te podrás encontrar con enemigos que no podrás ignorar ya que si descubres nuevas casillas teniendo monstruos en pantalla te haran daño. **(piso actual * nº de enemigos)**
 
 #### Encontrar cofres
 
