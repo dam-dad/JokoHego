@@ -105,16 +105,6 @@ public class JuegoController implements Initializable {
 		infoPoper.setSpacing(5);
 		infoPoper.setPadding(new Insets(5));
 
-//		root.setOnMouseMoved(new EventHandler<MouseEvent>() {
-//			public void handle(MouseEvent event) {
-//				String msg = "(x: " + event.getX() + ", y: " + event.getY() + ") -- " + "(sceneX: " + event.getSceneX()
-//						+ ", sceneY: " + event.getSceneY() + ") -- " + "(screenX: " + event.getScreenX() + ", screenY: "
-//						+ event.getScreenY() + ")";
-//
-//				System.out.println(msg);
-//			}
-//		});
-
 	}
 
 	@FXML
@@ -246,7 +236,8 @@ public class JuegoController implements Initializable {
 					e.printStackTrace();
 				}
 			}
-
+			Animations.buttonsAnimation(main.getMenu().getBotonera(), true);
+			monsterKilled = 0;
 			nivel = 1;
 			numMonster = 0;
 			character = new CharacterBoxController();

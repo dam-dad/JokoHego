@@ -63,8 +63,8 @@ public class MenuController implements Initializable {
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		
-		Animations.buttonsAnimation(botonera);
+
+		Animations.buttonsAnimation(botonera, true);
 
 	}
 
@@ -75,8 +75,9 @@ public class MenuController implements Initializable {
 
 	@FXML
 	void onJugarAction(ActionEvent event) {
-		Animations.doorsAnimation(puertauno,main);
-		Animations.doorsAnimation(puertados,main);
+		Animations.buttonsAnimation(botonera, false);
+		Animations.doorsAnimation(puertauno, main);
+		Animations.doorsAnimation(puertados, main);
 		Sounds.playEffectSound("door");
 	}
 
@@ -84,12 +85,12 @@ public class MenuController implements Initializable {
 	void onSalirAction(ActionEvent event) {
 		System.exit(0);
 	}
-	
+
 	public Button getJugarButton() {
 		return jugarButton;
 	}
-
-
-
+	public VBox getBotonera() {
+		return botonera;
+	}
 
 }

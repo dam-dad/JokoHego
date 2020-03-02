@@ -1,6 +1,5 @@
 package dad.jokohego.utils;
 
-
 import dad.jokohego.controllers.JuegoController;
 import dad.jokohego.controllers.MainController;
 import dad.jokohego.controllers.MenuController;
@@ -20,36 +19,32 @@ import javafx.scene.layout.Pane;
 import javafx.util.Duration;
 
 public class Animations {
-	
+
 	private static SequentialTransition transicion1;
 	private static SequentialTransition transicion2;
 	private static MainController main;
-	
-	public static void Obtainexperience(Button button,Pane root) {
-		
+
+	public static void Obtainexperience(Button button, Pane root) {
+
 		SequentialTransition secuencia2 = new SequentialTransition();
 		ParallelTransition secuencia = new ParallelTransition();
 		TranslateTransition translate = new TranslateTransition();
 		ScaleTransition scale = new ScaleTransition();
 		ScaleTransition scale2 = new ScaleTransition();
 
-
-
-
 		ImageView vida = new ImageView(
 				new Image(JuegoController.class.getResourceAsStream("/ImagenesGreenStyle/Items/exp.png")));
 		root.getChildren().add(vida);
-		
 
 		translate.setDuration(Duration.seconds(0.5));
-		translate.setFromX(button.getLayoutX()+button.getWidth()/2);
-		translate.setFromY(button.getLayoutY()+button.getHeight()/2);
+		translate.setFromX(button.getLayoutX() + button.getWidth() / 2);
+		translate.setFromY(button.getLayoutY() + button.getHeight() / 2);
 		translate.setToX(790);
 		translate.setToY(523);
 		translate.setNode(vida);
 		translate.setInterpolator(Interpolator.EASE_BOTH);
 		translate.setAutoReverse(false);
-		
+
 		scale.setAutoReverse(true);
 		scale.setCycleCount(1);
 		scale.setDelay(Duration.ZERO);
@@ -60,8 +55,7 @@ public class Animations {
 		scale.setToY(2);
 		scale.setNode(vida);
 		scale.setInterpolator(Interpolator.EASE_BOTH);
-		
-		
+
 		scale2.setAutoReverse(true);
 		scale2.setCycleCount(1);
 		scale2.setDelay(Duration.ZERO);
@@ -72,23 +66,20 @@ public class Animations {
 		scale2.setToY(0);
 		scale2.setNode(vida);
 		scale2.setInterpolator(Interpolator.EASE_BOTH);
-		
-		
 
-    	secuencia.setAutoReverse(true);
-    	secuencia.setCycleCount(1);
-    	secuencia.getChildren().addAll(translate, scale);
-    	
-    	secuencia2.getChildren().addAll(secuencia,scale2);
-    	secuencia2.setCycleCount(0);
-    	
-    	secuencia2.play();
+		secuencia.setAutoReverse(true);
+		secuencia.setCycleCount(1);
+		secuencia.getChildren().addAll(translate, scale);
+
+		secuencia2.getChildren().addAll(secuencia, scale2);
+		secuencia2.setCycleCount(0);
+
+		secuencia2.play();
 	}
-	
-	public static void doorsAnimation(Node nodo,MainController main) {
-		
+
+	public static void doorsAnimation(Node nodo, MainController main) {
+
 		Animations.main = main;
-		main.getMenu().getJugarButton().setDisable(true);
 		TranslateTransition translate = new TranslateTransition();
 		if (nodo.getId().equals("puertauno")) {
 			transicion1 = new SequentialTransition();
@@ -104,17 +95,16 @@ public class Animations {
 			transicion1.setAutoReverse(false);
 
 			transicion1.setCycleCount(1);
-			//transicion1.setOnFinished(e -> stoped(e));
+			// transicion1.setOnFinished(e -> stoped(e));
 			transicion1.play();
-			
-			transicion1.currentTimeProperty().addListener((o,ov,nv)->{
-				if(nv.equals(Duration.seconds(2))) {
+
+			transicion1.currentTimeProperty().addListener((o, ov, nv) -> {
+				if (nv.equals(Duration.seconds(2))) {
 					main.setJuego();
 					transicion1.jumpTo(Duration.ZERO);
 					transicion1.stop();
 				}
-			});	
-		
+			});
 
 		} else if (nodo.getId().equals("puertados")) {
 			transicion2 = new SequentialTransition();
@@ -131,23 +121,18 @@ public class Animations {
 
 			transicion2.setCycleCount(1);
 			transicion2.play();
-			
-			transicion2.currentTimeProperty().addListener((o,ov,nv)->{
-				if(nv.equals(Duration.seconds(2))) {
+
+			transicion2.currentTimeProperty().addListener((o, ov, nv) -> {
+				if (nv.equals(Duration.seconds(2))) {
 					main.setJuego();
 					transicion2.jumpTo(Duration.ZERO);
 					transicion2.stop();
-					main.getMenu().getJugarButton().setDisable(false);
 				}
-			});	
-			
+			});
+
 		}
-		
-		
-		
 
 	}
-
 
 //	private static void stoped(ActionEvent e) {
 //		SequentialTransition transicion =  (SequentialTransition) e.getSource();
@@ -158,21 +143,32 @@ public class Animations {
 //		transicion2.stop();
 //	}
 
-	public static void buttonsAnimation(Node n) {
+	public static void buttonsAnimation(Node n, boolean aparecer) {
 
 		FadeTransition transicion = new FadeTransition();
-
-		transicion.setAutoReverse(true);
-		transicion.setCycleCount(1);
-		transicion.setDelay(Duration.ZERO);
-		transicion.setDuration(Duration.seconds(5));
-		transicion.setFromValue(0);
-		transicion.setToValue(1);
-		transicion.setRate(1);
-		transicion.setNode(n);
-		transicion.setInterpolator(Interpolator.LINEAR);
-
+		if (aparecer) {
+			transicion.setAutoReverse(true);
+			transicion.setCycleCount(1);
+			transicion.setDelay(Duration.ZERO);
+			transicion.setDuration(Duration.seconds(5));
+			transicion.setFromValue(0);
+			transicion.setToValue(1);
+			transicion.setRate(1);
+			transicion.setNode(n);
+			transicion.setInterpolator(Interpolator.LINEAR);
+		} else {
+			transicion.setAutoReverse(true);
+			transicion.setCycleCount(1);
+			transicion.setDelay(Duration.ZERO);
+			transicion.setDuration(Duration.seconds(5));
+			transicion.setFromValue(0);
+			transicion.setToValue(0);
+			transicion.setRate(1);
+			transicion.setNode(n);
+			transicion.setInterpolator(Interpolator.LINEAR);
+		}
 		transicion.play();
+
 	}
 
 }
