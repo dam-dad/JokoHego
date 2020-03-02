@@ -197,7 +197,7 @@ public class CharacterBoxController extends VBox implements Initializable {
 			character.setDanyo(character.getDanyo()+1);
 		}
 		if(boton.getStyleClass().contains("vida")) {
-			character.setVidamax(character.getVidamax()+2);
+			character.setVidamax(character.getVidamax()+3);
 		}
 		character.setNivel(character.getNivel()+1);
 		character.setExperiencia(character.getExperiencia()-10*(character.getNivel()-1));

@@ -43,7 +43,7 @@ public class Monster {
 				break;
 			}
 			case Orco:{
-				vida.set(40);
+				vida.set(50);
 				danyo.set(6);
 				experiencia.set(5);
 				break;

@@ -150,7 +150,7 @@ public class JokoUtils {
 				fondo = BackType.Escaleras;
 				escalera = true;
 			}
-		} else if (num <= 40 && num >= 35) {
+		} else if (num <= 48 && num >= 45) {
 			fondo = BackType.Cofre;
 		} else if (num > 90) {
 			fondo = BackType.Monster;
@@ -168,24 +168,24 @@ public class JokoUtils {
 	public static MonsterType generarMonstruo() {
 		MonsterType monster = null;
 
-		int num = (int) ((Math.random() * 100) + (nivel * 5));
+		int num = (int) ((Math.random() * 100) + (nivel * 10));
 
-		if (num < 40) {
+		if (num < 50) {
 			monster = MonsterType.Rata;
-		} else if (num >= 40 && num < 60) {
+		} else if (num >= 50 && num < 70) {
 			monster = MonsterType.Minik;
-		} else if (num >= 60 && num < 100) {
+		} else if (num >= 70 && num < 90) {
 			monster = MonsterType.Serpiente;
-		} else if (num >= 100 && num < 120) {
+		} else if (num >= 90 && num < 110) {
 			monster = MonsterType.Orco;
-		} else if (num >= 120 && num < 140) {
+		} else if (num >= 110 && num < 130) {
 			monster = MonsterType.Phantom;
 		} else if (num >= 130 && num < 150) {
 			monster = MonsterType.Gormiti;
 		} else
 			monster = MonsterType.Cutulu;
 
-		if (num == 80)
+		if (num == 100)
 			monster = MonsterType.EscarabajoOro;
 		return monster;
 	}

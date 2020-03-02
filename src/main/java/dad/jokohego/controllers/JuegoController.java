@@ -303,10 +303,10 @@ public class JuegoController implements Initializable {
 			}
 			a.hide();
 		} else if (boton.getStyleClass().contains("damage")) {
-			character.getCharacter().setDanyo(character.getCharacter().getDanyo() + 1);
+			character.getCharacter().setDanyo(character.getCharacter().getDanyo() + 2);
 			a.hide();
 		} else if (boton.getStyleClass().contains("vida")) {
-			character.getCharacter().setVidamax(character.getCharacter().getVidamax() + 10);
+			character.getCharacter().setVidamax(character.getCharacter().getVidamax() + 5);
 			a.hide();
 		}
 
