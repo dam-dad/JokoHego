@@ -18,12 +18,19 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.util.converter.NumberStringConverter;
 
+
+/**
+ * 
+ * 	Componente del personaje.	
+ * 
+ *  @author SERGIO GARCÍA DELGADO
+ * 	@author AMARO YANES CABRERA
+ */
 public class CharacterBoxController extends VBox implements Initializable {
 
 	@FXML
@@ -74,6 +81,14 @@ public class CharacterBoxController extends VBox implements Initializable {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		character.setDanyo(10);
+		character.setVida(100);
+		character.setVidamax(100);
+		character.setNivel(1);
+		character.setExperiencia(0);
+		enablePotion(potionButton1);
+		enablePotion(potionButton2);
+		enablePotion(potionButton3);
 	}
 
 	@Override
@@ -85,15 +100,7 @@ public class CharacterBoxController extends VBox implements Initializable {
 		potionButton2.getStyleClass().clear();
 		potionButton3.getStyleClass().clear();
 		
-		character.setDanyo(10);
-		character.setVida(100);
-		character.setVidamax(100);
-		character.setNivel(1);
-		character.setExperiencia(0);
-
-		enablePotion(potionButton1);
-		enablePotion(potionButton2);
-		enablePotion(potionButton3);
+		
 		
 		// comprobar bindeos
 		Bindings.bindBidirectional(healthLabel.textProperty(), character.vidaProperty(),
@@ -121,6 +128,13 @@ public class CharacterBoxController extends VBox implements Initializable {
 
 	}
 
+	/**
+	 * 
+	 * 
+	 * 
+	 * @param event
+	 */
+	
 	@FXML
 	void onPocionAction(ActionEvent event) {
 

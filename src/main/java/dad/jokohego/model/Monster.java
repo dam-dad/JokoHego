@@ -6,6 +6,14 @@ import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
+/**
+ * Beans de los monstruos con sus atributos.
+ * 
+ * @author SERGIO GARCÍA DELGADO
+ * @author AMARO YANES CABRERA
+ */
+
+
 public class Monster {
 	
 	private StringProperty nombre = new SimpleStringProperty();

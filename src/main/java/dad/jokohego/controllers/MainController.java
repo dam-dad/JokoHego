@@ -11,6 +11,15 @@ import javafx.fxml.Initializable;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.media.MediaPlayer;
 
+
+/**
+ * 
+ * Controlador principal para cambiar entre los demás controladores.
+ * 
+ * @author SERGIO GARCÍA DELGADO
+ * @author AMARO YANES CABRERA
+ */
+
 public class MainController implements Initializable {
 
 	@FXML

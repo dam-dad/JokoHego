@@ -6,23 +6,21 @@ import java.util.ResourceBundle;
 
 import dad.jokohego.utils.Animations;
 import dad.jokohego.utils.Sounds;
-import javafx.animation.FadeTransition;
-import javafx.animation.Interpolator;
-import javafx.animation.SequentialTransition;
-import javafx.animation.Transition;
-import javafx.animation.TranslateTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
-import javafx.util.Duration;
-
+/**
+ * 
+ * Controlador del menú principal.
+ * 
+ * @author SERGIO GARCÍA DELGADO
+ * @author AMARO YANES CABRERA
+ */
 public class MenuController implements Initializable {
 
 	@FXML
