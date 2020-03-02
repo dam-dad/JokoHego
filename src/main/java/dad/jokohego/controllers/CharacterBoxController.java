@@ -70,7 +70,7 @@ public class CharacterBoxController extends VBox implements Initializable {
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/CharacterBox.fxml"));
 			loader.setController(this);
 			loader.setRoot(this);
-			loader.load();
+			loader.load();z
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

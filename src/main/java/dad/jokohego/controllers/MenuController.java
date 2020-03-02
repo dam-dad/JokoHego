@@ -1,6 +1,9 @@
 package dad.jokohego.controllers;
 
+import java.awt.Desktop;
 import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -70,7 +73,15 @@ public class MenuController implements Initializable {
 
 	@FXML
 	void onAyudaAction(ActionEvent event) {
-
+		try {
+			Desktop.getDesktop().browse(new URI("https://www.discoduroderoer.es/abrir-un-enlace-desde-nuestra-aplicacion-en-java/"));
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (URISyntaxException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	@FXML
