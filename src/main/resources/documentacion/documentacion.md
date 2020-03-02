@@ -2,4 +2,4 @@
 
 Al iniciar el juego se monstrara la siguiente pantalla:
 
-![menu](C:\Users\Usuario\Pictures\menu.png)
+![Hombre](https://github.com/dam-dad/JokoHego/blob/master/src/main/resources/ImagenesGreenStyle/Personajes/Hombre.png)
