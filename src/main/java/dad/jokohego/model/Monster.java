@@ -25,21 +25,21 @@ public class Monster {
 		nombre.set(tipo.toString());
 		switch(tipo) {
 			case Cutulu:{
-				vida.set(50);
-				danyo.set(7);
-				experiencia.set(10);
+				vida.set(80);
+				danyo.set(10);
+				experiencia.set(40);
 				break;
 			}
 			case Gormiti:{
-				vida.set(60);
-				danyo.set(2);
-				experiencia.set(8);
+				vida.set(100);
+				danyo.set(4);
+				experiencia.set(20);
 				break;
 			}
 			case Minik:{
-				vida.set(20);
+				vida.set(24);
 				danyo.set(3);
-				experiencia.set(3);
+				experiencia.set(5);
 				break;
 			}
 			case Orco:{
@@ -49,14 +49,14 @@ public class Monster {
 				break;
 			}
 			case Phantom:{
-				vida.set(20);
-				danyo.set(14);
-				experiencia.set(5);
+				vida.set(25);
+				danyo.set(20);
+				experiencia.set(10);
 				break;
 			}
 			case Rata:{
-				vida.set(10);
-				danyo.set(5);
+				vida.set(11);
+				danyo.set(4);
 				experiencia.set(1);
 				break;
 			}
@@ -67,7 +67,7 @@ public class Monster {
 				break;
 			}
 			case EscarabajoOro:{
-				vida.set(5);
+				vida.set(1);
 				danyo.set(0);
 				experiencia.set(100);
 				break;
