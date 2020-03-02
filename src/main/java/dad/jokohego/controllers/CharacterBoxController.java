@@ -162,22 +162,26 @@ public class CharacterBoxController extends VBox implements Initializable {
 		
 		PopOver a = new PopOver();
 		a.setTitle("");
-		a.getRoot().getStyleClass().add("popup");
+		a.getStyleClass().clear();
+		a.getStyleClass().add("popup");
 		a.setArrowLocation(ArrowLocation.TOP_CENTER);
 		a.setAnchorX(300);
 		a.setAnchorY(250);
-		a.detach();
+		a.setArrowSize(10);
+		//a.detach();
 		a.setAnimated(false);
 		a.requestFocus();
 
 		Button item1 = new Button();  
 		item1.setPrefHeight(40);
 		item1.setPrefWidth(40);
+		item1.getStyleClass().clear();
 		item1.getStyleClass().add("damage");
 		item1.setOnAction(e -> onSkillSelectedAction(e, a));
 		Button item2 = new Button();
 		item2.setPrefHeight(40);
 		item2.setPrefWidth(40);
+		item2.getStyleClass().clear();
 		item2.getStyleClass().add("vida");
 		item2.setOnAction(e -> onSkillSelectedAction(e, a));
 		HBox botonera = new HBox(item1, item2);

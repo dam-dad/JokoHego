@@ -131,7 +131,6 @@ public class JuegoController implements Initializable {
 	@FXML
 	public void onGeneralAction(ActionEvent event) {
 		Button boton = (Button) event.getSource();
-		System.out.println(boton.getStyleClass().toString());
 		// Si Losa Oscura
 		if (boton.getStyleClass().contains("LosaOscura")) {
 			boton.getStyleClass().remove("LosaOscura");
