@@ -25,6 +25,7 @@
 			<![CDATA[]]>
 		</queryString>
 	</subDataset>
+	<parameter name="IMAGEN" class="java.awt.Image" isForPrompting="false"/>
 	<queryString>
 		<![CDATA[]]>
 	</queryString>
@@ -53,6 +54,10 @@
 				<reportElement x="10" y="160" width="160" height="30" uuid="c13e3f1c-c9de-4097-b1d7-adec19ecce82"/>
 				<text><![CDATA[Estadísticas del jugador:]]></text>
 			</staticText>
+			<image>
+				<reportElement x="240" y="0" width="560" height="140" uuid="62fecc23-f02a-488f-a888-2db3e534c9a9"/>
+				<imageExpression><![CDATA[$P{IMAGEN}]]></imageExpression>
+			</image>
 		</band>
 	</title>
 	<pageFooter>

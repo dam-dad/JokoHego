@@ -1,32 +1,24 @@
 package dad.jokohego.utils;
 
-import java.awt.Desktop;
 import java.awt.Point;
-import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.imageio.ImageIO;
 import dad.jokohego.app.JokoHegoApp;
 import dad.jokohego.controllers.JuegoController;
 import dad.jokohego.model.GameData;
 import dad.jokohego.model.GameDataProvider;
-import dad.jokohego.model.Monster;
-import javafx.event.ActionEvent;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
-import javafx.scene.control.ContentDisplay;
 import javafx.scene.control.Label;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.Pane;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.RowConstraints;
-import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.DirectoryChooser;
-import javafx.stage.FileChooser;
-import javafx.stage.FileChooser.ExtensionFilter;
 import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JasperCompileManager;
 import net.sf.jasperreports.engine.JasperExportManager;
@@ -34,6 +26,14 @@ import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.JasperReport;
 import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
+
+/**
+ * 
+ * 	Colección de métodos estáticos para el funcionamiento del videojuego.	
+ * 
+ *  @author SERGIO GARCÍA DELGADO
+ * 	@author AMARO YANES CABRERA
+ */
 
 public class JokoUtils {
 	// los botones tienen en el  userData un tipo BackType
@@ -43,6 +43,16 @@ public class JokoUtils {
 	private static BackType[][] backType;
 	private static GridPane buttons;
 
+	
+	/**
+	 * 
+	 * Genera dinámicamente un gridpane de botones dependinedo del parámeto nivel.
+	 * 
+	 * @param nivel Nivel actual del juego
+	 * @param jg Juego
+	 * @return
+	 */
+	
 	public static GridPane generarNivel(int nivel, JuegoController jg) {
 		JokoUtils.nivel = nivel;
 		escalera = false;
@@ -123,6 +133,13 @@ public class JokoUtils {
 		return buttons;
 	}
 
+	/**
+	 * 
+	 * Retorna un BackType de forma aleatoria entre los elementos del enumerado.
+	 * 
+	 * @return
+	 */
+	
 	public static BackType generarFondo() {
 		BackType[] bt = BackType.values();
 		BackType fondo = BackType.Losa;
@@ -142,7 +159,13 @@ public class JokoUtils {
 		return fondo;
 		// (hasta-desde+1)+desde
 	}
-
+	/**
+	 * 
+	 * Retorna un MonsterType de forma aleatoria entre los elementos del enumerado.
+	 * 
+	 * 
+	 * @return
+	 */
 	public static MonsterType generarMonstruo() {
 		MonsterType monster = null;
 
@@ -169,13 +192,23 @@ public class JokoUtils {
 		return monster;
 	}
 	
+	/**
+	 * 
+	 * Genera un pdf con los datos recibidos del juego.
+	 * 
+	 * 
+	 * @param game Datos del juego
+	 * @throws JRException
+	 * @throws IOException
+	 */
+	
 	public static void generarPdf(GameData game) throws JRException, IOException {
 		GameDataProvider gamedata = new GameDataProvider(game);
 
 		JasperReport report = JasperCompileManager.compileReport(JokoUtils.class.getResourceAsStream("/reports/JokoHegoReport.jrxml"));		
 
 		Map<String, Object> parameters = new HashMap<String, Object>();
-		parameters.put("anyo", 2014); 
+		parameters.put("IMAGEN", ImageIO.read(JokoUtils.class.getResourceAsStream("/ImagenesGreenStyle/Fondos/jokohegologo.png"))); 
 		
         JasperPrint print  = JasperFillManager.fillReport(report, parameters, new JRBeanCollectionDataSource(gamedata.getData()));
         
@@ -185,8 +218,10 @@ public class JokoUtils {
 
 		chooser.setTitle("Elegir directorio");
 
-		
-        JasperExportManager.exportReportToPdfFile(print, chooser.showDialog(JokoHegoApp.getStage()).toString()+"\\"+game.getNombre()+".pdf");
+		try {
+			JasperExportManager.exportReportToPdfFile(print, chooser.showDialog(JokoHegoApp.getStage()).toString()+"\\"+game.getNombre()+".pdf");
+		} catch (Exception e) {
+		}
         
 	}
 	

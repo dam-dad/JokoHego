@@ -3,6 +3,14 @@ package dad.jokohego.model;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 
+
+/**
+ * 
+ * Modelo del personaje con sus atributos.
+ * 
+ * @author SERGIO GARCÍA DELGADO
+ * @author AMARO YANES CABRERA
+ */
 public class Personaje {
 
 	private IntegerProperty vida = new SimpleIntegerProperty();

@@ -2,15 +2,12 @@ package dad.jokohego.utils;
 
 import dad.jokohego.controllers.JuegoController;
 import dad.jokohego.controllers.MainController;
-import dad.jokohego.controllers.MenuController;
 import javafx.animation.FadeTransition;
 import javafx.animation.Interpolator;
 import javafx.animation.ParallelTransition;
 import javafx.animation.ScaleTransition;
 import javafx.animation.SequentialTransition;
-import javafx.animation.Transition;
 import javafx.animation.TranslateTransition;
-import javafx.event.ActionEvent;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
@@ -18,12 +15,27 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.util.Duration;
 
+/**
+ * 
+ * Clase de animaciones del videojuego.
+ * 
+ * @author SERGIO GARCÍA DELGADO
+ * @author AMARO YANES CABRERA
+ */
 public class Animations {
 
 	private static SequentialTransition transicion1;
 	private static SequentialTransition transicion2;
-	private static MainController main;
 
+	/**
+	 * 
+	 * Desplaza una imagen desde el centro del botón hasta un punto dentro de la aplicación
+	 * que es donde se encuentra el botón de subir de nivel.
+	 * 
+	 * @param button Botón pulsado.
+	 * @param root Panel raíz de la aplicación. 
+	 */
+	
 	public static void Obtainexperience(Button button, Pane root) {
 
 		SequentialTransition secuencia2 = new SequentialTransition();
@@ -77,9 +89,16 @@ public class Animations {
 		secuencia2.play();
 	}
 
+	/**
+	 * 
+	 * Realiza el desplazamiento de una imagen que es pasada por parámetro.
+	 * 
+	 * @param nodo Puerta/Nodo a desplazar.
+	 * @param main Controllador en el que se encuentra.
+	 */
+	
 	public static void doorsAnimation(Node nodo, MainController main) {
 
-		Animations.main = main;
 		TranslateTransition translate = new TranslateTransition();
 		if (nodo.getId().equals("puertauno")) {
 			transicion1 = new SequentialTransition();
@@ -95,7 +114,6 @@ public class Animations {
 			transicion1.setAutoReverse(false);
 
 			transicion1.setCycleCount(1);
-			// transicion1.setOnFinished(e -> stoped(e));
 			transicion1.play();
 
 			transicion1.currentTimeProperty().addListener((o, ov, nv) -> {
@@ -134,16 +152,15 @@ public class Animations {
 
 	}
 
-//	private static void stoped(ActionEvent e) {
-//		SequentialTransition transicion =  (SequentialTransition) e.getSource();
-//		main.setJuego();
-//		transicion1.jumpTo(Duration.ZERO);
-//		transicion1.stop();
-//		transicion2.jumpTo(Duration.ZERO);
-//		transicion2.stop();
-//	}
-
-	public static void buttonsAnimation(Node n, boolean aparecer) {
+	/**
+	 * 
+	 * Realiza la animación de aparación de botones y logo.
+	 * 
+	 * @param botonera Nodo al que se le aplica la animación.
+	 * @param aparecer Boolean para hacerlo desaparecer o aparecer.
+	 */
+	
+	public static void buttonsAnimation(Node botonera, boolean aparecer) {
 
 		FadeTransition transicion = new FadeTransition();
 		if (aparecer) {
@@ -154,7 +171,7 @@ public class Animations {
 			transicion.setFromValue(0);
 			transicion.setToValue(1);
 			transicion.setRate(1);
-			transicion.setNode(n);
+			transicion.setNode(botonera);
 			transicion.setInterpolator(Interpolator.LINEAR);
 		} else {
 			transicion.setAutoReverse(true);
@@ -164,7 +181,7 @@ public class Animations {
 			transicion.setFromValue(0);
 			transicion.setToValue(0);
 			transicion.setRate(1);
-			transicion.setNode(n);
+			transicion.setNode(botonera);
 			transicion.setInterpolator(Interpolator.LINEAR);
 		}
 		transicion.play();
