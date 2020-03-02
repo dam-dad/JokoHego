@@ -89,9 +89,13 @@ public class JuegoController implements Initializable {
 	public void initialize(URL location, ResourceBundle resources) {
 		poper.getStyleClass().clear();
 		poper.getStyleClass().add("popup");
+		monsterKilled = 0;
+		nivel = 1;
+		numMonster = 0;
 		iniciarNivel();
-
 		root.setRight(character);
+		
+		
 
 		// poper
 
@@ -252,9 +256,8 @@ public class JuegoController implements Initializable {
 				}
 			}
 			Animations.buttonsAnimation(main.getMenu().getBotonera(), true);
-			monsterKilled = 0;
-			nivel = 1;
-			numMonster = 0;
+			
+			
 			character = new CharacterBoxController();
 			iniciarNivel();
 			try {

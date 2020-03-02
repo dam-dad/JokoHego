@@ -52,6 +52,11 @@ public class MainController implements Initializable {
 
 	public void setJuego() {
 		music.stop();
+		try {
+			juego = new JuegoController(this);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 		root.setCenter(juego.getView());
 		music = Sounds.playBattleSong();
 	}
