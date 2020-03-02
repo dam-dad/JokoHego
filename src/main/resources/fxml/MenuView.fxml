@@ -40,9 +40,9 @@
                               <Insets bottom="75.0" top="75.0" />
                            </VBox.margin>
                         </ImageView>
-                        <Button fx:id="jugarButton" mnemonicParsing="false" onAction="#onJugarAction" prefWidth="100.0" text="Jugar" />
-                        <Button fx:id="ayudaButton" mnemonicParsing="false" onAction="#onAyudaAction" prefWidth="100.0" text="Ayuda" />
-                        <Button fx:id="salirButton" mnemonicParsing="false" onAction="#onSalirAction" prefWidth="100.0" text="Salir">
+                        <Button fx:id="jugarButton" mnemonicParsing="false" onAction="#onJugarAction" prefWidth="100.0" styleClass="menuButton" text="Jugar" />
+                        <Button fx:id="ayudaButton" mnemonicParsing="false" onAction="#onAyudaAction" prefWidth="100.0" styleClass="menuButton" text="Ayuda" />
+                        <Button fx:id="salirButton" mnemonicParsing="false" onAction="#onSalirAction" prefWidth="100.0" styleClass="menuButton" text="Salir">
                            <VBox.margin>
                               <Insets bottom="250.0" />
                            </VBox.margin>

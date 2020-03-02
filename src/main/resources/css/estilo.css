@@ -121,3 +121,14 @@
 	-fx-font-size:12pt;
 	-fx-font-weight: bold;
 }
+.menuButton{
+	-fx-background-color: #aec440;
+	-fx-text-fill:#527f39;
+	-fx-effect: dropshadow( gaussian , #527f39 , 0,0,0,2 );
+	-fx-font-size:12pt;
+	-fx-font-weight: bold;
+}
+.menuButton:hover {
+	-fx-background-color: #527f39;
+	-fx-text-fill:white;
+}
