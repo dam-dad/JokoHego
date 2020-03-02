@@ -2,7 +2,7 @@
 
 Al iniciar el juego se monstrara la siguiente pantalla:
 
-![menu](C:\Users\Usuario\Pictures\menu.png)
+![menu](menu.png)
 
 **1** - Empezar una partida.
 
@@ -18,7 +18,7 @@ Una vez dentro de la partida tendras que clicar en las diferentes losas oscuras 
 
 La información que aparece en pantalla es la siguiente:
 
-![batalla](C:\Users\Usuario\Pictures\batalla.png)
+![batalla](batalla.png)
 
 **1** - Número de enemigos en esa fila/columna.
 
@@ -36,13 +36,13 @@ La información que aparece en pantalla es la siguiente:
 
 A lo largo de los diferentes niveles tienes una posibilidad de encontrar cofres que te permiten *Restablecer pociones* , *aumentar el daño* o *aumentar la vida máxima.* 
 
-![Screenshot_1](C:\Users\Usuario\Pictures\Screenshot_1.png)
+![Screenshot_1](Screenshot_1.png)
 
 #### Utilizar la experencia
 
 Cada vez que mates un enemigo se te recompensara con experiencia, con esta podras *aumentar el daño* o *aumentar la vida máxima*
 
-![experi](C:\Users\Usuario\Pictures\experi.png)
+![experi](experi.png)
 
 
 
